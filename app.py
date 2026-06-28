@@ -15,12 +15,12 @@ def health_check():
 
 @app.errorhandler(404)
 def not_found(error):
-    app.logger.error('Not Found: %s', (error))
+    app.logger.error('404 error: %s', error)
     return jsonify({'error': 'Not found'}), 404
 
 @app.errorhandler(500)
 def internal_error(error):
-    app.logger.error('Server Error: %s', (error))
+    app.logger.error('500 error: %s', error)
     return jsonify({'error': 'Internal server error'}), 500
 
 if __name__ == '__main__':
