@@ -10,18 +10,13 @@ logging.basicConfig(level=logging.INFO)
 
 @app.route('/health', methods=['GET'])
 def health_check():
-    app.logger.info('Health check endpoint was called')
-    return jsonify({'status': 'healthy'}), 200
-
-@app.errorhandler(404)
-def not_found_error(error):
-    app.logger.error(f'Not found: {error}')
-    return jsonify({'error': 'Not found'}), 404
-
-@app.errorhandler(500)
-def internal_error(error):
-    app.logger.error(f'Server error: {error}')
-    return jsonify({'error': 'Internal server error'}), 500
+    try:
+        response = {'status': 'healthy'}
+        app.logger.info('Health check successful')
+        return jsonify(response), 200
+    except Exception as e:
+        app.logger.error(f'Error during health check: {e}')
+        return jsonify({'error': 'Internal Server Error'}), 500
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=False)
+    app.run(host='0.0.0.0', port=5000, debug=True)
