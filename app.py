@@ -1,6 +1,5 @@
-from flask import Flask
+from flask import Flask, jsonify
 from flask_cors import CORS
-from routes import init_routes
 import logging
 
 app = Flask(__name__)
@@ -9,8 +8,17 @@ CORS(app)
 # Configure logging
 logging.basicConfig(level=logging.INFO)
 
-# Initialize routes
-init_routes(app)
+@app.route('/health', methods=['GET'])
+def health_check():
+    try:
+        response = {
+            'status': 'success',
+            'message': 'API is healthy'
+        }
+        return jsonify(response), 200
+    except Exception as e:
+        app.logger.error(f'Error in health_check: {str(e)}')
+        return jsonify({'status': 'error', 'message': 'Internal Server Error'}), 500
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+    app.run(host='0.0.0.0', port=5000, debug=False)
