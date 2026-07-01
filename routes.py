@@ -1,39 +1,42 @@
-from flask import Blueprint, jsonify, request
+from flask import jsonify, request
+from flask_login import login_user, logout_user, login_required
+from models import User, Book, db
 
-employee_blueprint = Blueprint('employee', __name__)
 
-# In-memory database for demonstration purposes
-employees = {}
+def init_routes(app):
+    @app.route('/api/login', methods=['POST'])
+    def login():
+        data = request.json
+        user = User.query.filter_by(username=data.get('username')).first()
+        if user and user.check_password(data.get('password')):
+            login_user(user)
+            return jsonify({'message': 'Logged in successfully'}), 200
+        return jsonify({'error': 'Invalid credentials'}), 401
 
-@employee_blueprint.route('/employees', methods=['GET'])
-def get_employees():
-    return jsonify(list(employees.values()))
+    @app.route('/api/logout', methods=['POST'])
+    @login_required
+    def logout():
+        logout_user()
+        return jsonify({'message': 'Logged out successfully'}), 200
 
-@employee_blueprint.route('/employees/<int:employee_id>', methods=['GET'])
-def get_employee(employee_id):
-    employee = employees.get(employee_id)
-    if employee:
-        return jsonify(employee)
-    return jsonify({'error': 'Employee not found'}), 404
+    @app.route('/api/books', methods=['GET'])
+    def get_books():
+        books = Book.query.all()
+        return jsonify([book.to_dict() for book in books]), 200
 
-@employee_blueprint.route('/employees', methods=['POST'])
-def create_employee():
-    data = request.get_json()
-    employee_id = len(employees) + 1
-    employees[employee_id] = {'id': employee_id, 'name': data['name'], 'position': data['position']}
-    return jsonify(employees[employee_id]), 201
+    @app.route('/api/books', methods=['POST'])
+    @login_required
+    def add_book():
+        data = request.json
+        new_book = Book(title=data.get('title'), author=data.get('author'))
+        db.session.add(new_book)
+        db.session.commit()
+        return jsonify(new_book.to_dict()), 201
 
-@employee_blueprint.route('/employees/<int:employee_id>', methods=['PUT'])
-def update_employee(employee_id):
-    if employee_id in employees:
-        data = request.get_json()
-        employees[employee_id].update(data)
-        return jsonify(employees[employee_id])
-    return jsonify({'error': 'Employee not found'}), 404
+    @app.errorhandler(404)
+    def not_found(error):
+        return jsonify({'error': 'Not found'}), 404
 
-@employee_blueprint.route('/employees/<int:employee_id>', methods=['DELETE'])
-def delete_employee(employee_id):
-    if employee_id in employees:
-        del employees[employee_id]
-        return jsonify({'message': 'Employee deleted'}), 200
-    return jsonify({'error': 'Employee not found'}), 404
+    @app.errorhandler(500)
+    def internal_error(error):
+        return jsonify({'error': 'Internal server error'}), 500
