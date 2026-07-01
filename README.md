@@ -1,22 +1,42 @@
-# Employee Management System
+# Library Management System
 
-This is a Flask-based backend application for managing employees with CRUD operations.
-
-## Features
-- Create, read, update, and delete employees
-- JSON responses
-- Error handling
+This is a Flask-based REST API for a library management system with user authentication and book management.
 
 ## Setup
 
-1. Install dependencies:
+1. Create a virtual environment:
+   ```bash
+   python3 -m venv venv
+   ```
+
+2. Activate the virtual environment:
+   - On Windows:
+     ```bash
+     venv\Scripts\activate
+     ```
+   - On macOS and Linux:
+     ```bash
+     source venv/bin/activate
+     ```
+
+3. Install the dependencies:
    ```bash
    pip install -r requirements.txt
    ```
 
-2. Run the application:
+4. Run the application:
    ```bash
    python app.py
    ```
 
-The application will be available at `http://localhost:5000`.
+## API Endpoints
+
+- `POST /api/login`: Login a user.
+- `POST /api/logout`: Logout a user.
+- `GET /api/books`: Retrieve all books.
+- `POST /api/books`: Add a new book.
+
+## Error Handling
+
+- 404: Not found
+- 500: Internal server error
