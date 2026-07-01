@@ -1,17 +1,22 @@
-from flask import Flask, jsonify
-from routes import employee_blueprint
+from flask import Flask
+from flask_cors import CORS
+from flask_sqlalchemy import SQLAlchemy
+from flask_login import LoginManager
+from routes import init_routes
+import logging
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = 'your_secret_key'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///library.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-app.register_blueprint(employee_blueprint)
+CORS(app)
+db = SQLAlchemy(app)
+login_manager = LoginManager(app)
+login_manager.login_view = 'login'
 
-@app.errorhandler(404)
-def not_found_error(error):
-    return jsonify({'error': 'Not found'}), 404
-
-@app.errorhandler(500)
-def internal_error(error):
-    return jsonify({'error': 'Internal server error'}), 500
+init_routes(app)
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+    logging.basicConfig(level=logging.INFO)
+    app.run(debug=True)
