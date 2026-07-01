@@ -1,16 +1,20 @@
 from flask import Flask, jsonify
 from flask_cors import CORS
 from flask_jwt_extended import JWTManager
-from routes import register_routes
+from routes import task_blueprint
 import logging
 
 app = Flask(__name__)
-app.config['JWT_SECRET_KEY'] = 'your_jwt_secret_key'
+app.config['JWT_SECRET_KEY'] = 'your_jwt_secret_key'  # Change this in production
+
+# Initialize extensions
 CORS(app)
 JWTManager(app)
 
-register_routes(app)
+# Register blueprints
+app.register_blueprint(task_blueprint)
 
+# Setup logging
 logging.basicConfig(level=logging.INFO)
 
 @app.route('/health', methods=['GET'])
