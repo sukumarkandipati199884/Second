@@ -1,40 +1,42 @@
 from flask import jsonify, request
+from flask_jwt_extended import jwt_required
+from models import db, Task
 
-employees = []
 
-class Employee:
-    def __init__(self, emp_id, name, position):
-        self.emp_id = emp_id
-        self.name = name
-        self.position = position
+def register_routes(app):
+    @app.route('/tasks', methods=['GET'])
+    @jwt_required()
+    def get_tasks():
+        tasks = Task.query.all()
+        return jsonify([task.to_dict() for task in tasks]), 200
 
-    def to_dict(self):
-        return {'emp_id': self.emp_id, 'name': self.name, 'position': self.position}
-
-def init_routes(app):
-    @app.route('/employees', methods=['GET'])
-    def get_employees():
-        return jsonify([emp.to_dict() for emp in employees]), 200
-
-    @app.route('/employees', methods=['POST'])
-    def add_employee():
+    @app.route('/tasks', methods=['POST'])
+    @jwt_required()
+    def create_task():
         data = request.get_json()
-        new_emp = Employee(emp_id=data['emp_id'], name=data['name'], position=data['position'])
-        employees.append(new_emp)
-        return jsonify(new_emp.to_dict()), 201
+        if not data or 'title' not in data:
+            return jsonify({'error': 'Invalid input'}), 400
+        task = Task(title=data['title'], description=data.get('description', ''))
+        db.session.add(task)
+        db.session.commit()
+        return jsonify(task.to_dict()), 201
 
-    @app.route('/employees/<int:emp_id>', methods=['PUT'])
-    def update_employee(emp_id):
+    @app.route('/tasks/<int:task_id>', methods=['PUT'])
+    @jwt_required()
+    def update_task(task_id):
+        task = Task.query.get_or_404(task_id)
         data = request.get_json()
-        for emp in employees:
-            if emp.emp_id == emp_id:
-                emp.name = data.get('name', emp.name)
-                emp.position = data.get('position', emp.position)
-                return jsonify(emp.to_dict()), 200
-        return jsonify({'error': 'Employee not found'}), 404
+        if not data:
+            return jsonify({'error': 'Invalid input'}), 400
+        task.title = data.get('title', task.title)
+        task.description = data.get('description', task.description)
+        db.session.commit()
+        return jsonify(task.to_dict()), 200
 
-    @app.route('/employees/<int:emp_id>', methods=['DELETE'])
-    def delete_employee(emp_id):
-        global employees
-        employees = [emp for emp in employees if emp.emp_id != emp_id]
-        return jsonify({'message': 'Employee deleted'}), 200
+    @app.route('/tasks/<int:task_id>', methods=['DELETE'])
+    @jwt_required()
+    def delete_task(task_id):
+        task = Task.query.get_or_404(task_id)
+        db.session.delete(task)
+        db.session.commit()
+        return jsonify({'message': 'Task deleted'}), 200
