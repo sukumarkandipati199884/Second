@@ -1,42 +1,40 @@
 from flask import jsonify, request
-from flask_login import login_user, logout_user, login_required
-from models import User, Book, db
 
+employees = []
+
+class Employee:
+    def __init__(self, emp_id, name, position):
+        self.emp_id = emp_id
+        self.name = name
+        self.position = position
+
+    def to_dict(self):
+        return {'emp_id': self.emp_id, 'name': self.name, 'position': self.position}
 
 def init_routes(app):
-    @app.route('/api/login', methods=['POST'])
-    def login():
-        data = request.json
-        user = User.query.filter_by(username=data.get('username')).first()
-        if user and user.check_password(data.get('password')):
-            login_user(user)
-            return jsonify({'message': 'Logged in successfully'}), 200
-        return jsonify({'error': 'Invalid credentials'}), 401
+    @app.route('/employees', methods=['GET'])
+    def get_employees():
+        return jsonify([emp.to_dict() for emp in employees]), 200
 
-    @app.route('/api/logout', methods=['POST'])
-    @login_required
-    def logout():
-        logout_user()
-        return jsonify({'message': 'Logged out successfully'}), 200
+    @app.route('/employees', methods=['POST'])
+    def add_employee():
+        data = request.get_json()
+        new_emp = Employee(emp_id=data['emp_id'], name=data['name'], position=data['position'])
+        employees.append(new_emp)
+        return jsonify(new_emp.to_dict()), 201
 
-    @app.route('/api/books', methods=['GET'])
-    def get_books():
-        books = Book.query.all()
-        return jsonify([book.to_dict() for book in books]), 200
+    @app.route('/employees/<int:emp_id>', methods=['PUT'])
+    def update_employee(emp_id):
+        data = request.get_json()
+        for emp in employees:
+            if emp.emp_id == emp_id:
+                emp.name = data.get('name', emp.name)
+                emp.position = data.get('position', emp.position)
+                return jsonify(emp.to_dict()), 200
+        return jsonify({'error': 'Employee not found'}), 404
 
-    @app.route('/api/books', methods=['POST'])
-    @login_required
-    def add_book():
-        data = request.json
-        new_book = Book(title=data.get('title'), author=data.get('author'))
-        db.session.add(new_book)
-        db.session.commit()
-        return jsonify(new_book.to_dict()), 201
-
-    @app.errorhandler(404)
-    def not_found(error):
-        return jsonify({'error': 'Not found'}), 404
-
-    @app.errorhandler(500)
-    def internal_error(error):
-        return jsonify({'error': 'Internal server error'}), 500
+    @app.route('/employees/<int:emp_id>', methods=['DELETE'])
+    def delete_employee(emp_id):
+        global employees
+        employees = [emp for emp in employees if emp.emp_id != emp_id]
+        return jsonify({'message': 'Employee deleted'}), 200
