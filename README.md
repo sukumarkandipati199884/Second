@@ -1,43 +1,29 @@
-# Task Management API
+# Employee Management System
 
-This is a Flask-based REST API for managing tasks with JWT authentication.
+This is a Flask-based backend application for managing employees with CRUD operations.
 
 ## Features
-- JWT Authentication
-- CRUD operations for tasks
-- SQLite database (in-memory for demonstration)
-- CORS support
-- Health check endpoint
+- List all employees
+- Retrieve a specific employee
+- Add a new employee
+- Update an existing employee
+- Delete an employee
 
 ## Setup
 
 1. Install dependencies:
-   ```bash
+   ```
    pip install -r requirements.txt
    ```
 
 2. Run the application:
-   ```bash
+   ```
    python app.py
    ```
 
-3. The API will be available at `http://localhost:5000`.
-
-## Deployment
-
-This application is ready to be deployed with Gunicorn. Example command:
-```bash
-gunicorn -w 4 app:app
-```
-
-## Endpoints
-
-- `GET /task/`: Retrieve all tasks
-- `POST /task/`: Create a new task
-- `PUT /task/<task_id>`: Update a task
-- `DELETE /task/<task_id>`: Delete a task
-- `GET /health`: Health check endpoint
-
-## Note
-
-- Replace `your_jwt_secret_key` in `app.py` with a secure key in production.
+## API Endpoints
+- `GET /employees`: List all employees
+- `GET /employees/<emp_id>`: Retrieve a specific employee
+- `POST /employees`: Add a new employee
+- `PUT /employees/<emp_id>`: Update an existing employee
+- `DELETE /employees/<emp_id>`: Delete an employee
