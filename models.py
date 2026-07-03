@@ -1,18 +1,15 @@
-from sqlalchemy import create_engine, Column, Integer, String
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker
+from flask_sqlalchemy import SQLAlchemy
 
-DATABASE_URL = "sqlite:///tasks.db"
+db = SQLAlchemy()
 
-engine = create_engine(DATABASE_URL)
-SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
-Base = declarative_base()
+class Task(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(80), nullable=False)
+    description = db.Column(db.String(200), nullable=True)
 
-class Task(Base):
-    __tablename__ = 'tasks'
-
-    id = Column(Integer, primary_key=True, index=True)
-    title = Column(String, index=True)
-    description = Column(String)
-
-Base.metadata.create_all(bind=engine)
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'title': self.title,
+            'description': self.description
+        }
