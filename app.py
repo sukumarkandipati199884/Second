@@ -1,24 +1,33 @@
 from flask import Flask, jsonify
 from flask_cors import CORS
-from flask_jwt_extended import JWTManager
-from routes import task_blueprint
 import logging
 
+# Initialize the Flask application
 app = Flask(__name__)
-app.config['JWT_SECRET_KEY'] = 'your_jwt_secret_key'  # Change this to a secure key
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///tasks.db'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
+# Enable CORS
 CORS(app)
-JWTManager(app)
 
-app.register_blueprint(task_blueprint)
-
+# Configure logging
 logging.basicConfig(level=logging.INFO)
 
+# Health check route
 @app.route('/health', methods=['GET'])
 def health_check():
-    return jsonify({'status': 'healthy'}), 200
+    app.logger.info('Health check endpoint was called')
+    return jsonify(status='healthy'), 200
 
+# Error handling
+@app.errorhandler(404)
+def not_found_error(error):
+    app.logger.error(f'Not found: {error}')
+    return jsonify(error='Not found'), 404
+
+@app.errorhandler(500)
+def internal_error(error):
+    app.logger.error(f'Internal server error: {error}')
+    return jsonify(error='Internal server error'), 500
+
+# Entry point for Gunicorn
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+    app.run(host='0.0.0.0', port=5000, debug=True)
