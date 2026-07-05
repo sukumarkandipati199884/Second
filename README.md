@@ -5,11 +5,12 @@ This is a simple Flask-based REST API for managing employees.
 ## Setup
 
 1. Clone the repository.
-2. Create a virtual environment:
+2. Navigate to the project directory.
+3. Create a virtual environment:
    ```bash
    python3 -m venv venv
    ```
-3. Activate the virtual environment:
+4. Activate the virtual environment:
    - On macOS/Linux:
      ```bash
      source venv/bin/activate
@@ -18,7 +19,7 @@ This is a simple Flask-based REST API for managing employees.
      ```bash
      venv\Scripts\activate
      ```
-4. Install the dependencies:
+5. Install the dependencies:
    ```bash
    pip install -r requirements.txt
    ```
@@ -30,27 +31,22 @@ This is a simple Flask-based REST API for managing employees.
    ```bash
    python app.py
    ```
-
-The API will be available at `http://localhost:5000`.
-
-## Deployment
-
-This application is ready to be deployed on Render. Ensure you have the necessary environment variables set as per `.env.example`.
+3. The API will be available at `http://127.0.0.1:5000/`.
 
 ## API Endpoints
 
-- `GET /`: Root endpoint, returns a welcome message.
-- `GET /health`: Health check endpoint.
+- `GET /`: Welcome message.
+- `GET /health`: Health check.
 - `GET /employees`: Retrieve all employees.
 - `POST /employees`: Add a new employee.
-- `GET /employees/<employee_id>`: Retrieve a specific employee by ID.
-- `PUT /employees/<employee_id>`: Update an existing employee by ID.
-- `DELETE /employees/<employee_id>`: Delete an employee by ID.
+- `GET /employees/<employee_id>`: Retrieve a specific employee.
+- `PUT /employees/<employee_id>`: Update a specific employee.
+- `DELETE /employees/<employee_id>`: Delete a specific employee.
 
-## Error Handling
+## Deployment
 
-The API includes basic error handling for invalid input and server errors.
+This project is ready to be deployed on Render. Ensure you have a `Procfile` and `runtime.txt` for deployment.
 
-## CORS Support
+## Environment Variables
 
-CORS is enabled for all routes using `flask-cors`.
+Copy `.env.example` to `.env` and adjust the settings as needed.
