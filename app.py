@@ -5,28 +5,27 @@ import logging
 app = Flask(__name__)
 CORS(app)
 
-# Configure logging
 logging.basicConfig(level=logging.INFO)
 
-@app.route("/")
-def home():
-    app.logger.info("Home endpoint was reached.")
-    return jsonify({"status": "running", "message": "Service is live"})
+@app.route('/', methods=['GET'])
+def root():
+    app.logger.info('Root endpoint accessed')
+    return jsonify({'message': 'Welcome to the Flask API!'}), 200
 
-@app.route("/health")
+@app.route('/health', methods=['GET'])
 def health():
-    app.logger.info("Health endpoint was reached.")
-    return jsonify({"status": "healthy"})
+    app.logger.info('Health endpoint accessed')
+    return jsonify({'status': 'healthy'}), 200
 
 @app.errorhandler(404)
 def not_found(error):
-    app.logger.error(f"404 error: {error}")
-    return jsonify({"error": "Not found"}), 404
+    app.logger.error('404 error: %s', error)
+    return jsonify({'error': 'Not found'}), 404
 
 @app.errorhandler(500)
 def internal_error(error):
-    app.logger.error(f"500 error: {error}")
-    return jsonify({"error": "Internal server error"}), 500
+    app.logger.error('500 error: %s', error)
+    return jsonify({'error': 'Internal server error'}), 500
 
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000)
