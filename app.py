@@ -1,32 +1,77 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 from flask_cors import CORS
 import logging
 
 app = Flask(__name__)
 CORS(app)
 
-# Configure logging
 logging.basicConfig(level=logging.INFO)
+
+# In-memory data store for employees
+db = {
+    'employees': []
+}
 
 @app.route('/', methods=['GET'])
 def root():
-    app.logger.info('Root endpoint was accessed')
-    return jsonify({'message': 'Welcome to the Flask API!'}), 200
+    return jsonify({'message': 'Welcome to the Employee Management API'}), 200
 
 @app.route('/health', methods=['GET'])
 def health():
-    app.logger.info('Health endpoint was accessed')
     return jsonify({'status': 'healthy'}), 200
 
-@app.errorhandler(404)
-def not_found(error):
-    app.logger.error('404 error: %s', error)
-    return jsonify({'error': 'Not Found'}), 404
+@app.route('/employees', methods=['GET'])
+def get_employees():
+    return jsonify({'employees': db['employees']}), 200
 
-@app.errorhandler(500)
-def internal_error(error):
-    app.logger.error('500 error: %s', error)
-    return jsonify({'error': 'Internal Server Error'}), 500
+@app.route('/employees', methods=['POST'])
+def add_employee():
+    try:
+        data = request.get_json()
+        if not data or 'name' not in data or 'position' not in data:
+            return jsonify({'error': 'Invalid input'}), 400
+        employee = {
+            'id': len(db['employees']) + 1,
+            'name': data['name'],
+            'position': data['position']
+        }
+        db['employees'].append(employee)
+        return jsonify(employee), 201
+    except Exception as e:
+        logging.error(f"Error adding employee: {e}")
+        return jsonify({'error': 'Internal Server Error'}), 500
+
+@app.route('/employees/<int:employee_id>', methods=['GET'])
+def get_employee(employee_id):
+    employee = next((emp for emp in db['employees'] if emp['id'] == employee_id), None)
+    if employee is None:
+        return jsonify({'error': 'Employee not found'}), 404
+    return jsonify(employee), 200
+
+@app.route('/employees/<int:employee_id>', methods=['PUT'])
+def update_employee(employee_id):
+    try:
+        data = request.get_json()
+        employee = next((emp for emp in db['employees'] if emp['id'] == employee_id), None)
+        if employee is None:
+            return jsonify({'error': 'Employee not found'}), 404
+        if 'name' in data:
+            employee['name'] = data['name']
+        if 'position' in data:
+            employee['position'] = data['position']
+        return jsonify(employee), 200
+    except Exception as e:
+        logging.error(f"Error updating employee: {e}")
+        return jsonify({'error': 'Internal Server Error'}), 500
+
+@app.route('/employees/<int:employee_id>', methods=['DELETE'])
+def delete_employee(employee_id):
+    global db
+    employee = next((emp for emp in db['employees'] if emp['id'] == employee_id), None)
+    if employee is None:
+        return jsonify({'error': 'Employee not found'}), 404
+    db['employees'] = [emp for emp in db['employees'] if emp['id'] != employee_id]
+    return jsonify({'message': 'Employee deleted'}), 200
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+    app.run(debug=True)
