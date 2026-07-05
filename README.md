@@ -2,12 +2,6 @@
 
 This is a production-ready Flask REST API with CORS support and a health check endpoint.
 
-## Features
-- Root endpoint: `/`
-- Health check endpoint: `/health`
-- CORS support
-- JSON error handling
-
 ## Setup
 
 1. Clone the repository:
@@ -16,7 +10,7 @@ This is a production-ready Flask REST API with CORS support and a health check e
    cd <repository-directory>
    ```
 
-2. Create a virtual environment:
+2. Create a virtual environment and activate it:
    ```bash
    python3 -m venv venv
    source venv/bin/activate
@@ -27,25 +21,28 @@ This is a production-ready Flask REST API with CORS support and a health check e
    pip install -r requirements.txt
    ```
 
-4. Copy the example environment file and configure it:
-   ```bash
-   cp .env.example .env
-   ```
+## Running the API Locally
 
-5. Run the application:
+1. Ensure your virtual environment is activated.
+2. Run the Flask application:
    ```bash
-   flask run
+   python app.py
    ```
+3. The API will be available at `http://127.0.0.1:5000/`.
 
 ## Deployment
 
-This application is ready to be deployed on Render using Gunicorn. Ensure that the `Procfile` is included in the root directory.
+This application is ready to be deployed on Render. Ensure you have a `Procfile` and `runtime.txt` for deployment.
 
-## Usage
+## Endpoints
 
-- Access the root endpoint at `http://localhost:5000/`
-- Access the health check endpoint at `http://localhost:5000/health`
+- `GET /`: Root endpoint, returns a welcome message.
+- `GET /health`: Health check endpoint, returns the status of the API.
 
-## Logging
+## Error Handling
 
-The application logs requests and errors to the console.
+- Returns JSON formatted error messages for 404 and 500 errors.
+
+## Environment Variables
+
+- Use the `.env.example` file to set up your environment variables.
