@@ -1,43 +1,51 @@
 # Flask REST API
 
-This is a production-ready Flask REST API with a health check endpoint and CORS support.
+This is a production-ready Flask REST API with CORS support and a health check endpoint.
 
-## Requirements
-
-- Python 3.7+
+## Features
+- Root endpoint: `/`
+- Health check endpoint: `/health`
+- CORS support
+- JSON error handling
 
 ## Setup
 
-1. Create a virtual environment:
+1. Clone the repository:
    ```bash
-   python3 -m venv venv
+   git clone <repository-url>
+   cd <repository-directory>
    ```
 
-2. Activate the virtual environment:
-   - On macOS and Linux:
-     ```bash
-     source venv/bin/activate
-     ```
-   - On Windows:
-     ```bash
-     .\venv\Scripts\activate
-     ```
+2. Create a virtual environment:
+   ```bash
+   python3 -m venv venv
+   source venv/bin/activate
+   ```
 
 3. Install the dependencies:
    ```bash
    pip install -r requirements.txt
    ```
 
-4. Run the application:
+4. Copy the example environment file and configure it:
    ```bash
-   python app.py
+   cp .env.example .env
+   ```
+
+5. Run the application:
+   ```bash
+   flask run
    ```
 
 ## Deployment
 
-This application is compatible with Gunicorn for deployment on platforms like Render.
+This application is ready to be deployed on Render using Gunicorn. Ensure that the `Procfile` is included in the root directory.
 
-To run with Gunicorn:
-```bash
-gunicorn -w 4 app:app
-```
+## Usage
+
+- Access the root endpoint at `http://localhost:5000/`
+- Access the health check endpoint at `http://localhost:5000/health`
+
+## Logging
+
+The application logs requests and errors to the console.
