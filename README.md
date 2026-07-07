@@ -1,52 +1,51 @@
-# Employee Management API
+# Employee Management Dashboard
 
-This is a simple Flask-based REST API for managing employees.
+This is a React application for managing employee data in a dashboard format.
 
 ## Setup
 
-1. Clone the repository.
-2. Navigate to the project directory.
-3. Create a virtual environment:
+1. Clone the repository:
    ```bash
-   python3 -m venv venv
-   ```
-4. Activate the virtual environment:
-   - On macOS/Linux:
-     ```bash
-     source venv/bin/activate
-     ```
-   - On Windows:
-     ```bash
-     venv\Scripts\activate
-     ```
-5. Install the dependencies:
-   ```bash
-   pip install -r requirements.txt
+   git clone <repository-url>
    ```
 
-## Running the API
-
-1. Ensure the virtual environment is activated.
-2. Run the application:
+2. Navigate to the project directory:
    ```bash
-   python app.py
+   cd employee-management-dashboard
    ```
-3. The API will be available at `http://127.0.0.1:5000/`.
 
-## API Endpoints
+3. Install the dependencies:
+   ```bash
+   npm install
+   ```
 
-- `GET /`: Welcome message.
-- `GET /health`: Health check.
-- `GET /employees`: Retrieve all employees.
-- `POST /employees`: Add a new employee.
-- `GET /employees/<employee_id>`: Retrieve a specific employee.
-- `PUT /employees/<employee_id>`: Update a specific employee.
-- `DELETE /employees/<employee_id>`: Delete a specific employee.
+## Running the Application
+
+To start the development server, run:
+```bash
+npm run dev
+```
+
+The application will be available at `http://localhost:3000`.
+
+## Building for Production
+
+To create a production build, run:
+```bash
+npm run build
+```
 
 ## Deployment
 
-This project is ready to be deployed on Render. Ensure you have a `Procfile` and `runtime.txt` for deployment.
+This application is ready to be deployed on Vercel. Simply connect your repository to Vercel and deploy.
 
-## Environment Variables
+## Components
 
-Copy `.env.example` to `.env` and adjust the settings as needed.
+- **App**: The main component that sets up the application layout.
+- **EmployeeList**: Displays a list of employees with their details.
+
+## Features
+
+- Responsive design for mobile and desktop.
+- Simulated API call with loading and error states.
+- Clean and maintainable code structure.
