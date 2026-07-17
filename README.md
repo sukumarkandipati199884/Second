@@ -1,7 +1,7 @@
 # Healthcare Appointment Booking App
 
 ## Overview
-This application is a healthcare appointment booking system that allows patients to book appointments with doctors. It includes features such as doctor profiles, available time slots, an admin panel, and a secure responsive interface.
+This application is a healthcare appointment booking system that allows patients to book appointments with doctors. It includes features such as doctor profiles, available time slots, an admin panel, and a secure, responsive interface.
 
 ## Features
 - User authentication for patients and doctors
@@ -19,8 +19,8 @@ This application is a healthcare appointment booking system that allows patients
 ## Setup Instructions
 
 ### Prerequisites
-- Node.js
-- MongoDB
+- Node.js and npm installed
+- MongoDB installed and running
 
 ### Installation
 1. Clone the repository:
@@ -29,28 +29,34 @@ This application is a healthcare appointment booking system that allows patients
    ```
 2. Navigate to the project directory:
    ```bash
-   cd healthcare-appointment-app
+   cd healthcare-appointment-booking
    ```
 3. Install the dependencies:
    ```bash
    npm install
    ```
-4. Set up environment variables by creating a `.env` file in the root directory:
-   ```
-   MONGODB_URI=<your_mongodb_uri>
-   JWT_SECRET=<your_jwt_secret>
-   PORT=3000
-   ```
+
+### Environment Variables
+Create a `.env` file in the root directory and add the following:
+```
+MONGO_URI=your_mongodb_connection_string
+JWT_SECRET=your_jwt_secret
+PORT=5000
+```
 
 ### Running the Application
 1. Start the server:
    ```bash
    npm start
    ```
-2. Open your browser and navigate to `http://localhost:3000`
+2. Open your browser and go to `http://localhost:5000`
 
 ## Deployment
-- The application can be deployed on any Node.js compatible hosting service.
+- Ensure your environment variables are set in your hosting environment.
+- Use a service like Heroku, AWS, or DigitalOcean for deployment.
 
 ## API Documentation
-- The API documentation is available at `http://localhost:3000/api-docs` after running the application.
+- The API documentation is available at `/api-docs` when the server is running.
+
+## License
+This project is licensed under the MIT License.
