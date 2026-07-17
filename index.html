@@ -1,13 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Employee Management Dashboard</title>
-  <link rel="stylesheet" href="/src/styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoDeploy.AI - Landing Page</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div id="root"></div>
-  <script type="module" src="/src/main.jsx"></script>
+    <header>
+        <nav>
+            <div class="logo">AutoDeploy.AI</div>
+            <ul class="nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="burger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </nav>
+    </header>
+    <section class="hero">
+        <h1>Welcome to AutoDeploy.AI</h1>
+        <p>Automate your deployment process with ease and efficiency.</p>
+        <a href="#features" class="cta">Learn More</a>
+    </section>
+    <section id="features" class="content-section">
+        <h2>Features</h2>
+        <div class="feature">
+            <h3>Fast Deployment</h3>
+            <p>Deploy your applications quickly and reliably with our automated tools.</p>
+        </div>
+        <div class="feature">
+            <h3>Scalable Solutions</h3>
+            <p>Scale your deployments effortlessly to meet your growing needs.</p>
+        </div>
+        <div class="feature">
+            <h3>Secure Environment</h3>
+            <p>Ensure your deployments are secure with our advanced security features.</p>
+        </div>
+    </section>
+    <section id="about" class="content-section">
+        <h2>About Us</h2>
+        <p>AutoDeploy.AI is dedicated to providing top-notch deployment solutions for developers and businesses worldwide.</p>
+    </section>
+    <section id="contact" class="content-section">
+        <h2>Contact Us</h2>
+        <form id="contact-form">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" required></textarea>
+            <button type="submit">Send</button>
+        </form>
+    </section>
+    <footer>
+        <p>&copy; 2023 AutoDeploy.AI. All rights reserved.</p>
+    </footer>
+    <script src="script.js"></script>
 </body>
 </html>
