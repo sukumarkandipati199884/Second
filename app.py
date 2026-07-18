@@ -8,11 +8,11 @@ CORS(app)
 # Configure logging
 logging.basicConfig(level=logging.INFO)
 
-# In-memory database
+# In-memory data store
 employees = []
 
 @app.route('/', methods=['GET'])
-def index():
+def root():
     return jsonify({"message": "Welcome to the Employee Management API"}), 200
 
 @app.route('/health', methods=['GET'])
@@ -43,19 +43,19 @@ def add_employee():
 @app.route('/employees/<int:employee_id>', methods=['GET'])
 def get_employee(employee_id):
     employee = next((emp for emp in employees if emp['id'] == employee_id), None)
-    if employee is None:
-        return jsonify({"error": "Employee not found"}), 404
-    return jsonify(employee), 200
+    if employee:
+        return jsonify(employee), 200
+    return jsonify({"error": "Employee not found"}), 404
 
 @app.route('/employees/<int:employee_id>', methods=['PUT'])
 def update_employee(employee_id):
     try:
         data = request.get_json()
+        employee = next((emp for emp in employees if emp['id'] == employee_id), None)
+        if not employee:
+            return jsonify({"error": "Employee not found"}), 404
         if not data or 'name' not in data or 'position' not in data:
             return jsonify({"error": "Invalid input"}), 400
-        employee = next((emp for emp in employees if emp['id'] == employee_id), None)
-        if employee is None:
-            return jsonify({"error": "Employee not found"}), 404
         employee.update({"name": data['name'], "position": data['position']})
         return jsonify(employee), 200
     except Exception as e:
@@ -65,9 +65,6 @@ def update_employee(employee_id):
 @app.route('/employees/<int:employee_id>', methods=['DELETE'])
 def delete_employee(employee_id):
     global employees
-    employee = next((emp for emp in employees if emp['id'] == employee_id), None)
-    if employee is None:
-        return jsonify({"error": "Employee not found"}), 404
     employees = [emp for emp in employees if emp['id'] != employee_id]
     return jsonify({"message": "Employee deleted"}), 200
 
