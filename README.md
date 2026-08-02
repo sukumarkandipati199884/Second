@@ -1,22 +1,18 @@
 # AutoDeploy.AI V1 AWS Test
 
-This is a responsive static website designed to test AWS deployment for AutoDeploy.AI.
+This is a responsive static website designed to test AWS deployment capabilities. It includes a modern dark UI and interactive JavaScript.
 
 ## Features
-- Responsive layout
-- Modern dark UI styling
+- Responsive Design
+- Modern Dark UI
 - Interactive JavaScript
 
-## Files
-- `index.html`: The main HTML file.
-- `styles.css`: The CSS file for styling.
-- `script.js`: The JavaScript file for interactivity.
+## Setup
+To view the website, simply open the `index.html` file in a web browser.
 
 ## Usage
-Open `index.html` in a web browser to view the website.
-
-## Interactive Elements
-- **Run JavaScript Test**: Click the button to verify JavaScript functionality.
+- The main page displays a success message for deployment.
+- Click the "Run JavaScript Test" button to verify JavaScript functionality.
 
 ## Deployment
-This project is ready to be deployed on any static hosting service, such as AWS S3, Netlify, or GitHub Pages.
+This project is designed for static deployment. No server-side processing is required.
