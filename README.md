@@ -1,24 +1,22 @@
-# AutoDeploy.AI Landing Page
+# AutoDeploy.AI V1 AWS Test
 
-This is a responsive landing page for AutoDeploy.AI, designed with a modern dark UI.
+This is a responsive static website designed to test AWS deployment for AutoDeploy.AI.
 
 ## Features
 - Responsive layout
 - Modern dark UI styling
 - Interactive JavaScript
-- Mobile-friendly design
 
-## Setup
-1. Clone the repository.
-2. Open `index.html` in your web browser.
+## Files
+- `index.html`: The main HTML file.
+- `styles.css`: The CSS file for styling.
+- `script.js`: The JavaScript file for interactivity.
 
 ## Usage
-- The landing page includes a hero section, features section, and a contact form.
-- The "Learn More" button smoothly scrolls to the features section.
-- The contact form displays a thank you message upon submission.
+Open `index.html` in a web browser to view the website.
+
+## Interactive Elements
+- **Run JavaScript Test**: Click the button to verify JavaScript functionality.
 
 ## Deployment
-This project is a static website and can be deployed on any static hosting service.
-
-## License
-This project is licensed under the MIT License.
+This project is ready to be deployed on any static hosting service, such as AWS S3, Netlify, or GitHub Pages.
