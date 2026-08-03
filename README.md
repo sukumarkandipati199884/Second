@@ -1,18 +1,21 @@
-# AutoDeploy.AI V1 AWS Test
+# V1 Verification Labs Static Website
 
-This is a responsive static website designed to test AWS deployment capabilities. It includes a modern dark UI and interactive JavaScript.
+This is a static website for a fictional cloud consultancy named "V1 Verification Labs". It is designed to be responsive and mobile-friendly, with a modern dark UI.
 
 ## Features
-- Responsive Design
-- Modern Dark UI
-- Interactive JavaScript
+- Responsive layout with a navigation bar, hero section, service cards, and footer.
+- Interactive button that changes text upon clicking.
+- Modern dark UI styling.
 
 ## Setup
-To view the website, simply open the `index.html` file in a web browser.
+No setup is required as this is a static website. Simply open `index.html` in a web browser to view the site.
 
 ## Usage
-- The main page displays a success message for deployment.
-- Click the "Run JavaScript Test" button to verify JavaScript functionality.
+- Navigate through the website using the navigation bar.
+- Click the "Verify Interaction" button in the hero section to see the interactive feature.
 
 ## Deployment
-This project is designed for static deployment. No server-side processing is required.
+This project can be deployed on any static hosting service. Simply upload the files to your hosting provider.
+
+## License
+This project is licensed under the MIT License.
