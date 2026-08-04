@@ -13,9 +13,9 @@ header {
 
 nav ul {
     list-style-type: none;
+    padding: 0;
     display: flex;
     justify-content: center;
-    padding: 0;
 }
 
 nav ul li {
@@ -27,10 +27,9 @@ nav ul li a {
     text-decoration: none;
 }
 
-.hero {
+#hero {
     text-align: center;
     padding: 50px 20px;
-    background-color: #282828;
 }
 
 button {
@@ -47,42 +46,31 @@ button:focus-visible {
     outline: 2px solid #ffffff;
 }
 
-.services {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    padding: 20px;
-}
-
-.service-card {
-    background-color: #333333;
-    margin: 10px;
+.feature-card {
+    background-color: #1f1f1f;
+    margin: 20px;
     padding: 20px;
     border-radius: 8px;
-    width: 300px;
-    box-sizing: border-box;
-}
-
-footer {
+    max-width: 300px;
     text-align: center;
-    padding: 10px 0;
-    background-color: #1f1f1f;
 }
 
 @media (max-width: 768px) {
-    .services {
+    nav ul {
         flex-direction: column;
-        align-items: center;
+    }
+
+    .feature-card {
+        margin: 20px auto;
     }
 }
 
 @media (max-width: 480px) {
-    nav ul {
-        flex-direction: column;
-        align-items: center;
+    #hero {
+        padding: 30px 10px;
     }
 
-    nav ul li {
-        margin: 10px 0;
+    button {
+        width: 100%;
     }
 }
