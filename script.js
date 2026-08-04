@@ -1,3 +1,3 @@
-document.getElementById('verifyButton').addEventListener('click', function() {
-    this.textContent = 'Interaction Verified';
+document.getElementById('smokeTestButton').addEventListener('click', function() {
+    this.textContent = 'Smoke Test Passed';
 });
