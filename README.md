@@ -1,21 +1,21 @@
-# V1 Verification Labs Static Website
+# AUTODEPLOY-V1-SMOKE-20260805
 
-This is a static website for a fictional cloud consultancy named "V1 Verification Labs". It is designed to be responsive and mobile-friendly, with a modern dark UI.
+This is a responsive static website designed with a modern dark theme. It includes a navigation bar, hero section, feature cards, and a footer.
 
 ## Features
-- Responsive layout with a navigation bar, hero section, service cards, and footer.
-- Interactive button that changes text upon clicking.
-- Modern dark UI styling.
+- Responsive layout
+- Dark professional design
+- Interactive button to simulate a smoke test
 
 ## Setup
-No setup is required as this is a static website. Simply open `index.html` in a web browser to view the site.
+No setup is required. Simply open `index.html` in a web browser to view the website.
 
 ## Usage
 - Navigate through the website using the navigation bar.
-- Click the "Verify Interaction" button in the hero section to see the interactive feature.
+- Click the "Run Smoke Test" button to see the interactive JavaScript functionality.
 
 ## Deployment
-This project can be deployed on any static hosting service. Simply upload the files to your hosting provider.
+This project is ready to be deployed on any static hosting service.
 
-## License
-This project is licensed under the MIT License.
+## Notes
+This project does not use any external libraries or frameworks.
