@@ -1,27 +1,26 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background: #121212;
-    color: #ffffff;
+    background: linear-gradient(135deg, #2c3e50, #4ca1af);
+    color: #fff;
     overflow-x: hidden;
 }
 header {
-    background: #1f1f1f;
+    background: #333;
     padding: 10px 20px;
+}
+nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 .nav-links {
     list-style: none;
-    padding: 0;
     display: flex;
-}
-.nav-links li {
-    margin: 0 10px;
+    gap: 20px;
 }
 .nav-links a {
-    color: #ffffff;
+    color: #fff;
     text-decoration: none;
 }
 .nav-toggle {
@@ -32,61 +31,67 @@ header {
 .hamburger {
     width: 25px;
     height: 3px;
-    background: #ffffff;
+    background: #fff;
     margin: 5px 0;
-}
-@media (max-width: 768px) {
-    .nav-links {
-        display: none;
-        flex-direction: column;
-        width: 100%;
-        position: absolute;
-        top: 60px;
-        left: 0;
-        background: #1f1f1f;
-    }
-    .nav-links.active {
-        display: flex;
-    }
-    .nav-toggle {
-        display: flex;
-    }
 }
 #hero {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background: linear-gradient(135deg, #ff7e5f, #feb47b);
     text-align: center;
 }
-#services, #contact {
-    padding: 50px 20px;
-    text-align: center;
+.services-container {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
 }
 .service {
-    margin: 20px 0;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 300px;
 }
 form {
     display: flex;
     flex-direction: column;
+    gap: 10px;
     max-width: 400px;
     margin: 0 auto;
 }
-input, textarea {
-    margin-bottom: 10px;
+input, textarea, button {
     padding: 10px;
     border: none;
     border-radius: 5px;
 }
 button {
-    padding: 10px;
-    background: #ff7e5f;
-    border: none;
-    border-radius: 5px;
-    color: #ffffff;
+    background: #4ca1af;
+    color: #fff;
     cursor: pointer;
 }
-button:hover {
-    background: #feb47b;
+@media (max-width: 768px) {
+    .services-container {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+@media (max-width: 480px) {
+    .nav-toggle {
+        display: flex;
+    }
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background: #333;
+        position: absolute;
+        top: 60px;
+        left: 0;
+    }
+    .nav-links.active {
+        display: flex;
+    }
+    .services-container {
+        padding: 10px;
+    }
 }
