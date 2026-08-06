@@ -1,21 +1,36 @@
-# AUTODEPLOY-V1-SMOKE-20260805
+# Responsive Landing Page
 
-This is a responsive static website designed with a modern dark theme. It includes a navigation bar, hero section, feature cards, and a footer.
+This is a modern, responsive landing page built with HTML, CSS, and JavaScript. It features a dark UI theme, a hero section, and multiple content sections.
 
 ## Features
-- Responsive layout
-- Dark professional design
-- Interactive button to simulate a smoke test
+- Responsive layout with mobile-friendly navigation
+- Dark UI styling
+- Interactive navigation toggle
+- Demo contact form
 
 ## Setup
-No setup is required. Simply open `index.html` in a web browser to view the website.
+
+1. Clone the repository:
+   bash
+   git clone <repository-url>
+   
+
+2. Navigate to the project directory:
+   bash
+   cd <project-directory>
+   
+
+3. Open `index.html` in your web browser to view the landing page.
 
 ## Usage
-- Navigate through the website using the navigation bar.
-- Click the "Run Smoke Test" button to see the interactive JavaScript functionality.
+
+- The navigation menu can be toggled on smaller screens using the hamburger icon.
+- The contact form is a demo and does not store or transmit data.
 
 ## Deployment
-This project is ready to be deployed on any static hosting service.
 
-## Notes
-This project does not use any external libraries or frameworks.
+This project is a static website and can be deployed on any static hosting service such as GitHub Pages, Netlify, or Vercel.
+
+## License
+
+This project is licensed under the MIT License.
