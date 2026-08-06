@@ -1,36 +1,25 @@
-# Responsive Landing Page
+# Business Landing Page
 
-This is a modern, responsive landing page built with HTML, CSS, and JavaScript. It features a dark UI theme, a hero section, and multiple content sections.
+This is a responsive single-page business landing page designed for deployment on AWS S3 as a static website.
 
 ## Features
-- Responsive layout with mobile-friendly navigation
-- Dark UI styling
-- Interactive navigation toggle
-- Demo contact form
+- Responsive design with a modern dark UI
+- Semantic HTML and CSS
+- Interactive JavaScript for navigation
+- Sections: Header, Hero, Services, Contact
 
 ## Setup
-
-1. Clone the repository:
-   bash
-   git clone <repository-url>
-   
-
-2. Navigate to the project directory:
-   bash
-   cd <project-directory>
-   
-
-3. Open `index.html` in your web browser to view the landing page.
+1. Clone the repository.
+2. Deploy the `index.html`, `styles.css`, and `script.js` files to your AWS S3 bucket configured for static website hosting.
 
 ## Usage
-
-- The navigation menu can be toggled on smaller screens using the hamburger icon.
+- Navigate through the sections using the header links.
 - The contact form is a demo and does not store or transmit data.
 
 ## Deployment
+- Ensure your AWS S3 bucket is configured for static website hosting.
+- Upload the files to the bucket.
+- Access the website via the S3 bucket URL.
 
-This project is a static website and can be deployed on any static hosting service such as GitHub Pages, Netlify, or Vercel.
-
-## License
-
-This project is licensed under the MIT License.
+## Note
+This project is a static website and does not include any backend functionality.
