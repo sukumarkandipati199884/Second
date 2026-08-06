@@ -9,7 +9,7 @@
 <body>
     <header>
         <nav>
-            <div class="logo">My Business</div>
+            <div class="logo">BusinessName</div>
             <button class="nav-toggle" aria-label="toggle navigation">
                 <span class="hamburger"></span>
             </button>
@@ -29,27 +29,29 @@
         </section>
         <section id="services">
             <h2>Our Services</h2>
-            <div class="service">
-                <h3>Consulting</h3>
-                <p>Expert advice to grow your business.</p>
-            </div>
-            <div class="service">
-                <h3>Development</h3>
-                <p>Building solutions tailored to your needs.</p>
-            </div>
-            <div class="service">
-                <h3>Support</h3>
-                <p>24/7 support to keep your business running smoothly.</p>
+            <div class="services-container">
+                <div class="service">
+                    <h3>Service One</h3>
+                    <p>We offer exceptional service to help you succeed.</p>
+                </div>
+                <div class="service">
+                    <h3>Service Two</h3>
+                    <p>Our team is dedicated to providing the best solutions.</p>
+                </div>
+                <div class="service">
+                    <h3>Service Three</h3>
+                    <p>We ensure quality and efficiency in all our services.</p>
+                </div>
             </div>
         </section>
         <section id="contact">
             <h2>Contact Us</h2>
-            <form id="contact-form">
-                <label for="name">Name</label>
+            <form>
+                <label for="name">Name:</label>
                 <input type="text" id="name" name="name" required>
-                <label for="email">Email</label>
+                <label for="email">Email:</label>
                 <input type="email" id="email" name="email" required>
-                <label for="message">Message</label>
+                <label for="message">Message:</label>
                 <textarea id="message" name="message" required></textarea>
                 <button type="submit">Send</button>
             </form>
