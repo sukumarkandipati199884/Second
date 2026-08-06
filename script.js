@@ -1,14 +1,13 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', () => {
     const navToggle = document.querySelector('.nav-toggle');
     const navLinks = document.querySelector('.nav-links');
 
-    navToggle.addEventListener('click', function() {
+    navToggle.addEventListener('click', () => {
         navLinks.classList.toggle('active');
     });
 
-    const contactForm = document.getElementById('contact-form');
-    contactForm.addEventListener('submit', function(event) {
-        event.preventDefault();
+    document.querySelector('form').addEventListener('submit', (e) => {
+        e.preventDefault();
         alert('Demo form: data is not stored or transmitted.');
     });
 });
