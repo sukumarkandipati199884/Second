@@ -1,15 +1,13 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #2c3e50, #4ca1af);
-    color: #fff;
+    background-color: #121212;
+    color: #ffffff;
     overflow-x: hidden;
 }
 header {
-    background: #333;
+    background-color: #1f1f1f;
     padding: 10px 20px;
-}
-nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -20,7 +18,7 @@ nav {
     gap: 20px;
 }
 .nav-links a {
-    color: #fff;
+    color: #ffffff;
     text-decoration: none;
 }
 .nav-toggle {
@@ -31,59 +29,54 @@ nav {
 .hamburger {
     width: 25px;
     height: 3px;
-    background: #fff;
+    background-color: #ffffff;
     margin: 5px 0;
 }
-#hero {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+.hero {
     text-align: center;
+    padding: 100px 20px;
+    background-color: #282828;
 }
-.services-container {
-    display: flex;
-    justify-content: space-around;
-    padding: 20px;
+.btn {
+    background-color: #ff5722;
+    color: #ffffff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+section {
+    padding: 60px 20px;
 }
 .service {
-    background: rgba(255, 255, 255, 0.1);
+    background-color: #333333;
     padding: 20px;
-    border-radius: 8px;
-    max-width: 300px;
+    margin-bottom: 20px;
+    border-radius: 5px;
 }
 form {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    max-width: 400px;
-    margin: 0 auto;
 }
-input, textarea, button {
+input, textarea {
     padding: 10px;
     border: none;
     border-radius: 5px;
 }
 button {
-    background: #4ca1af;
-    color: #fff;
+    background-color: #ff5722;
+    color: #ffffff;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
     cursor: pointer;
 }
 @media (max-width: 768px) {
-    .services-container {
-        flex-direction: column;
-        align-items: center;
-    }
-}
-@media (max-width: 480px) {
-    .nav-toggle {
-        display: flex;
-    }
     .nav-links {
         display: none;
         flex-direction: column;
         width: 100%;
-        background: #333;
+        background-color: #1f1f1f;
         position: absolute;
         top: 60px;
         left: 0;
@@ -91,7 +84,15 @@ button {
     .nav-links.active {
         display: flex;
     }
-    .services-container {
-        padding: 10px;
+    .nav-toggle {
+        display: flex;
+    }
+}
+@media (max-width: 480px) {
+    .hero {
+        padding: 80px 10px;
+    }
+    section {
+        padding: 40px 10px;
     }
 }
