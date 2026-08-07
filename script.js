@@ -6,8 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
         navLinks.classList.toggle('active');
     });
 
-    const contactForm = document.getElementById('contact-form');
-    contactForm.addEventListener('submit', (e) => {
+    document.getElementById('contact-form').addEventListener('submit', (e) => {
         e.preventDefault();
         alert('Demo form: data is not stored or transmitted.');
     });
