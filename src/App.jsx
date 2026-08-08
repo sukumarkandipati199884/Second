@@ -1,16 +1,31 @@
-import React from 'react';
-import EmployeeList from './components/EmployeeList';
-import './App.css';
+import React, { useState, useEffect } from 'react';
+import Dashboard from './components/Dashboard';
+import Projects from './components/Projects';
+import Tasks from './components/Tasks';
+import './styles.css';
 
 function App() {
+  const [projects, setProjects] = useState([]);
+  const [tasks, setTasks] = useState([]);
+  const [selectedProject, setSelectedProject] = useState(null);
+
+  useEffect(() => {
+    const storedProjects = JSON.parse(localStorage.getItem('projects')) || [];
+    const storedTasks = JSON.parse(localStorage.getItem('tasks')) || [];
+    setProjects(storedProjects);
+    setTasks(storedTasks);
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('projects', JSON.stringify(projects));
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+  }, [projects, tasks]);
+
   return (
     <div className="app-container">
-      <header className="app-header">
-        <h1>Employee Management Dashboard</h1>
-      </header>
-      <main>
-        <EmployeeList />
-      </main>
+      <Dashboard projects={projects} tasks={tasks} />
+      <Projects projects={projects} setProjects={setProjects} setSelectedProject={setSelectedProject} />
+      <Tasks tasks={tasks} setTasks={setTasks} selectedProject={selectedProject} />
     </div>
   );
 }
