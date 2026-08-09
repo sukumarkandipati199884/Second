@@ -1,14 +1,17 @@
 # Task & Project Management Web Application
 
-This is a responsive web application designed for managing tasks and projects for a small software team. It includes features such as a dashboard with project statistics, task management with add/edit/delete/complete actions, and persistent storage using localStorage.
+This is a responsive Task & Project Management web application designed for a small software team. It allows users to manage projects and tasks efficiently with a modern interface.
 
 ## Features
 - Responsive layout with a modern dark UI
 - Dashboard with project statistics
 - Projects and tasks management
+- Add, edit, delete, and complete tasks
+- Priority and status filters
+- Search functionality
 - Task creation form with validation
 - Persistent storage using localStorage
-- Mobile-friendly navigation
+- Responsive navigation
 
 ## Setup
 1. Clone the repository.
@@ -16,12 +19,10 @@ This is a responsive web application designed for managing tasks and projects fo
 
 ## Usage
 - Navigate through the dashboard, projects, and tasks sections using the navigation menu.
-- Add tasks using the task creation form.
-- Tasks can be marked as complete or incomplete.
-- All data is stored in the browser's localStorage.
-
-## Deployment
-This project is a static website and can be deployed on any static hosting service.
+- Add tasks using the task form and manage them directly from the task list.
 
 ## Note
-This application is a standalone demo and does not require any backend or external APIs.
+This application uses localStorage for data persistence and does not require a backend server.
+
+## License
+This project is licensed under the MIT License.
