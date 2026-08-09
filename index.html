@@ -10,8 +10,10 @@
     <header>
         <nav>
             <div class="logo">TaskManager</div>
-            <button id="nav-toggle" aria-label="Toggle navigation">☰</button>
-            <ul id="nav-menu">
+            <button class="nav-toggle" aria-label="toggle navigation">
+                <span class="hamburger"></span>
+            </button>
+            <ul class="nav-links">
                 <li><a href="#dashboard">Dashboard</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#tasks">Tasks</a></li>
@@ -20,50 +22,47 @@
     </header>
     <main>
         <section id="hero">
-            <h1>Manage Your Projects Efficiently</h1>
-            <p>Organize tasks, track progress, and collaborate with your team.</p>
+            <h1>Welcome to TaskManager</h1>
+            <p>Manage your projects and tasks efficiently.</p>
         </section>
         <section id="dashboard">
             <h2>Dashboard</h2>
-            <div id="project-stats">
+            <div class="stats">
                 <div class="stat">
-                    <h3>Total Projects</h3>
-                    <p id="total-projects">0</p>
+                    <h3>Projects</h3>
+                    <p id="project-count">0</p>
                 </div>
                 <div class="stat">
-                    <h3>Completed Tasks</h3>
-                    <p id="completed-tasks">0</p>
-                </div>
-                <div class="stat">
-                    <h3>Pending Tasks</h3>
-                    <p id="pending-tasks">0</p>
+                    <h3>Tasks</h3>
+                    <p id="task-count">0</p>
                 </div>
             </div>
         </section>
         <section id="projects">
             <h2>Projects</h2>
-            <ul id="project-list">
-                <!-- Projects will be dynamically loaded here -->
-            </ul>
+            <div id="project-list" class="list">
+                <p>No projects available.</p>
+            </div>
         </section>
         <section id="tasks">
             <h2>Tasks</h2>
-            <form id="task-form">
-                <label for="task-name">Task Name</label>
-                <input type="text" id="task-name" required>
-                <label for="task-priority">Priority</label>
-                <select id="task-priority">
-                    <option value="low">Low</option>
-                    <option value="medium">Medium</option>
-                    <option value="high">High</option>
+            <div class="task-controls">
+                <button id="add-task">Add Task</button>
+                <input type="text" id="task-search" placeholder="Search tasks...">
+                <select id="task-filter">
+                    <option value="all">All</option>
+                    <option value="completed">Completed</option>
+                    <option value="pending">Pending</option>
                 </select>
-                <button type="submit">Add Task</button>
-            </form>
-            <ul id="task-list">
-                <!-- Tasks will be dynamically loaded here -->
-            </ul>
+            </div>
+            <div id="task-list" class="list">
+                <p>No tasks available.</p>
+            </div>
         </section>
     </main>
+    <footer>
+        <p>&copy; 2023 TaskManager. All rights reserved.</p>
+    </footer>
     <script src="script.js"></script>
 </body>
 </html>
