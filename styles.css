@@ -7,34 +7,51 @@ body {
 header {
     background-color: #1f1f1f;
     padding: 10px 20px;
+}
+nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-nav ul {
+.nav-links {
     list-style: none;
+    padding: 0;
     display: flex;
-    gap: 15px;
 }
-nav ul li a {
+.nav-links li {
+    margin: 0 10px;
+}
+.nav-links a {
     color: #ffffff;
     text-decoration: none;
 }
-#nav-toggle {
+.nav-toggle {
     display: none;
     background: none;
     border: none;
-    color: #ffffff;
-    font-size: 24px;
+    cursor: pointer;
 }
-@media (max-width: 768px) {
-    #nav-menu {
-        display: none;
-        flex-direction: column;
-    }
-    #nav-toggle {
-        display: block;
-    }
+.hamburger {
+    width: 25px;
+    height: 3px;
+    background-color: #ffffff;
+    display: block;
+    position: relative;
+}
+.hamburger::before,
+.hamburger::after {
+    content: '';
+    width: 25px;
+    height: 3px;
+    background-color: #ffffff;
+    position: absolute;
+    transition: all 0.3s;
+}
+.hamburger::before {
+    top: -8px;
+}
+.hamburger::after {
+    top: 8px;
 }
 main {
     padding: 20px;
@@ -43,34 +60,45 @@ main {
     text-align: center;
     padding: 50px 0;
 }
-#project-stats {
+.stats {
     display: flex;
     justify-content: space-around;
     margin: 20px 0;
 }
 .stat {
-    background-color: #2a2a2a;
+    background-color: #1f1f1f;
     padding: 20px;
-    border-radius: 8px;
-    text-align: center;
+    border-radius: 5px;
 }
-form {
+.list {
+    background-color: #1f1f1f;
+    padding: 20px;
+    border-radius: 5px;
+}
+.task-controls {
     display: flex;
-    flex-direction: column;
-    gap: 10px;
-    max-width: 400px;
-    margin: 0 auto;
+    justify-content: space-between;
+    margin-bottom: 20px;
 }
-input, select, button {
-    padding: 10px;
-    border: none;
-    border-radius: 4px;
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        background-color: #1f1f1f;
+    }
+    .nav-links li {
+        margin: 10px 0;
+    }
+    .nav-toggle {
+        display: block;
+    }
 }
-button {
-    background-color: #3a3a3a;
-    color: #ffffff;
-    cursor: pointer;
-}
-button:hover {
-    background-color: #5a5a5a;
+@media (max-width: 480px) {
+    .stats {
+        flex-direction: column;
+    }
 }
