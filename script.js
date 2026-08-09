@@ -1,95 +1,84 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const navToggle = document.querySelector('.nav-toggle');
     const navLinks = document.querySelector('.nav-links');
+    const taskForm = document.getElementById('task-form');
+    const taskList = document.getElementById('task-list');
+    const taskSearch = document.getElementById('task-search');
+    const taskFilter = document.getElementById('task-filter');
 
     navToggle.addEventListener('click', () => {
-        navLinks.classList.toggle('nav-open');
+        navLinks.classList.toggle('active');
     });
 
-    const projects = JSON.parse(localStorage.getItem('projects')) || [];
-    const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+    taskForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+        const taskName = document.getElementById('task-name').value;
+        const taskPriority = document.getElementById('task-priority').value;
+        if (taskName && taskPriority) {
+            addTask(taskName, taskPriority);
+            taskForm.reset();
+        }
+    });
 
-    function updateDashboard() {
-        document.getElementById('project-count').textContent = projects.length;
-        document.getElementById('task-count').textContent = tasks.length;
+    taskSearch.addEventListener('input', function () {
+        const searchTerm = taskSearch.value.toLowerCase();
+        filterTasks(searchTerm, taskFilter.value);
+    });
+
+    taskFilter.addEventListener('change', function () {
+        filterTasks(taskSearch.value.toLowerCase(), taskFilter.value);
+    });
+
+    function addTask(name, priority) {
+        const task = {
+            id: Date.now(),
+            name,
+            priority,
+            completed: false
+        };
+        const tasks = getTasks();
+        tasks.push(task);
+        saveTasks(tasks);
+        renderTasks(tasks);
     }
 
-    function renderProjects() {
-        const projectList = document.getElementById('project-list');
-        projectList.innerHTML = '';
-        if (projects.length === 0) {
-            projectList.innerHTML = '<p>No projects available.</p>';
-        } else {
-            projects.forEach(project => {
-                const projectItem = document.createElement('div');
-                projectItem.textContent = project.name;
-                projectList.appendChild(projectItem);
-            });
+    function renderTasks(tasks) {
+        taskList.innerHTML = '';
+        tasks.forEach(task => {
+            const li = document.createElement('li');
+            li.textContent = `${task.name} - ${task.priority}`;
+            li.className = task.completed ? 'completed' : '';
+            li.addEventListener('click', () => toggleTaskCompletion(task.id));
+            taskList.appendChild(li);
+        });
+    }
+
+    function toggleTaskCompletion(taskId) {
+        const tasks = getTasks();
+        const task = tasks.find(t => t.id === taskId);
+        if (task) {
+            task.completed = !task.completed;
+            saveTasks(tasks);
+            renderTasks(tasks);
         }
     }
 
-    function renderTasks() {
-        const taskList = document.getElementById('task-list');
-        taskList.innerHTML = '';
-        if (tasks.length === 0) {
-            taskList.innerHTML = '<p>No tasks available.</p>';
-        } else {
-            tasks.forEach(task => {
-                const taskItem = document.createElement('div');
-                taskItem.textContent = task.name;
-                taskList.appendChild(taskItem);
-            });
-        }
+    function filterTasks(searchTerm, filter) {
+        const tasks = getTasks().filter(task => {
+            const matchesSearch = task.name.toLowerCase().includes(searchTerm);
+            const matchesFilter = filter === 'all' || (filter === 'completed' && task.completed) || (filter === 'pending' && !task.completed);
+            return matchesSearch && matchesFilter;
+        });
+        renderTasks(tasks);
     }
 
-    document.getElementById('add-task').addEventListener('click', () => {
-        const taskName = prompt('Enter task name:');
-        if (taskName) {
-            tasks.push({ name: taskName, completed: false });
-            localStorage.setItem('tasks', JSON.stringify(tasks));
-            renderTasks();
-            updateDashboard();
-        }
-    });
+    function getTasks() {
+        return JSON.parse(localStorage.getItem('tasks')) || [];
+    }
 
-    document.getElementById('task-search').addEventListener('input', (e) => {
-        const searchTerm = e.target.value.toLowerCase();
-        const filteredTasks = tasks.filter(task => task.name.toLowerCase().includes(searchTerm));
-        const taskList = document.getElementById('task-list');
-        taskList.innerHTML = '';
-        if (filteredTasks.length === 0) {
-            taskList.innerHTML = '<p>No tasks found.</p>';
-        } else {
-            filteredTasks.forEach(task => {
-                const taskItem = document.createElement('div');
-                taskItem.textContent = task.name;
-                taskList.appendChild(taskItem);
-            });
-        }
-    });
+    function saveTasks(tasks) {
+        localStorage.setItem('tasks', JSON.stringify(tasks));
+    }
 
-    document.getElementById('task-filter').addEventListener('change', (e) => {
-        const filter = e.target.value;
-        let filteredTasks = tasks;
-        if (filter === 'completed') {
-            filteredTasks = tasks.filter(task => task.completed);
-        } else if (filter === 'pending') {
-            filteredTasks = tasks.filter(task => !task.completed);
-        }
-        const taskList = document.getElementById('task-list');
-        taskList.innerHTML = '';
-        if (filteredTasks.length === 0) {
-            taskList.innerHTML = '<p>No tasks available.</p>';
-        } else {
-            filteredTasks.forEach(task => {
-                const taskItem = document.createElement('div');
-                taskItem.textContent = task.name;
-                taskList.appendChild(taskItem);
-            });
-        }
-    });
-
-    updateDashboard();
-    renderProjects();
-    renderTasks();
+    renderTasks(getTasks());
 });
