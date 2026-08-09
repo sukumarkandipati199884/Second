@@ -1,30 +1,39 @@
-# Task & Project Management Web Application
+# Task & Project Management Static Website
 
-This is a responsive Task & Project Management web application designed for a small software team. It allows users to manage tasks and projects efficiently with features like dashboard statistics, task actions, filters, and more.
+This is a responsive static website for managing tasks and projects for a small software team. It is built using plain HTML, CSS, and vanilla JavaScript, with no dependencies on external libraries or frameworks.
 
 ## Features
-- Dashboard with statistics on projects and tasks
-- Projects section with empty state
-- Add, edit, delete, and complete task actions
+
+- Dashboard with statistics
+- Projects section
+- Add, edit, delete, and mark tasks as complete
 - Priority and status filters
-- Search functionality
+- Task search functionality
 - Task form validation
 - LocalStorage persistence
 - Responsive navigation
-- Modern dark UI
+- Modern dark UI styling
 
 ## Setup
-1. Clone the repository.
+
+1. Clone the repository or download the files.
 2. Open `index.html` in your web browser.
 
 ## Usage
-- Navigate through the sections using the navigation bar.
-- Add tasks using the "Add Task" button.
-- Tasks can be completed or deleted using the respective buttons.
-- Use the search and filter options to manage tasks efficiently.
 
-## Deployment
-This project is a static website and can be deployed on any static hosting service.
+- Use the navigation menu to switch between Dashboard, Projects, and Tasks sections.
+- Add tasks by clicking the "Add Task" button and filling out the form.
+- Edit or delete tasks using the buttons next to each task.
+- Use the search bar and filters to find specific tasks.
 
-## Note
-This application uses localStorage for data persistence, so data will be saved across sessions in the same browser.
+## LocalStorage
+
+All tasks are stored in the browser's LocalStorage, allowing them to persist across page reloads.
+
+## Responsive Design
+
+The website is designed to be responsive and works well on both desktop and mobile devices.
+
+## License
+
+This project is open-source and available under the MIT License.
