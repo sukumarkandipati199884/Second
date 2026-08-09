@@ -3,6 +3,7 @@ body {
     font-family: Arial, sans-serif;
     background-color: #121212;
     color: #ffffff;
+    overflow-x: hidden;
 }
 header {
     background-color: #1f1f1f;
@@ -24,30 +25,41 @@ nav {
 }
 .nav-toggle {
     display: none;
-    background: none;
-    border: none;
+    flex-direction: column;
     cursor: pointer;
 }
 .hamburger {
     width: 25px;
     height: 3px;
     background-color: #ffffff;
-    display: block;
-    position: relative;
+    margin: 5px 0;
 }
-.hamburger::before, .hamburger::after {
-    content: '';
-    width: 25px;
-    height: 3px;
-    background-color: #ffffff;
-    position: absolute;
-    left: 0;
+#hero {
+    text-align: center;
+    padding: 50px 20px;
+    background-color: #282828;
 }
-.hamburger::before {
-    top: -8px;
+#dashboard, #projects, #tasks {
+    padding: 20px;
 }
-.hamburger::after {
-    top: 8px;
+.stats {
+    display: flex;
+    justify-content: space-around;
+}
+.stat {
+    background-color: #333333;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+}
+.task-controls {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+.empty-state {
+    text-align: center;
+    color: #888888;
 }
 @media (max-width: 768px) {
     .nav-links {
@@ -56,42 +68,24 @@ nav {
         background-color: #1f1f1f;
         position: absolute;
         top: 60px;
-        right: 20px;
+        right: 0;
         width: 200px;
-        border-radius: 5px;
     }
-    .nav-links.show {
+    .nav-links.active {
         display: flex;
     }
     .nav-toggle {
-        display: block;
+        display: flex;
+    }
+    .stats {
+        flex-direction: column;
     }
 }
-main {
-    padding: 20px;
-}
-#hero {
-    text-align: center;
-    padding: 50px 20px;
-    background-color: #282828;
-}
-#dashboard, #projects, #tasks {
-    margin-top: 30px;
-}
-#task-controls {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
-}
-#task-controls input, #task-controls select {
-    padding: 5px;
-    border-radius: 5px;
-    border: 1px solid #444;
-    background-color: #1f1f1f;
-    color: #ffffff;
-}
-footer {
-    text-align: center;
-    padding: 10px 0;
-    background-color: #1f1f1f;
+@media (max-width: 480px) {
+    #hero {
+        padding: 30px 10px;
+    }
+    .task-controls {
+        flex-direction: column;
+    }
 }
