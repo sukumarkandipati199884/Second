@@ -20,8 +20,8 @@
     </header>
     <main>
         <section id="hero">
-            <h1>Welcome to TaskManager</h1>
-            <p>Manage your projects and tasks efficiently.</p>
+            <h1>Manage Your Projects Efficiently</h1>
+            <p>Organize tasks, track progress, and collaborate with your team.</p>
         </section>
         <section id="dashboard">
             <h2>Dashboard</h2>
@@ -43,14 +43,16 @@
         <section id="projects">
             <h2>Projects</h2>
             <ul id="project-list">
-                <!-- Project items will be dynamically inserted here -->
+                <!-- Projects will be dynamically loaded here -->
             </ul>
         </section>
         <section id="tasks">
             <h2>Tasks</h2>
             <form id="task-form">
-                <input type="text" id="task-name" placeholder="Task Name" required aria-label="Task Name">
-                <select id="task-priority" aria-label="Task Priority">
+                <label for="task-name">Task Name</label>
+                <input type="text" id="task-name" required>
+                <label for="task-priority">Priority</label>
+                <select id="task-priority">
                     <option value="low">Low</option>
                     <option value="medium">Medium</option>
                     <option value="high">High</option>
@@ -58,13 +60,10 @@
                 <button type="submit">Add Task</button>
             </form>
             <ul id="task-list">
-                <!-- Task items will be dynamically inserted here -->
+                <!-- Tasks will be dynamically loaded here -->
             </ul>
         </section>
     </main>
-    <footer>
-        <p>&copy; 2023 TaskManager</p>
-    </footer>
     <script src="script.js"></script>
 </body>
 </html>
