@@ -23,49 +23,40 @@
     <main>
         <section id="hero">
             <h1>Welcome to TaskManager</h1>
-            <p>Efficiently manage your projects and tasks with ease.</p>
+            <p>Manage your projects and tasks efficiently.</p>
         </section>
         <section id="dashboard">
             <h2>Dashboard</h2>
-            <div class="stats">
-                <div class="stat-item">
-                    <h3>Total Projects</h3>
-                    <p id="total-projects">0</p>
-                </div>
-                <div class="stat-item">
-                    <h3>Completed Tasks</h3>
-                    <p id="completed-tasks">0</p>
-                </div>
-                <div class="stat-item">
-                    <h3>Pending Tasks</h3>
-                    <p id="pending-tasks">0</p>
-                </div>
+            <div id="project-stats">
+                <!-- Project statistics will be dynamically loaded here -->
             </div>
         </section>
         <section id="projects">
             <h2>Projects</h2>
-            <ul id="project-list">
-                <!-- Project items will be dynamically added here -->
-            </ul>
+            <div id="project-list">
+                <!-- Project list will be dynamically loaded here -->
+            </div>
         </section>
         <section id="tasks">
             <h2>Tasks</h2>
-            <div class="task-controls">
-                <input type="text" id="task-search" placeholder="Search tasks...">
-                <select id="task-filter">
-                    <option value="all">All</option>
-                    <option value="completed">Completed</option>
+            <div id="task-controls">
+                <button id="add-task">Add Task</button>
+                <input type="text" id="search" placeholder="Search tasks...">
+                <select id="filter-priority">
+                    <option value="">All Priorities</option>
+                    <option value="high">High</option>
+                    <option value="medium">Medium</option>
+                    <option value="low">Low</option>
+                </select>
+                <select id="filter-status">
+                    <option value="">All Statuses</option>
                     <option value="pending">Pending</option>
+                    <option value="completed">Completed</option>
                 </select>
             </div>
-            <ul id="task-list">
-                <!-- Task items will be dynamically added here -->
-            </ul>
-            <form id="task-form">
-                <input type="text" id="task-name" placeholder="Task name" required>
-                <input type="text" id="task-priority" placeholder="Priority" required>
-                <button type="submit">Add Task</button>
-            </form>
+            <div id="task-list">
+                <!-- Task list will be dynamically loaded here -->
+            </div>
         </section>
     </main>
     <footer>
