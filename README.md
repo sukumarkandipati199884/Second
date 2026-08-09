@@ -1,52 +1,27 @@
-# Task Manager
+# Task & Project Management Web Application
 
-This is a responsive Task & Project Management web application designed for a small software team. It allows users to manage projects and tasks efficiently.
+This is a responsive web application designed for managing tasks and projects for a small software team. It includes features such as a dashboard with project statistics, task management with add/edit/delete/complete actions, and persistent storage using localStorage.
 
 ## Features
+- Responsive layout with a modern dark UI
 - Dashboard with project statistics
-- Project management with add/edit/delete functionality
-- Task management with add/edit/delete/complete actions
-- Priority and status filters
-- Search functionality
+- Projects and tasks management
 - Task creation form with validation
 - Persistent storage using localStorage
-- Responsive navigation
-- Modern dark UI styling
+- Mobile-friendly navigation
 
 ## Setup
-
-1. Clone the repository:
-   bash
-   git clone <repository-url>
-   
-
-2. Navigate to the project directory:
-   bash
-   cd task-manager
-   
-
-3. Install dependencies:
-   bash
-   npm install
-   
-
-4. Run the development server:
-   bash
-   npm run dev
-   
-
-5. Open your browser and go to `http://localhost:3000` to view the application.
-
-## Deployment
-
-This application is ready to be deployed on Vercel. Simply connect your repository to Vercel and deploy.
+1. Clone the repository.
+2. Open `index.html` in your web browser.
 
 ## Usage
+- Navigate through the dashboard, projects, and tasks sections using the navigation menu.
+- Add tasks using the task creation form.
+- Tasks can be marked as complete or incomplete.
+- All data is stored in the browser's localStorage.
 
-- Use the dashboard to view overall project and task statistics.
-- Navigate to the Projects section to add or select a project.
-- In the Tasks section, add tasks to the selected project and manage their completion status.
+## Deployment
+This project is a static website and can be deployed on any static hosting service.
 
 ## Note
-
-This application uses localStorage for data persistence, so data will be retained across sessions in the same browser.
+This application is a standalone demo and does not require any backend or external APIs.
