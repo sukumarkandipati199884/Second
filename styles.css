@@ -13,13 +13,13 @@ nav {
     justify-content: space-between;
     align-items: center;
 }
+.logo {
+    font-size: 1.5rem;
+}
 .nav-links {
     list-style: none;
-    padding: 0;
     display: flex;
-}
-.nav-links li {
-    margin: 0 10px;
+    gap: 15px;
 }
 .nav-links a {
     color: #ffffff;
@@ -38,8 +38,7 @@ nav {
     display: block;
     position: relative;
 }
-.hamburger::before,
-.hamburger::after {
+.hamburger::before, .hamburger::after {
     content: '';
     width: 25px;
     height: 3px;
@@ -53,51 +52,63 @@ nav {
 .hamburger::after {
     top: 8px;
 }
-main {
-    padding: 20px;
-}
 #hero {
     text-align: center;
-    padding: 50px 0;
+    padding: 50px 20px;
+    background-color: #282828;
 }
 .stats {
     display: flex;
     justify-content: space-around;
-    margin: 20px 0;
+    padding: 20px;
 }
-.stat {
-    background-color: #1f1f1f;
+.stat-item {
+    background-color: #333333;
     padding: 20px;
     border-radius: 5px;
+    text-align: center;
 }
-.list {
-    background-color: #1f1f1f;
+#projects, #tasks {
     padding: 20px;
-    border-radius: 5px;
 }
 .task-controls {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
+}
+#task-form {
+    display: flex;
+    gap: 10px;
+}
+input, select, button {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+}
+button {
+    background-color: #4caf50;
+    color: #ffffff;
+    cursor: pointer;
+}
+button:hover {
+    background-color: #45a049;
 }
 @media (max-width: 768px) {
     .nav-links {
         display: none;
         flex-direction: column;
-        width: 100%;
+        background-color: #1f1f1f;
         position: absolute;
         top: 60px;
-        left: 0;
-        background-color: #1f1f1f;
+        right: 0;
+        width: 100%;
     }
-    .nav-links li {
-        margin: 10px 0;
+    .nav-links.active {
+        display: flex;
     }
     .nav-toggle {
         display: block;
     }
-}
-@media (max-width: 480px) {
     .stats {
         flex-direction: column;
     }
