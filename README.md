@@ -1,6 +1,7 @@
 # Task & Project Management Web Application
 
-This is a responsive web application designed for managing tasks and projects for a small software team. It features a dashboard, project and task management, and a modern dark UI.
+## Overview
+This is a responsive Task & Project Management web application designed for a small software team. It allows users to manage projects and tasks with features such as adding, editing, deleting, and completing tasks. The application includes priority and status filters, search functionality, and uses localStorage for data persistence.
 
 ## Features
 - Dashboard with project statistics
@@ -9,35 +10,24 @@ This is a responsive web application designed for managing tasks and projects fo
 - Priority and status filters
 - Search functionality
 - Task creation form with validation
-- Persistent storage using localStorage
+- Persistent browser storage using localStorage
 - Responsive navigation
 - Modern dark UI styling
 
 ## Setup
-
-1. Clone the repository:
-   bash
-   git clone <repository-url>
-   
-
-2. Navigate to the project directory:
-   bash
-   cd task-manager
-   
-
-3. Open `index.html` in your web browser to view the application.
+1. Clone the repository.
+2. Open `index.html` in a web browser.
 
 ## Usage
-
-- Use the navigation bar to switch between Dashboard, Projects, and Tasks sections.
-- Add new tasks using the form provided in the Tasks section.
-- Filter tasks by status and search by name.
-- Click on a task to mark it as completed or pending.
+- Use the navigation menu to switch between Dashboard, Projects, and Tasks sections.
+- Add tasks using the "Add Task" button.
+- Filter tasks by priority and status using the dropdowns.
+- Search tasks using the search input.
+- Complete or delete tasks using the respective buttons.
 
 ## Deployment
+This project is a static website and can be deployed on any static hosting service.
 
-This project is a static website and can be deployed to any static hosting service such as GitHub Pages, Netlify, or Vercel.
-
-## Note
-
-This application uses localStorage for data persistence, meaning data is stored locally in the browser and will not be shared across different devices or browsers.
+## Notes
+- This application uses localStorage for data persistence, so tasks will remain saved in the browser until manually cleared.
+- The task creation form uses prompt dialogs for simplicity in this demo version.
