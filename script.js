@@ -1,94 +1,157 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const navToggle = document.querySelector('.nav-toggle');
+document.addEventListener('DOMContentLoaded', function() {
+    const menuToggle = document.querySelector('.menu-toggle');
     const navLinks = document.querySelector('.nav-links');
+    const taskModal = document.getElementById('task-modal');
+    const closeModal = document.querySelector('.close');
+    const addTaskBtn = document.getElementById('add-task-btn');
+    const taskForm = document.getElementById('task-form');
+    const taskList = document.getElementById('task-list');
+    const taskSearch = document.getElementById('task-search');
+    const priorityFilter = document.getElementById('priority-filter');
+    const statusFilter = document.getElementById('status-filter');
 
-    navToggle.addEventListener('click', () => {
+    menuToggle.addEventListener('click', () => {
         navLinks.classList.toggle('active');
     });
 
-    const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
-    const projects = JSON.parse(localStorage.getItem('projects')) || [];
+    addTaskBtn.addEventListener('click', () => {
+        taskModal.style.display = 'block';
+    });
 
-    const taskList = document.getElementById('task-list');
-    const projectList = document.getElementById('project-list');
-    const totalProjects = document.getElementById('total-projects');
-    const completedTasks = document.getElementById('completed-tasks');
-    const pendingTasks = document.getElementById('pending-tasks');
+    closeModal.addEventListener('click', () => {
+        taskModal.style.display = 'none';
+    });
 
-    function updateDashboard() {
-        totalProjects.textContent = projects.length;
-        completedTasks.textContent = tasks.filter(task => task.status === 'completed').length;
-        pendingTasks.textContent = tasks.filter(task => task.status === 'pending').length;
+    window.onclick = function(event) {
+        if (event.target == taskModal) {
+            taskModal.style.display = 'none';
+        }
+    }
+
+    taskForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        const taskName = document.getElementById('task-name').value;
+        const taskPriority = document.getElementById('task-priority').value;
+        const taskStatus = document.getElementById('task-status').value;
+
+        if (taskName.trim() === '') {
+            alert('Task name is required.');
+            return;
+        }
+
+        const task = {
+            id: Date.now(),
+            name: taskName,
+            priority: taskPriority,
+            status: taskStatus
+        };
+
+        saveTask(task);
+        taskModal.style.display = 'none';
+        taskForm.reset();
+        renderTasks();
+    });
+
+    function saveTask(task) {
+        const tasks = getTasks();
+        tasks.push(task);
+        localStorage.setItem('tasks', JSON.stringify(tasks));
+    }
+
+    function getTasks() {
+        const tasks = localStorage.getItem('tasks');
+        return tasks ? JSON.parse(tasks) : [];
     }
 
     function renderTasks() {
+        const tasks = getTasks();
         taskList.innerHTML = '';
-        if (tasks.length === 0) {
-            taskList.classList.add('empty-state');
-            taskList.innerHTML = '<p>No tasks available. Start by adding a new task.</p>';
-        } else {
-            taskList.classList.remove('empty-state');
-            tasks.forEach(task => {
-                const taskItem = document.createElement('div');
-                taskItem.className = 'task-item';
-                taskItem.innerHTML = `<p>${task.name}</p><button onclick="completeTask('${task.id}')">Complete</button><button onclick="deleteTask('${task.id}')">Delete</button>`;
-                taskList.appendChild(taskItem);
-            });
-        }
+        tasks.forEach(task => {
+            const taskItem = document.createElement('div');
+            taskItem.className = 'task-item';
+            taskItem.innerHTML = `
+                <p>${task.name}</p>
+                <p>Priority: ${task.priority}</p>
+                <p>Status: ${task.status}</p>
+                <button onclick="editTask(${task.id})">Edit</button>
+                <button onclick="deleteTask(${task.id})">Delete</button>
+                <button onclick="toggleComplete(${task.id})">${task.status === 'complete' ? 'Mark Incomplete' : 'Mark Complete'}</button>
+            `;
+            taskList.appendChild(taskItem);
+        });
     }
 
-    function renderProjects() {
-        projectList.innerHTML = '';
-        if (projects.length === 0) {
-            projectList.classList.add('empty-state');
-            projectList.innerHTML = '<p>No projects available. Start by adding a new project.</p>';
-        } else {
-            projectList.classList.remove('empty-state');
-            projects.forEach(project => {
-                const projectItem = document.createElement('div');
-                projectItem.className = 'project-item';
-                projectItem.innerHTML = `<p>${project.name}</p>`;
-                projectList.appendChild(projectItem);
-            });
-        }
-    }
-
-    function completeTask(id) {
-        const taskIndex = tasks.findIndex(task => task.id === id);
-        if (taskIndex > -1) {
-            tasks[taskIndex].status = 'completed';
-            localStorage.setItem('tasks', JSON.stringify(tasks));
-            renderTasks();
-            updateDashboard();
+    function editTask(id) {
+        const tasks = getTasks();
+        const task = tasks.find(t => t.id === id);
+        if (task) {
+            document.getElementById('task-name').value = task.name;
+            document.getElementById('task-priority').value = task.priority;
+            document.getElementById('task-status').value = task.status;
+            taskModal.style.display = 'block';
+            deleteTask(id);
         }
     }
 
     function deleteTask(id) {
-        const taskIndex = tasks.findIndex(task => task.id === id);
-        if (taskIndex > -1) {
-            tasks.splice(taskIndex, 1);
+        let tasks = getTasks();
+        tasks = tasks.filter(task => task.id !== id);
+        localStorage.setItem('tasks', JSON.stringify(tasks));
+        renderTasks();
+    }
+
+    function toggleComplete(id) {
+        const tasks = getTasks();
+        const task = tasks.find(t => t.id === id);
+        if (task) {
+            task.status = task.status === 'complete' ? 'incomplete' : 'complete';
             localStorage.setItem('tasks', JSON.stringify(tasks));
             renderTasks();
-            updateDashboard();
         }
     }
 
-    document.getElementById('add-task').addEventListener('click', () => {
-        const taskName = prompt('Enter task name:');
-        if (taskName) {
-            const newTask = {
-                id: Date.now().toString(),
-                name: taskName,
-                status: 'pending'
-            };
-            tasks.push(newTask);
-            localStorage.setItem('tasks', JSON.stringify(tasks));
-            renderTasks();
-            updateDashboard();
-        }
+    taskSearch.addEventListener('input', function() {
+        const query = taskSearch.value.toLowerCase();
+        const tasks = getTasks();
+        const filteredTasks = tasks.filter(task => task.name.toLowerCase().includes(query));
+        renderFilteredTasks(filteredTasks);
     });
 
+    priorityFilter.addEventListener('change', function() {
+        filterTasks();
+    });
+
+    statusFilter.addEventListener('change', function() {
+        filterTasks();
+    });
+
+    function filterTasks() {
+        const priority = priorityFilter.value;
+        const status = statusFilter.value;
+        const tasks = getTasks();
+        const filteredTasks = tasks.filter(task => {
+            return (priority === '' || task.priority === priority) &&
+                   (status === '' || task.status === status);
+        });
+        renderFilteredTasks(filteredTasks);
+    }
+
+    function renderFilteredTasks(tasks) {
+        taskList.innerHTML = '';
+        tasks.forEach(task => {
+            const taskItem = document.createElement('div');
+            taskItem.className = 'task-item';
+            taskItem.innerHTML = `
+                <p>${task.name}</p>
+                <p>Priority: ${task.priority}</p>
+                <p>Status: ${task.status}</p>
+                <button onclick="editTask(${task.id})">Edit</button>
+                <button onclick="deleteTask(${task.id})">Delete</button>
+                <button onclick="toggleComplete(${task.id})">${task.status === 'complete' ? 'Mark Incomplete' : 'Mark Complete'}</button>
+            `;
+            taskList.appendChild(taskItem);
+        });
+    }
+
     renderTasks();
-    renderProjects();
-    updateDashboard();
 });
