@@ -3,60 +3,63 @@ document.addEventListener('DOMContentLoaded', () => {
     const navLinks = document.querySelector('.nav-links');
 
     navToggle.addEventListener('click', () => {
-        navLinks.classList.toggle('show');
+        navLinks.classList.toggle('active');
     });
 
     const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+    const projects = JSON.parse(localStorage.getItem('projects')) || [];
+
     const taskList = document.getElementById('task-list');
-    const addTaskButton = document.getElementById('add-task');
-    const searchInput = document.getElementById('search');
-    const filterPriority = document.getElementById('filter-priority');
-    const filterStatus = document.getElementById('filter-status');
+    const projectList = document.getElementById('project-list');
+    const totalProjects = document.getElementById('total-projects');
+    const completedTasks = document.getElementById('completed-tasks');
+    const pendingTasks = document.getElementById('pending-tasks');
+
+    function updateDashboard() {
+        totalProjects.textContent = projects.length;
+        completedTasks.textContent = tasks.filter(task => task.status === 'completed').length;
+        pendingTasks.textContent = tasks.filter(task => task.status === 'pending').length;
+    }
 
     function renderTasks() {
         taskList.innerHTML = '';
-        const filteredTasks = tasks.filter(task => {
-            const matchesSearch = task.name.toLowerCase().includes(searchInput.value.toLowerCase());
-            const matchesPriority = filterPriority.value === '' || task.priority === filterPriority.value;
-            const matchesStatus = filterStatus.value === '' || task.status === filterStatus.value;
-            return matchesSearch && matchesPriority && matchesStatus;
-        });
-        if (filteredTasks.length === 0) {
-            taskList.innerHTML = '<p>No tasks found.</p>';
+        if (tasks.length === 0) {
+            taskList.classList.add('empty-state');
+            taskList.innerHTML = '<p>No tasks available. Start by adding a new task.</p>';
         } else {
-            filteredTasks.forEach(task => {
+            taskList.classList.remove('empty-state');
+            tasks.forEach(task => {
                 const taskItem = document.createElement('div');
                 taskItem.className = 'task-item';
-                taskItem.innerHTML = `
-                    <p>${task.name}</p>
-                    <p>Priority: ${task.priority}</p>
-                    <p>Status: ${task.status}</p>
-                    <button onclick="completeTask('${task.id}')">Complete</button>
-                    <button onclick="deleteTask('${task.id}')">Delete</button>
-                `;
+                taskItem.innerHTML = `<p>${task.name}</p><button onclick="completeTask('${task.id}')">Complete</button><button onclick="deleteTask('${task.id}')">Delete</button>`;
                 taskList.appendChild(taskItem);
             });
         }
     }
 
-    function addTask(name, priority) {
-        const newTask = {
-            id: Date.now().toString(),
-            name,
-            priority,
-            status: 'pending'
-        };
-        tasks.push(newTask);
-        localStorage.setItem('tasks', JSON.stringify(tasks));
-        renderTasks();
+    function renderProjects() {
+        projectList.innerHTML = '';
+        if (projects.length === 0) {
+            projectList.classList.add('empty-state');
+            projectList.innerHTML = '<p>No projects available. Start by adding a new project.</p>';
+        } else {
+            projectList.classList.remove('empty-state');
+            projects.forEach(project => {
+                const projectItem = document.createElement('div');
+                projectItem.className = 'project-item';
+                projectItem.innerHTML = `<p>${project.name}</p>`;
+                projectList.appendChild(projectItem);
+            });
+        }
     }
 
     function completeTask(id) {
-        const task = tasks.find(task => task.id === id);
-        if (task) {
-            task.status = 'completed';
+        const taskIndex = tasks.findIndex(task => task.id === id);
+        if (taskIndex > -1) {
+            tasks[taskIndex].status = 'completed';
             localStorage.setItem('tasks', JSON.stringify(tasks));
             renderTasks();
+            updateDashboard();
         }
     }
 
@@ -66,20 +69,26 @@ document.addEventListener('DOMContentLoaded', () => {
             tasks.splice(taskIndex, 1);
             localStorage.setItem('tasks', JSON.stringify(tasks));
             renderTasks();
+            updateDashboard();
         }
     }
 
-    addTaskButton.addEventListener('click', () => {
+    document.getElementById('add-task').addEventListener('click', () => {
         const taskName = prompt('Enter task name:');
-        const taskPriority = prompt('Enter task priority (high, medium, low):');
-        if (taskName && taskPriority) {
-            addTask(taskName, taskPriority);
+        if (taskName) {
+            const newTask = {
+                id: Date.now().toString(),
+                name: taskName,
+                status: 'pending'
+            };
+            tasks.push(newTask);
+            localStorage.setItem('tasks', JSON.stringify(tasks));
+            renderTasks();
+            updateDashboard();
         }
     });
 
-    searchInput.addEventListener('input', renderTasks);
-    filterPriority.addEventListener('change', renderTasks);
-    filterStatus.addEventListener('change', renderTasks);
-
     renderTasks();
+    renderProjects();
+    updateDashboard();
 });
