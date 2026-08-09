@@ -1,33 +1,30 @@
 # Task & Project Management Web Application
 
-## Overview
-This is a responsive Task & Project Management web application designed for a small software team. It allows users to manage projects and tasks with features such as adding, editing, deleting, and completing tasks. The application includes priority and status filters, search functionality, and uses localStorage for data persistence.
+This is a responsive Task & Project Management web application designed for a small software team. It allows users to manage tasks and projects efficiently with features like dashboard statistics, task actions, filters, and more.
 
 ## Features
-- Dashboard with project statistics
-- Projects section
-- Task management with add/edit/delete/complete actions
+- Dashboard with statistics on projects and tasks
+- Projects section with empty state
+- Add, edit, delete, and complete task actions
 - Priority and status filters
 - Search functionality
-- Task creation form with validation
-- Persistent browser storage using localStorage
+- Task form validation
+- LocalStorage persistence
 - Responsive navigation
-- Modern dark UI styling
+- Modern dark UI
 
 ## Setup
 1. Clone the repository.
-2. Open `index.html` in a web browser.
+2. Open `index.html` in your web browser.
 
 ## Usage
-- Use the navigation menu to switch between Dashboard, Projects, and Tasks sections.
+- Navigate through the sections using the navigation bar.
 - Add tasks using the "Add Task" button.
-- Filter tasks by priority and status using the dropdowns.
-- Search tasks using the search input.
-- Complete or delete tasks using the respective buttons.
+- Tasks can be completed or deleted using the respective buttons.
+- Use the search and filter options to manage tasks efficiently.
 
 ## Deployment
 This project is a static website and can be deployed on any static hosting service.
 
-## Notes
-- This application uses localStorage for data persistence, so tasks will remain saved in the browser until manually cleared.
-- The task creation form uses prompt dialogs for simplicity in this demo version.
+## Note
+This application uses localStorage for data persistence, so data will be saved across sessions in the same browser.
