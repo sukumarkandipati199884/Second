@@ -1,37 +1,45 @@
-# Task Management App
+# Cloud Productivity Platform
 
-This is a modern task and project management web application that allows users to manage their tasks effectively.
+This project is a professional SaaS landing website for a cloud productivity platform. It includes a hero section, product features, workflow, pricing plans, customer testimonials, FAQs, and a contact form.
 
 ## Features
-- Create, edit, and delete tasks
-- Mark tasks as complete or incomplete
-- Assign priorities to tasks
-- Search and filter tasks by status and priority
-- View task statistics
-- Persist task data in the browser using local storage
+- Responsive design
+- Reusable React components
+- Realistic product copy
+- Interactive elements with meaningful behavior
 
 ## Setup
 
 1. Clone the repository:
-   ```bash
+   bash
    git clone <repository-url>
-   ```
+   cd cloud-productivity-platform
+   
 
-2. Open the `index.html` file in your web browser to run the application.
+2. Install dependencies:
+   bash
+   npm install
+   
 
-## Usage
+3. Run the development server:
+   bash
+   npm run dev
+   
 
-- Navigate through the application using the header links.
-- Use the "Add Task" button to create new tasks.
-- Search tasks using the search bar.
-- Filter tasks by priority using the dropdown menu.
-- Edit or delete tasks using the respective buttons next to each task.
-- View task statistics on the dashboard.
+4. Build for production:
+   bash
+   npm run build
+   
+
+5. Preview the production build:
+   bash
+   npm run serve
+   
 
 ## Deployment
 
-This application is a static web application and can be deployed on any static hosting service like GitHub Pages, Netlify, or Vercel.
+This project is ready to be deployed on Vercel. Simply connect your repository to Vercel and deploy.
 
-## License
+## Note
 
-This project is licensed under the MIT License.
+The contact form is a demo and does not send data to a backend. It is intended for demonstration purposes only.
