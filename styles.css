@@ -1,120 +1,88 @@
 body {
-    margin: 0;
     font-family: Arial, sans-serif;
     line-height: 1.6;
-    color: #333;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
 }
-
 header {
     background: #333;
     color: #fff;
-    padding: 10px 0;
+    padding: 1rem 0;
 }
-
 nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 1rem;
 }
-
-.logo {
-    font-size: 1.5em;
-}
-
 .nav-links {
     list-style: none;
     display: flex;
-    gap: 15px;
+    gap: 1rem;
 }
-
 .nav-links a {
     color: #fff;
     text-decoration: none;
 }
-
-.hero {
-    background: url('images/hero.jpg') no-repeat center center/cover;
-    height: 80vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
+.nav-toggle {
+    display: none;
+}
+#hero {
+    background: #f4f4f4;
+    padding: 2rem 1rem;
     text-align: center;
 }
-
-.hero-content {
-    max-width: 600px;
+#hero h1 {
+    margin-bottom: 0.5rem;
 }
-
 .cta {
     display: inline-block;
-    margin-top: 20px;
-    padding: 10px 20px;
-    background: #ff6347;
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    background: #007BFF;
     color: #fff;
     text-decoration: none;
     border-radius: 5px;
 }
-
-.about, .menu, .hours, .gallery, .testimonials, .contact {
-    padding: 40px 20px;
-    max-width: 1200px;
+section {
+    padding: 2rem 1rem;
+    max-width: 800px;
     margin: 0 auto;
 }
-
-.menu-category {
-    margin-bottom: 20px;
+.project, .experience {
+    margin-bottom: 1.5rem;
 }
-
-.gallery-images {
-    display: flex;
-    gap: 10px;
-}
-
-.gallery-images img {
-    width: 100%;
-    max-width: 300px;
-    border-radius: 5px;
-}
-
 footer {
     background: #333;
     color: #fff;
     text-align: center;
-    padding: 10px 0;
+    padding: 1rem 0;
 }
-
+.social-links {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    padding: 0;
+}
+.social-links a {
+    color: #fff;
+    text-decoration: none;
+}
 @media (max-width: 768px) {
     .nav-links {
         display: none;
         flex-direction: column;
-        background: #333;
-        position: absolute;
-        top: 60px;
-        right: 0;
-        width: 200px;
-        padding: 10px;
+        gap: 0;
     }
-
     .nav-toggle {
         display: block;
         cursor: pointer;
     }
-
     .nav-toggle.active + .nav-links {
         display: flex;
-    }
-}
-
-@media (max-width: 480px) {
-    .hero {
-        height: 60vh;
-    }
-
-    .hero-content {
-        padding: 0 10px;
     }
 }
