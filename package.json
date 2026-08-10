@@ -1,19 +1,19 @@
 {
-  "name": "task-manager",
+  "name": "cloud-productivity-platform",
   "version": "1.0.0",
-  "description": "A responsive Task & Project Management web application for a small software team.",
+  "description": "A professional SaaS landing website for a cloud productivity platform.",
   "main": "src/main.jsx",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "start": "vite preview"
+    "serve": "vite preview"
   },
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@vitejs/plugin-react": "^2.0.0",
-    "vite": "^3.0.0"
+    "@vitejs/plugin-react": "^3.0.0",
+    "vite": "^4.0.0"
   }
 }
