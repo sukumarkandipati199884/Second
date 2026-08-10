@@ -1,45 +1,26 @@
-# Cloud Productivity Platform
+# Modern Restaurant Website
 
-This project is a professional SaaS landing website for a cloud productivity platform. It includes a hero section, product features, workflow, pricing plans, customer testimonials, FAQs, and a contact form.
+This is a static website for a modern restaurant, featuring a responsive design and interactive elements.
 
 ## Features
-- Responsive design
-- Reusable React components
-- Realistic product copy
-- Interactive elements with meaningful behavior
+- Responsive navigation
+- Hero section with call-to-action
+- About section
+- Menu with categories
+- Opening hours and location
+- Gallery of featured dishes
+- Customer testimonials
+- Reservation form with date validation
 
 ## Setup
-
-1. Clone the repository:
-   bash
-   git clone <repository-url>
-   cd cloud-productivity-platform
-   
-
-2. Install dependencies:
-   bash
-   npm install
-   
-
-3. Run the development server:
-   bash
-   npm run dev
-   
-
-4. Build for production:
-   bash
-   npm run build
-   
-
-5. Preview the production build:
-   bash
-   npm run serve
-   
+No special setup is required. Simply open `index.html` in a web browser to view the website.
 
 ## Deployment
+This project is ready to be deployed to any static site hosting service, such as GitHub Pages, Netlify, or Vercel.
 
-This project is ready to be deployed on Vercel. Simply connect your repository to Vercel and deploy.
+## Usage
+- Navigate through the sections using the navigation bar.
+- Use the reservation form to select a date and time for booking.
 
 ## Note
-
-The contact form is a demo and does not send data to a backend. It is intended for demonstration purposes only.
+The reservation form is a demo and does not store or transmit data.
