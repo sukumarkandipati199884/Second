@@ -1,25 +1,27 @@
-# Professional Portfolio
+# Gourmet Haven Website
 
-This is a professional portfolio website built using HTML, CSS, and JavaScript. It is a static website suitable for deployment on platforms like AWS S3 and CloudFront.
+This is a static website for a fictional restaurant called Gourmet Haven. It includes various sections such as Home, Menu, About, Gallery, Reservation, and Contact.
 
 ## Features
-- Responsive navigation bar with links to Home, About, Skills, Projects, and Contact sections.
-- Modern hero section with a professional introduction and call-to-action buttons.
-- About section with professional content.
-- Skills section displaying technical skills.
-- Projects section with four project cards.
-- Contact section with a form for name, email, and message.
-- Client-side form validation with feedback.
-- Responsive mobile navigation menu.
-- Smooth scrolling between sections.
-- JavaScript interactions for mobile menu and form validation.
+- Responsive navigation bar with a mobile-friendly burger menu.
+- Hero section with a welcoming message.
+- Menu section with category filtering using JavaScript.
+- About section describing the restaurant.
+- Gallery section with images.
+- Reservation form with client-side validation.
+- Contact information and opening hours.
 
 ## Setup
 1. Clone the repository.
 2. Open `index.html` in a web browser.
 
 ## Deployment
-This project can be deployed as a static website on AWS S3 and CloudFront. Simply upload the files to your S3 bucket and configure CloudFront for distribution.
+This project can be deployed on any static hosting service such as AWS S3, CloudFront, GitHub Pages, etc.
 
-## Note
-The contact form is a demo and does not store or transmit data.
+## Usage
+- Navigate through the sections using the navigation bar.
+- Use the menu category buttons to filter dishes.
+- Fill out the reservation form to simulate a booking (note: this is a demo form and does not store or transmit data).
+
+## License
+This project is licensed under the MIT License.
