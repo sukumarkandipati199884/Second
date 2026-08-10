@@ -3,84 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Developer Portfolio</title>
+    <title>La Bella Cucina - Modern Italian Restaurant</title>
     <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
 </head>
 <body>
     <header>
         <nav>
-            <div class="logo">My Portfolio</div>
+            <div class="logo">La Bella Cucina</div>
+            <button class="nav-toggle" aria-label="toggle navigation">
+                <span class="hamburger"></span>
+            </button>
             <ul class="nav-links">
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#experience">Experience</a></li>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="#hours">Hours</a></li>
+                <li><a href="#location">Location</a></li>
+                <li><a href="#gallery">Gallery</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
-            <div class="burger">
-                <div class="line1"></div>
-                <div class="line2"></div>
-                <div class="line3"></div>
-            </div>
         </nav>
     </header>
     <main>
-        <section id="hero">
-            <h1>Welcome to My Portfolio</h1>
-            <p>I am a passionate software engineer dedicated to building efficient and scalable applications.</p>
+        <section id="home" class="hero">
+            <h1>Welcome to La Bella Cucina</h1>
+            <p>Experience the taste of Italy in the heart of the city.</p>
+            <a href="#contact" class="cta">Reserve a Table</a>
         </section>
-        <section id="about">
-            <h2>About Me</h2>
-            <p>Hi, I'm John Doe, a software engineer with a love for technology and innovation. I specialize in creating dynamic and beautiful web applications.</p>
-        </section>
-        <section id="skills">
-            <h2>Skills</h2>
-            <ul>
-                <li>JavaScript</li>
-                <li>HTML & CSS</li>
-                <li>Python</li>
-                <li>React</li>
-                <li>Node.js</li>
-            </ul>
-        </section>
-        <section id="projects">
-            <h2>Selected Projects</h2>
-            <div class="project">
-                <h3>Project One</h3>
-                <p>A web application that allows users to track their tasks and manage time efficiently.</p>
-            </div>
-            <div class="project">
-                <h3>Project Two</h3>
-                <p>An e-commerce platform with a seamless user experience and robust backend.</p>
+        <section id="menu" class="menu">
+            <h2>Our Menu</h2>
+            <div class="menu-items">
+                <div class="menu-item">
+                    <h3>Margherita Pizza</h3>
+                    <p>Classic pizza with fresh mozzarella, basil, and tomato sauce.</p>
+                </div>
+                <div class="menu-item">
+                    <h3>Spaghetti Carbonara</h3>
+                    <p>Traditional Roman pasta with eggs, cheese, pancetta, and pepper.</p>
+                </div>
+                <div class="menu-item">
+                    <h3>Tiramisu</h3>
+                    <p>Layered dessert with coffee-soaked ladyfingers and mascarpone cream.</p>
+                </div>
             </div>
         </section>
-        <section id="experience">
-            <h2>Experience</h2>
-            <div class="job">
-                <h3>Software Engineer at TechCorp</h3>
-                <p>Developed scalable web applications and collaborated with cross-functional teams to enhance product features.</p>
-            </div>
-            <div class="job">
-                <h3>Frontend Developer at WebSolutions</h3>
-                <p>Implemented responsive designs and optimized web applications for better performance.</p>
+        <section id="hours" class="hours">
+            <h2>Opening Hours</h2>
+            <p>Monday - Friday: 11:00 AM - 10:00 PM</p>
+            <p>Saturday - Sunday: 12:00 PM - 11:00 PM</p>
+        </section>
+        <section id="location" class="location">
+            <h2>Our Location</h2>
+            <p>1234 Culinary Blvd, Food City, FC 56789</p>
+            <p>Phone: (123) 456-7890</p>
+        </section>
+        <section id="gallery" class="gallery">
+            <h2>Gallery</h2>
+            <div class="gallery-images">
+                <img src="images/placeholder.jpg" alt="Delicious Italian Dish">
+                <img src="images/placeholder.jpg" alt="Authentic Italian Cuisine">
+                <img src="images/placeholder.jpg" alt="Gourmet Italian Meal">
             </div>
         </section>
-        <section id="contact">
-            <h2>Contact</h2>
-            <form id="contact-form">
+        <section id="contact" class="contact">
+            <h2>Contact Us</h2>
+            <form>
                 <label for="name">Name:</label>
                 <input type="text" id="name" name="name" required>
                 <label for="email">Email:</label>
                 <input type="email" id="email" name="email" required>
                 <label for="message">Message:</label>
                 <textarea id="message" name="message" required></textarea>
-                <button type="submit">Send</button>
+                <button type="submit">Send Message</button>
             </form>
         </section>
     </main>
     <footer>
-        <p>&copy; 2023 John Doe</p>
+        <p>&copy; 2023 La Bella Cucina. All rights reserved.</p>
     </footer>
-    <script src="script.js"></script>
 </body>
 </html>
