@@ -1,24 +1,40 @@
-# La Bella Cucina Website
+# TeamBoost Landing Page
 
-This is a static website for La Bella Cucina, a modern Italian restaurant. The website is built using HTML, CSS, and vanilla JavaScript, and it is fully responsive.
+This is a static landing page for TeamBoost, a SaaS productivity product for small teams. The page is built using HTML, CSS, and JavaScript, and is fully responsive.
 
 ## Features
-- Responsive navigation with a mobile-friendly toggle
-- Hero section with a call-to-action
-- Menu section showcasing popular dishes
-- Opening hours and location information
-- Gallery section with images
-- Contact form (demo only, does not store or transmit data)
+- Responsive navigation
+- Hero section with a clear value proposition
+- Product features overview
+- How-it-works section
+- Pricing plans
+- Testimonials
+- FAQ
+- Strong call-to-action
 
 ## Setup
-No setup is required as this is a static website. Simply open `index.html` in a web browser to view the site.
+
+1. Clone the repository:
+   bash
+   git clone <repository-url>
+   
+
+2. Navigate to the project directory:
+   bash
+   cd teamboost-landing-page
+   
+
+3. Open `index.html` in your preferred web browser.
+
+## Deployment
+
+This project is a static website and can be deployed on any static hosting service such as GitHub Pages, Netlify, or Vercel.
 
 ## Usage
-- Navigate through the site using the navigation links.
-- Use the contact form to simulate sending a message.
+
+- Navigate through the sections using the responsive navigation menu.
+- Click on the call-to-action buttons to simulate starting a free trial or choosing a plan.
 
 ## Note
-The contact form is a demo and does not store or transmit any data.
 
-## License
-This project is licensed under the MIT License.
+This is a demo landing page and does not include backend functionality. All interactions are client-side only.
