@@ -1,37 +1,29 @@
 # Task & Project Management Application
 
-This is a static web application for managing tasks and projects, designed for a small software team. It is built using plain HTML, CSS, and JavaScript, with no external libraries or frameworks.
+This is a static website for managing tasks and projects for a small software team. It is built using plain HTML, CSS, and vanilla JavaScript, with no external dependencies or frameworks.
 
 ## Features
-
-- Responsive design with a modern dark UI
-- Dashboard with statistics on projects and tasks
-- Projects section to list all projects
-- Tasks section with the ability to add, delete, and mark tasks as complete
-- Filters for task priority and status
-- Task search functionality
-- Form validation for adding tasks
-- Local storage for task persistence
-- Mobile-friendly navigation
-
-## Getting Started
-
-Simply open the `index.html` file in your web browser to start using the application.
+- Dashboard with live statistics
+- Projects section
+- Add and edit tasks
+- Priority and status filters
+- Task search
+- Form validation
+- LocalStorage persistence
+- Responsive design with navigation toggle
 
 ## Usage
 
-- **Dashboard**: View statistics about your projects and tasks.
-- **Projects**: View a list of all projects.
-- **Tasks**: Add new tasks, search, filter by priority or status, and manage existing tasks.
-
-## Local Storage
-
-All tasks are stored in the browser's local storage, so they persist across page reloads.
+1. Open `index.html` in your web browser.
+2. Use the navigation links to switch between sections.
+3. Add tasks using the form provided. Tasks will be saved in your browser's localStorage.
+4. Use the search and filter options to find tasks.
 
 ## Responsive Design
+The website is designed to be responsive and works well on both desktop and mobile devices.
 
-The application is designed to be responsive and works well on both desktop and mobile devices.
+## LocalStorage
+All tasks and projects are stored in the browser's localStorage, ensuring data persistence across sessions.
 
-## License
-
-This project is open source and available under the MIT License.
+## Note
+This application is a static demo and does not include backend functionality or real-time collaboration features.
