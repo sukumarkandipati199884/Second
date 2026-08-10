@@ -1,149 +1,147 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const menuToggle = document.querySelector('.menu-toggle');
     const navLinks = document.querySelector('.nav-links');
-    const burger = document.querySelector('.burger');
-
-    burger.addEventListener('click', () => {
-        navLinks.classList.toggle('nav-active');
-    });
-
+    const taskModal = document.getElementById('task-modal');
+    const closeModal = document.querySelector('.close');
+    const addTaskBtn = document.getElementById('add-task-btn');
+    const taskForm = document.getElementById('task-form');
     const taskList = document.getElementById('task-list');
-    const projectList = document.getElementById('project-list');
-    const addTaskButton = document.getElementById('add-task');
-    const addProjectButton = document.getElementById('add-project');
     const taskSearch = document.getElementById('task-search');
     const priorityFilter = document.getElementById('priority-filter');
     const statusFilter = document.getElementById('status-filter');
     const totalProjectsElem = document.getElementById('total-projects');
     const totalTasksElem = document.getElementById('total-tasks');
     const completedTasksElem = document.getElementById('completed-tasks');
-    const emptyProjectsMessage = document.getElementById('empty-projects');
-    const emptyTasksMessage = document.getElementById('empty-tasks');
 
-    let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
-    let projects = JSON.parse(localStorage.getItem('projects')) || [];
+    let tasks = [];
 
-    function saveTasks() {
+    try {
+        tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+    } catch (error) {
+        console.error('Error loading tasks from localStorage', error);
+    }
+
+    menuToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+    });
+
+    addTaskBtn.addEventListener('click', () => {
+        taskModal.style.display = 'flex';
+    });
+
+    closeModal.addEventListener('click', () => {
+        taskModal.style.display = 'none';
+    });
+
+    window.onclick = function(event) {
+        if (event.target == taskModal) {
+            taskModal.style.display = 'none';
+        }
+    }
+
+    taskForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const taskName = document.getElementById('task-name').value;
+        const taskPriority = document.getElementById('task-priority').value;
+        const taskStatus = document.getElementById('task-status').value;
+
+        if (!taskName) {
+            alert('Task name is required');
+            return;
+        }
+
+        const newTask = {
+            id: Date.now(),
+            name: taskName,
+            priority: taskPriority,
+            status: taskStatus
+        };
+
+        tasks.push(newTask);
         try {
             localStorage.setItem('tasks', JSON.stringify(tasks));
-        } catch (e) {
-            console.error('Failed to save tasks:', e);
+        } catch (error) {
+            console.error('Error saving tasks to localStorage', error);
         }
-    }
-
-    function saveProjects() {
-        try {
-            localStorage.setItem('projects', JSON.stringify(projects));
-        } catch (e) {
-            console.error('Failed to save projects:', e);
-        }
-    }
+        renderTasks();
+        taskModal.style.display = 'none';
+        taskForm.reset();
+    });
 
     function renderTasks() {
         taskList.innerHTML = '';
         const filteredTasks = tasks.filter(task => {
             const matchesSearch = task.name.toLowerCase().includes(taskSearch.value.toLowerCase());
-            const matchesPriority = priorityFilter.value === '' || task.priority === priorityFilter.value;
-            const matchesStatus = statusFilter.value === '' || (task.completed && statusFilter.value === 'complete') || (!task.completed && statusFilter.value === 'incomplete');
+            const matchesPriority = priorityFilter.value ? task.priority === priorityFilter.value : true;
+            const matchesStatus = statusFilter.value ? task.status === statusFilter.value : true;
             return matchesSearch && matchesPriority && matchesStatus;
         });
+
+        if (filteredTasks.length === 0) {
+            taskList.innerHTML = '<p>No tasks found.</p>';
+            return;
+        }
+
         filteredTasks.forEach(task => {
             const taskItem = document.createElement('div');
             taskItem.className = 'task-item';
             taskItem.innerHTML = `
-                <p>${task.name} - ${task.priority} - ${task.completed ? 'Complete' : 'Incomplete'}</p>
-                <button onclick="toggleComplete('${task.id}')">${task.completed ? 'Undo' : 'Complete'}</button>
-                <button onclick="editTask('${task.id}')">Edit</button>
-                <button onclick="deleteTask('${task.id}')">Delete</button>
+                <p>${task.name}</p>
+                <p>Priority: ${task.priority}</p>
+                <p>Status: ${task.status}</p>
+                <button onclick="editTask(${task.id})">Edit</button>
+                <button onclick="deleteTask(${task.id})">Delete</button>
+                <button onclick="toggleTaskStatus(${task.id})">${task.status === 'Complete' ? 'Mark Incomplete' : 'Mark Complete'}</button>
             `;
             taskList.appendChild(taskItem);
         });
-        emptyTasksMessage.style.display = filteredTasks.length === 0 ? 'block' : 'none';
+
+        updateStatistics();
+    }
+
+    function updateStatistics() {
+        totalProjectsElem.textContent = '1'; // Assuming 1 project for simplicity
         totalTasksElem.textContent = tasks.length;
-        completedTasksElem.textContent = tasks.filter(task => task.completed).length;
+        completedTasksElem.textContent = tasks.filter(task => task.status === 'Complete').length;
     }
 
-    function renderProjects() {
-        projectList.innerHTML = '';
-        projects.forEach(project => {
-            const projectItem = document.createElement('div');
-            projectItem.className = 'project-item';
-            projectItem.innerHTML = `<p>${project.name}</p>`;
-            projectList.appendChild(projectItem);
-        });
-        emptyProjectsMessage.style.display = projects.length === 0 ? 'block' : 'none';
-        totalProjectsElem.textContent = projects.length;
-    }
-
-    function addTask() {
-        const taskName = prompt('Enter task name:');
-        const taskPriority = prompt('Enter task priority (high, medium, low):');
-        if (!taskName || !taskPriority || !['high', 'medium', 'low'].includes(taskPriority.toLowerCase())) {
-            alert('Task name and a valid priority (high, medium, low) are required.');
-            return;
-        }
-        const newTask = {
-            id: Date.now().toString(),
-            name: taskName,
-            priority: taskPriority.toLowerCase(),
-            completed: false
-        };
-        tasks.push(newTask);
-        saveTasks();
-        renderTasks();
-    }
-
-    function addProject() {
-        const projectName = prompt('Enter project name:');
-        if (projectName) {
-            const newProject = {
-                id: Date.now().toString(),
-                name: projectName
-            };
-            projects.push(newProject);
-            saveProjects();
-            renderProjects();
-        } else {
-            alert('Project name is required.');
-        }
-    }
-
-    function toggleComplete(taskId) {
-        const task = tasks.find(t => t.id === taskId);
-        if (task) {
-            task.completed = !task.completed;
-            saveTasks();
-            renderTasks();
-        }
-    }
-
-    function editTask(taskId) {
-        const task = tasks.find(t => t.id === taskId);
-        if (task) {
-            const newName = prompt('Edit task name:', task.name);
-            const newPriority = prompt('Edit task priority (high, medium, low):', task.priority);
-            if (!newName || !newPriority || !['high', 'medium', 'low'].includes(newPriority.toLowerCase())) {
-                alert('Task name and a valid priority (high, medium, low) are required.');
-                return;
-            }
-            task.name = newName;
-            task.priority = newPriority.toLowerCase();
-            saveTasks();
-            renderTasks();
-        }
-    }
-
-    function deleteTask(taskId) {
-        tasks = tasks.filter(t => t.id !== taskId);
-        saveTasks();
-        renderTasks();
-    }
-
-    addTaskButton.addEventListener('click', addTask);
-    addProjectButton.addEventListener('click', addProject);
     taskSearch.addEventListener('input', renderTasks);
     priorityFilter.addEventListener('change', renderTasks);
     statusFilter.addEventListener('change', renderTasks);
 
+    window.editTask = function(id) {
+        const task = tasks.find(t => t.id === id);
+        if (task) {
+            document.getElementById('task-name').value = task.name;
+            document.getElementById('task-priority').value = task.priority;
+            document.getElementById('task-status').value = task.status;
+            taskModal.style.display = 'flex';
+            tasks = tasks.filter(t => t.id !== id);
+        }
+    }
+
+    window.deleteTask = function(id) {
+        tasks = tasks.filter(t => t.id !== id);
+        try {
+            localStorage.setItem('tasks', JSON.stringify(tasks));
+        } catch (error) {
+            console.error('Error saving tasks to localStorage', error);
+        }
+        renderTasks();
+    }
+
+    window.toggleTaskStatus = function(id) {
+        const task = tasks.find(t => t.id === id);
+        if (task) {
+            task.status = task.status === 'Complete' ? 'Incomplete' : 'Complete';
+            try {
+                localStorage.setItem('tasks', JSON.stringify(tasks));
+            } catch (error) {
+                console.error('Error saving tasks to localStorage', error);
+            }
+            renderTasks();
+        }
+    }
+
     renderTasks();
-    renderProjects();
 });
