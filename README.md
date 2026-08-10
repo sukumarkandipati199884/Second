@@ -1,28 +1,38 @@
 # Inventory Management Dashboard
 
-This is a static inventory management dashboard for a small business. It is built using HTML, CSS, and vanilla JavaScript.
+This is a static web application for managing inventory items in a small business. It allows users to view, add, edit, delete, search, and filter inventory items, as well as generate reports.
 
 ## Features
-- Responsive layout with a dashboard summary
-- Product listing with stock levels
-- Search and filter functionality
-- Low-stock indicators
-- Inventory statistics
-- Reports/summary area
-- State persistence using localStorage
+
+- View inventory items
+- Add new inventory items (demo only)
+- Edit existing inventory items (demo only)
+- Delete inventory items
+- Search inventory
+- Filter inventory by category and stock status
+- View current stock quantities
+- Identify low-stock items
+- View inventory statistics
+- Generate an inventory report (demo only)
 
 ## Setup
-No setup is required. Simply open the `index.html` file in a web browser.
+
+1. Clone the repository or download the files.
+2. Open `index.html` in a web browser.
 
 ## Usage
-- Navigate through the dashboard using the navigation links.
-- View product details and stock levels.
-- Use the search bar and filter dropdown to find specific products.
-- Generate reports in the reports section.
 
-## Notes
-- This is a static application with no backend integration.
-- All data is stored locally and reset upon page refresh unless saved to localStorage.
+- Navigate through the dashboard using the navigation links.
+- Use the search bar to find specific items.
+- Filter items by category or stock status using the dropdown menus.
+- Click "Add Item" to simulate adding a new item.
+- Click "Edit" or "Delete" next to an item to simulate editing or deleting it.
+- Click "Generate Report" to simulate generating an inventory report.
+
+## Note
+
+This application is a static demo and does not persist data. The add, edit, and report generation functionalities are not implemented in this demo.
 
 ## License
+
 This project is licensed under the MIT License.
