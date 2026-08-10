@@ -1,43 +1,32 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const menuToggle = document.querySelector('.menu-toggle');
-    const navLinks = document.querySelector('.nav-links');
     const taskForm = document.getElementById('task-form');
+    const taskModal = document.getElementById('task-modal');
+    const closeBtn = document.querySelector('.close-btn');
+    const addTaskBtn = document.getElementById('add-task-btn');
     const taskList = document.getElementById('task-list');
     const projectList = document.getElementById('project-list');
     const taskSearch = document.getElementById('task-search');
     const priorityFilter = document.getElementById('priority-filter');
     const statusFilter = document.getElementById('status-filter');
-    const totalProjectsElement = document.getElementById('total-projects');
-    const totalTasksElement = document.getElementById('total-tasks');
-    const completedTasksElement = document.getElementById('completed-tasks');
+    const burger = document.querySelector('.burger');
+    const navLinks = document.querySelector('.nav-links');
 
-    menuToggle.addEventListener('click', () => {
-        navLinks.classList.toggle('active');
-    });
-
-    let tasks = [];
-    let projects = [];
-
-    try {
-        tasks = JSON.parse(localStorage.getItem('tasks')) || [];
-        projects = JSON.parse(localStorage.getItem('projects')) || [];
-    } catch (error) {
-        console.error('Error loading from localStorage', error);
-    }
+    let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+    let projects = JSON.parse(localStorage.getItem('projects')) || [];
 
     function saveTasks() {
         try {
             localStorage.setItem('tasks', JSON.stringify(tasks));
-        } catch (error) {
-            console.error('Error saving tasks to localStorage', error);
+        } catch (e) {
+            console.error('Failed to save tasks:', e);
         }
     }
 
     function saveProjects() {
         try {
             localStorage.setItem('projects', JSON.stringify(projects));
-        } catch (error) {
-            console.error('Error saving projects to localStorage', error);
+        } catch (e) {
+            console.error('Failed to save projects:', e);
         }
     }
 
@@ -45,36 +34,26 @@ document.addEventListener('DOMContentLoaded', () => {
         taskList.innerHTML = '';
         const filteredTasks = tasks.filter(task => {
             const matchesSearch = task.name.toLowerCase().includes(taskSearch.value.toLowerCase());
-            const matchesPriority = priorityFilter.value === '' || task.priority === priorityFilter.value;
-            const matchesStatus = statusFilter.value === '' || (statusFilter.value === 'complete' && task.complete) || (statusFilter.value === 'incomplete' && !task.complete);
+            const matchesPriority = priorityFilter.value ? task.priority === priorityFilter.value : true;
+            const matchesStatus = statusFilter.value ? task.status === statusFilter.value : true;
             return matchesSearch && matchesPriority && matchesStatus;
         });
         if (filteredTasks.length === 0) {
-            taskList.innerHTML = '<li>No tasks found</li>';
+            taskList.innerHTML = '<li>No tasks found.</li>';
         } else {
             filteredTasks.forEach(task => {
-                const li = document.createElement('li');
-                li.textContent = `${task.name} (${task.project}) - ${task.priority}`;
-                const completeButton = document.createElement('button');
-                completeButton.textContent = task.complete ? 'Mark Incomplete' : 'Mark Complete';
-                completeButton.addEventListener('click', () => {
-                    task.complete = !task.complete;
+                const taskItem = document.createElement('li');
+                taskItem.textContent = `${task.name} - ${task.priority} - ${task.status}`;
+                const deleteBtn = document.createElement('button');
+                deleteBtn.textContent = 'Delete';
+                deleteBtn.addEventListener('click', () => {
+                    tasks = tasks.filter(t => t !== task);
                     saveTasks();
                     renderTasks();
-                    updateStatistics();
+                    updateDashboard();
                 });
-                const deleteButton = document.createElement('button');
-                deleteButton.textContent = 'Delete';
-                deleteButton.addEventListener('click', () => {
-                    const index = tasks.indexOf(task);
-                    tasks.splice(index, 1);
-                    saveTasks();
-                    renderTasks();
-                    updateStatistics();
-                });
-                li.appendChild(completeButton);
-                li.appendChild(deleteButton);
-                taskList.appendChild(li);
+                taskItem.appendChild(deleteBtn);
+                taskList.appendChild(taskItem);
             });
         }
     }
@@ -82,55 +61,57 @@ document.addEventListener('DOMContentLoaded', () => {
     function renderProjects() {
         projectList.innerHTML = '';
         if (projects.length === 0) {
-            projectList.innerHTML = '<li>No projects found</li>';
+            projectList.innerHTML = '<li>No projects found.</li>';
         } else {
             projects.forEach(project => {
-                const li = document.createElement('li');
-                li.textContent = project;
-                projectList.appendChild(li);
+                const projectItem = document.createElement('li');
+                projectItem.textContent = project.name;
+                projectList.appendChild(projectItem);
             });
         }
-        updateStatistics();
     }
 
-    function updateStatistics() {
-        totalProjectsElement.textContent = projects.length;
-        totalTasksElement.textContent = tasks.length;
-        completedTasksElement.textContent = tasks.filter(task => task.complete).length;
+    function updateDashboard() {
+        document.getElementById('total-projects').textContent = projects.length;
+        document.getElementById('total-tasks').textContent = tasks.length;
+        document.getElementById('completed-tasks').textContent = tasks.filter(task => task.status === 'complete').length;
     }
+
+    addTaskBtn.addEventListener('click', () => {
+        taskModal.style.display = 'flex';
+    });
+
+    closeBtn.addEventListener('click', () => {
+        taskModal.style.display = 'none';
+    });
 
     taskForm.addEventListener('submit', (e) => {
         e.preventDefault();
         const taskName = document.getElementById('task-name').value.trim();
-        const taskProject = document.getElementById('task-project').value.trim();
         const taskPriority = document.getElementById('task-priority').value;
-        if (!taskName || !taskProject || !taskPriority) {
-            alert('Please fill in all fields');
-            return;
+        const taskStatus = document.getElementById('task-status').value;
+
+        if (taskName) {
+            tasks.push({ name: taskName, priority: taskPriority, status: taskStatus });
+            saveTasks();
+            renderTasks();
+            updateDashboard();
+            taskModal.style.display = 'none';
+            taskForm.reset();
+        } else {
+            alert('Task name is required.');
         }
-        const newTask = {
-            name: taskName,
-            project: taskProject,
-            priority: taskPriority,
-            complete: false
-        };
-        tasks.push(newTask);
-        if (!projects.includes(taskProject)) {
-            projects.push(taskProject);
-            saveProjects();
-            renderProjects();
-        }
-        saveTasks();
-        renderTasks();
-        updateStatistics();
-        taskForm.reset();
     });
 
     taskSearch.addEventListener('input', renderTasks);
     priorityFilter.addEventListener('change', renderTasks);
     statusFilter.addEventListener('change', renderTasks);
 
+    burger.addEventListener('click', () => {
+        navLinks.classList.toggle('nav-active');
+    });
+
     renderTasks();
     renderProjects();
-    updateStatistics();
+    updateDashboard();
 });
