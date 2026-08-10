@@ -3,66 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Task Management App</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Cloud Productivity Platform</title>
+    <link rel="stylesheet" href="/src/styles.css">
 </head>
 <body>
-    <header>
-        <h1>Task Management App</h1>
-        <nav>
-            <ul>
-                <li><a href="#dashboard">Dashboard</a></li>
-                <li><a href="#tasks">Tasks</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#statistics">Statistics</a></li>
-            </ul>
-        </nav>
-    </header>
-    <main>
-        <section id="dashboard">
-            <h2>Dashboard</h2>
-            <div class="stats">
-                <div class="stat">
-                    <h3>Total Tasks</h3>
-                    <p id="total-tasks">0</p>
-                </div>
-                <div class="stat">
-                    <h3>Completed Tasks</h3>
-                    <p id="completed-tasks">0</p>
-                </div>
-            </div>
-        </section>
-        <section id="tasks">
-            <h2>Tasks</h2>
-            <div class="task-controls">
-                <input type="text" id="task-search" placeholder="Search tasks...">
-                <select id="priority-filter">
-                    <option value="">All Priorities</option>
-                    <option value="high">High</option>
-                    <option value="medium">Medium</option>
-                    <option value="low">Low</option>
-                </select>
-                <button id="add-task">Add Task</button>
-            </div>
-            <ul id="task-list">
-                <!-- Task items will be dynamically added here -->
-            </ul>
-            <p id="empty-state" class="hidden">No tasks available. Add a new task to get started!</p>
-        </section>
-        <section id="projects">
-            <h2>Projects</h2>
-            <p>Organize your tasks into projects here.</p>
-            <!-- Project management functionality will be added here -->
-        </section>
-        <section id="statistics">
-            <h2>Statistics</h2>
-            <p>View detailed statistics about your tasks here.</p>
-        </section>
-    </main>
-    <footer>
-        <p>&copy; 2023 Task Management App</p>
-        <p>Contact: info@taskmanagementapp.com</p>
-    </footer>
-    <script src="script.js"></script>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
 </body>
 </html>
