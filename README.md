@@ -1,25 +1,25 @@
-# Inventory Management Dashboard
+# La Bella Cucina - Modern Italian Restaurant Website
 
-This is a static, responsive inventory management dashboard for small businesses. It is built using HTML, CSS, and vanilla JavaScript. The dashboard provides a summary of products, stock levels, and allows for searching and filtering of products.
+This is a static website for a modern Italian restaurant, La Bella Cucina. The website is built using HTML, CSS, and vanilla JavaScript, and it features a responsive design suitable for all devices.
 
 ## Features
-- Dashboard summary with total products, low stock, and out-of-stock indicators
-- Product list with search functionality
-- Responsive design for mobile and desktop
-- Local storage for state persistence
-- Interactive navigation
+- Responsive navigation menu
+- Hero section with a call-to-action
+- Menu section showcasing popular dishes
+- Opening hours and location information
+- Gallery section with images of dishes
+- Contact form for reservations or inquiries
 
 ## Setup
-No setup is required as this is a static website. Simply open `index.html` in your web browser to view the dashboard.
+No special setup is required. Simply open the `index.html` file in your web browser to view the website.
 
 ## Usage
-- Use the navigation menu to switch between the dashboard, products, and reports sections.
-- Search for products using the search bar.
-- View product details and stock levels.
+- Navigate through the sections using the navigation menu.
+- Click on "Reserve a Table" in the hero section to jump to the contact form.
+- The contact form is a demo and does not submit data to a server.
 
-## Accessibility
-- Semantic HTML is used for better accessibility.
-- The navigation is accessible via keyboard and screen readers.
+## Deployment
+This is a static website and can be deployed on any static hosting service such as GitHub Pages, Netlify, or Vercel.
 
-## License
-This project is licensed under the MIT License.
+## Note
+The contact form is a demonstration only and does not send data to a server.
