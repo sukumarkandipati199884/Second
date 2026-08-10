@@ -3,77 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Task & Project Management</title>
+    <title>Inventory Management Dashboard</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
         <nav>
-            <div class="logo">Task Manager</div>
+            <div class="logo">Inventory Dashboard</div>
             <button class="nav-toggle" aria-label="toggle navigation">
                 <span class="hamburger"></span>
             </button>
-            <ul class="nav-list">
+            <ul class="nav-links">
                 <li><a href="#dashboard">Dashboard</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#tasks">Tasks</a></li>
+                <li><a href="#products">Products</a></li>
+                <li><a href="#reports">Reports</a></li>
             </ul>
         </nav>
     </header>
     <main>
-        <section id="hero">
-            <h1>Manage Your Projects Efficiently</h1>
-            <p>Keep track of tasks, deadlines, and progress with ease.</p>
+        <section id="dashboard" class="hero">
+            <h1>Welcome to Your Inventory Dashboard</h1>
+            <p>Manage your stock levels efficiently and effectively.</p>
         </section>
-        <section id="dashboard">
-            <h2>Dashboard</h2>
-            <div class="stats">
-                <div class="stat">
-                    <h3>Total Projects</h3>
-                    <p id="total-projects">0</p>
+        <section class="summary">
+            <h2>Dashboard Summary</h2>
+            <div class="cards">
+                <div class="card">
+                    <h3>Total Products</h3>
+                    <p id="total-products">0</p>
                 </div>
-                <div class="stat">
-                    <h3>Completed Tasks</h3>
-                    <p id="completed-tasks">0</p>
+                <div class="card">
+                    <h3>Low Stock Items</h3>
+                    <p id="low-stock-items">0</p>
                 </div>
-                <div class="stat">
-                    <h3>Pending Tasks</h3>
-                    <p id="pending-tasks">0</p>
+                <div class="card">
+                    <h3>Out of Stock</h3>
+                    <p id="out-of-stock">0</p>
                 </div>
             </div>
         </section>
-        <section id="projects">
-            <h2>Projects</h2>
-            <ul id="project-list">
-                <!-- Project items will be dynamically added here -->
-            </ul>
-            <button id="add-project">Add Project</button>
-        </section>
-        <section id="tasks">
-            <h2>Tasks</h2>
-            <div class="task-controls">
-                <input type="text" id="task-search" placeholder="Search tasks...">
-                <select id="priority-filter">
-                    <option value="">All Priorities</option>
-                    <option value="high">High</option>
-                    <option value="medium">Medium</option>
-                    <option value="low">Low</option>
-                </select>
-                <select id="status-filter">
-                    <option value="">All Statuses</option>
-                    <option value="complete">Complete</option>
-                    <option value="incomplete">Incomplete</option>
+        <section id="products">
+            <h2>Products</h2>
+            <div class="search-filter">
+                <input type="text" id="search" placeholder="Search products..." aria-label="Search products">
+                <select id="filter" aria-label="Filter products">
+                    <option value="all">All</option>
+                    <option value="low-stock">Low Stock</option>
+                    <option value="out-of-stock">Out of Stock</option>
                 </select>
             </div>
-            <ul id="task-list">
-                <!-- Task items will be dynamically added here -->
-            </ul>
-            <p id="empty-task-list" class="empty-state">No tasks available. Add a new task to get started!</p>
-            <button id="add-task">Add Task</button>
+            <div id="product-list" class="product-list">
+                <!-- Product items will be dynamically inserted here -->
+            </div>
+            <div id="empty-state" class="empty-state">
+                <p>No products found.</p>
+            </div>
+        </section>
+        <section id="reports">
+            <h2>Inventory Reports</h2>
+            <p>Generate detailed reports to analyze your inventory trends.</p>
+            <button id="generate-report">Generate Report</button>
         </section>
     </main>
     <footer>
-        <p>&copy; 2023 Task Manager</p>
+        <p>&copy; 2023 Inventory Management. All rights reserved.</p>
+        <p>Contact: info@inventorymanagement.com</p>
     </footer>
     <script src="script.js"></script>
 </body>
