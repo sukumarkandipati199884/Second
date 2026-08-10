@@ -1,38 +1,23 @@
-# Modern Restaurant Website
+# John Doe - Software Engineer Portfolio
 
-This is a static website for a modern restaurant, featuring a responsive design with sections for a hero, about, menu, gallery, testimonials, and contact information.
+This is a professional portfolio website for John Doe, a software engineer. The website showcases his skills, projects, and professional experience.
 
 ## Features
-- Responsive layout
-- Visually engaging hero section
-- Restaurant introduction
-- Food menu with categories
-- Opening hours
-- Location and contact information
-- Gallery of featured dishes
-- Customer testimonials
-- Reservation or contact call-to-action
-- Responsive navigation
-- Professional footer
+
+- Responsive design
+- Interactive navigation
+- Detailed sections for About, Skills, Projects, Experience, and Contact
+- Contact form with demo functionality
 
 ## Setup
 
-1. Clone the repository:
-   bash
-   git clone <repository-url>
-   
-
-2. Open `index.html` in your web browser to view the website.
-
-## Usage
-
-- Navigate through the website using the navigation bar.
-- Click on "Reserve a Table" to simulate a reservation action.
+1. Clone the repository.
+2. Open `index.html` in your browser to view the website.
 
 ## Deployment
 
-This website can be deployed on any static hosting service, such as GitHub Pages, Netlify, or Vercel.
+This website is static and can be deployed on any static hosting service such as GitHub Pages, Netlify, or Vercel.
 
-## Note
+## Contact
 
-This is a static website and does not include backend functionality for reservations or contact forms. The reservation link is for demonstration purposes only.
+For any inquiries, please use the contact form on the website or reach out via LinkedIn or GitHub.
