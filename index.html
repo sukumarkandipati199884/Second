@@ -19,50 +19,51 @@
     </header>
     <main>
         <section id="dashboard">
-            <h2>Dashboard</h2>
+            <h2>Dashboard Overview</h2>
             <div class="stats">
-                <div class="stat-card">
+                <div class="card">
                     <h3>Total Items</h3>
                     <p id="total-items">0</p>
                 </div>
-                <div class="stat-card">
+                <div class="card">
                     <h3>Low Stock Items</h3>
                     <p id="low-stock-items">0</p>
                 </div>
-                <div class="stat-card">
-                    <h3>Categories</h3>
-                    <p id="categories">0</p>
+                <div class="card">
+                    <h3>Out of Stock</h3>
+                    <p id="out-of-stock-items">0</p>
                 </div>
             </div>
         </section>
         <section id="inventory">
-            <h2>Inventory</h2>
-            <div class="inventory-controls">
+            <h2>Inventory Items</h2>
+            <div class="controls">
                 <input type="text" id="search" placeholder="Search items...">
-                <select id="filter-category">
+                <select id="category-filter">
                     <option value="">All Categories</option>
                 </select>
-                <select id="filter-stock">
+                <select id="stock-filter">
                     <option value="">All Stock Status</option>
                     <option value="in-stock">In Stock</option>
                     <option value="low-stock">Low Stock</option>
+                    <option value="out-of-stock">Out of Stock</option>
                 </select>
-                <button id="add-item">Add Item</button>
+                <button id="add-item">Add New Item</button>
             </div>
-            <table>
+            <table id="inventory-table">
                 <thead>
                     <tr>
                         <th>Name</th>
                         <th>Category</th>
-                        <th>Stock</th>
+                        <th>Quantity</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
-                <tbody id="inventory-list">
+                <tbody>
                     <!-- Inventory items will be dynamically inserted here -->
                 </tbody>
             </table>
-            <div id="empty-state" class="hidden">No items found.</div>
+            <p id="empty-state" style="display: none;">No items found.</p>
         </section>
         <section id="reports">
             <h2>Inventory Reports</h2>
@@ -73,8 +74,8 @@
         </section>
     </main>
     <footer>
-        <p>&copy; 2023 Inventory Management Dashboard</p>
-        <p>Contact: info@inventorydashboard.com</p>
+        <p>&copy; 2023 Inventory Management. All rights reserved.</p>
+        <p>Contact: info@inventorymanagement.com</p>
     </footer>
     <script src="script.js"></script>
 </body>
