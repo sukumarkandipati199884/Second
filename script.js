@@ -1,73 +1,92 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const inventory = [
-        { name: 'Item 1', category: 'Category 1', quantity: 10 },
-        { name: 'Item 2', category: 'Category 2', quantity: 5 },
-        { name: 'Item 3', category: 'Category 1', quantity: 0 },
-    ];
-
-    const inventoryTable = document.getElementById('inventory-table').getElementsByTagName('tbody')[0];
-    const totalItems = document.getElementById('total-items');
-    const lowStockItems = document.getElementById('low-stock-items');
-    const outOfStockItems = document.getElementById('out-of-stock-items');
+document.addEventListener('DOMContentLoaded', () => {
+    const taskList = document.getElementById('task-list');
+    const totalTasks = document.getElementById('total-tasks');
+    const completedTasks = document.getElementById('completed-tasks');
     const emptyState = document.getElementById('empty-state');
-    const stockFilter = document.getElementById('stock-filter');
+    const taskSearch = document.getElementById('task-search');
+    const addTaskButton = document.getElementById('add-task');
+    const priorityFilter = document.getElementById('priority-filter');
 
-    function updateDashboard() {
-        totalItems.textContent = inventory.length;
-        lowStockItems.textContent = inventory.filter(item => item.quantity > 0 && item.quantity < 5).length;
-        outOfStockItems.textContent = inventory.filter(item => item.quantity === 0).length;
-    }
+    let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 
-    function renderInventory() {
-        inventoryTable.innerHTML = '';
-        const filteredInventory = inventory.filter(item => {
-            if (stockFilter.value === 'in-stock') return item.quantity > 0;
-            if (stockFilter.value === 'low-stock') return item.quantity > 0 && item.quantity < 5;
-            if (stockFilter.value === 'out-of-stock') return item.quantity === 0;
-            return true;
+    function updateTaskList() {
+        taskList.innerHTML = '';
+        const filteredTasks = tasks.filter(task => {
+            const matchesSearch = task.name.toLowerCase().includes(taskSearch.value.toLowerCase());
+            const matchesPriority = priorityFilter.value === '' || task.priority === priorityFilter.value;
+            return matchesSearch && matchesPriority;
         });
-
-        filteredInventory.forEach(item => {
-            const row = inventoryTable.insertRow();
-            row.insertCell(0).textContent = item.name;
-            row.insertCell(1).textContent = item.category;
-            row.insertCell(2).textContent = item.quantity;
-            const actionsCell = row.insertCell(3);
+        filteredTasks.forEach(task => {
+            const li = document.createElement('li');
+            li.textContent = task.name;
+            const completeButton = document.createElement('button');
+            completeButton.textContent = task.completed ? 'Incomplete' : 'Complete';
+            completeButton.addEventListener('click', () => toggleTaskCompletion(task.id));
             const editButton = document.createElement('button');
             editButton.textContent = 'Edit';
-            editButton.onclick = () => editItem(item);
-            actionsCell.appendChild(editButton);
+            editButton.addEventListener('click', () => editTask(task.id));
             const deleteButton = document.createElement('button');
             deleteButton.textContent = 'Delete';
-            deleteButton.onclick = () => deleteItem(item);
-            actionsCell.appendChild(deleteButton);
+            deleteButton.addEventListener('click', () => deleteTask(task.id));
+            li.appendChild(completeButton);
+            li.appendChild(editButton);
+            li.appendChild(deleteButton);
+            taskList.appendChild(li);
         });
-        emptyState.style.display = filteredInventory.length === 0 ? 'block' : 'none';
+        totalTasks.textContent = tasks.length;
+        completedTasks.textContent = tasks.filter(task => task.completed).length;
+        emptyState.classList.toggle('hidden', tasks.length > 0);
     }
 
-    function editItem(item) {
-        alert('Edit functionality is a demo.');
-    }
-
-    function deleteItem(item) {
-        const index = inventory.indexOf(item);
-        if (index > -1) {
-            inventory.splice(index, 1);
-            renderInventory();
-            updateDashboard();
+    function toggleTaskCompletion(taskId) {
+        const task = tasks.find(t => t.id === taskId);
+        if (task) {
+            task.completed = !task.completed;
+            saveTasks();
+            updateTaskList();
         }
     }
 
-    document.getElementById('add-item').onclick = function() {
-        alert('Add item functionality is a demo.');
-    };
+    function editTask(taskId) {
+        const task = tasks.find(t => t.id === taskId);
+        if (task) {
+            const newTaskName = prompt('Edit task name:', task.name);
+            if (newTaskName) {
+                task.name = newTaskName;
+                saveTasks();
+                updateTaskList();
+            }
+        }
+    }
 
-    document.getElementById('generate-report').onclick = function() {
-        alert('Generate report functionality is a demo.');
-    };
+    function deleteTask(taskId) {
+        tasks = tasks.filter(t => t.id !== taskId);
+        saveTasks();
+        updateTaskList();
+    }
 
-    stockFilter.onchange = renderInventory;
+    function saveTasks() {
+        localStorage.setItem('tasks', JSON.stringify(tasks));
+    }
 
-    renderInventory();
-    updateDashboard();
+    addTaskButton.addEventListener('click', () => {
+        const taskName = prompt('Enter task name:');
+        if (taskName) {
+            const priority = prompt('Enter task priority (high, medium, low):', 'medium');
+            const newTask = {
+                id: Date.now(),
+                name: taskName,
+                completed: false,
+                priority: priority
+            };
+            tasks.push(newTask);
+            saveTasks();
+            updateTaskList();
+        }
+    });
+
+    taskSearch.addEventListener('input', updateTaskList);
+    priorityFilter.addEventListener('change', updateTaskList);
+
+    updateTaskList();
 });
