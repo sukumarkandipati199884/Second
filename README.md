@@ -1,40 +1,25 @@
-# TeamBoost Landing Page
+# Inventory Management Dashboard
 
-This is a static landing page for TeamBoost, a SaaS productivity product for small teams. The page is built using HTML, CSS, and JavaScript, and is fully responsive.
+This is a static, responsive inventory management dashboard for small businesses. It is built using HTML, CSS, and vanilla JavaScript. The dashboard provides a summary of products, stock levels, and allows for searching and filtering of products.
 
 ## Features
-- Responsive navigation
-- Hero section with a clear value proposition
-- Product features overview
-- How-it-works section
-- Pricing plans
-- Testimonials
-- FAQ
-- Strong call-to-action
+- Dashboard summary with total products, low stock, and out-of-stock indicators
+- Product list with search functionality
+- Responsive design for mobile and desktop
+- Local storage for state persistence
+- Interactive navigation
 
 ## Setup
-
-1. Clone the repository:
-   bash
-   git clone <repository-url>
-   
-
-2. Navigate to the project directory:
-   bash
-   cd teamboost-landing-page
-   
-
-3. Open `index.html` in your preferred web browser.
-
-## Deployment
-
-This project is a static website and can be deployed on any static hosting service such as GitHub Pages, Netlify, or Vercel.
+No setup is required as this is a static website. Simply open `index.html` in your web browser to view the dashboard.
 
 ## Usage
+- Use the navigation menu to switch between the dashboard, products, and reports sections.
+- Search for products using the search bar.
+- View product details and stock levels.
 
-- Navigate through the sections using the responsive navigation menu.
-- Click on the call-to-action buttons to simulate starting a free trial or choosing a plan.
+## Accessibility
+- Semantic HTML is used for better accessibility.
+- The navigation is accessible via keyboard and screen readers.
 
-## Note
-
-This is a demo landing page and does not include backend functionality. All interactions are client-side only.
+## License
+This project is licensed under the MIT License.
