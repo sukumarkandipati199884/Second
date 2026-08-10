@@ -5,10 +5,4 @@ document.addEventListener('DOMContentLoaded', () => {
     navToggle.addEventListener('click', () => {
         navLinks.classList.toggle('active');
     });
-
-    const form = document.querySelector('form');
-    form.addEventListener('submit', (event) => {
-        event.preventDefault();
-        alert('Demo form: data is not stored or transmitted.');
-    });
 });
