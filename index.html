@@ -9,19 +9,23 @@
 <body>
     <header>
         <nav>
-            <div class="logo">TaskManager</div>
-            <button class="menu-toggle" aria-label="Toggle navigation">☰</button>
-            <ul class="nav-links">
-                <li><a href="#dashboard">Dashboard</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#tasks">Tasks</a></li>
+            <div class="logo">Task Manager</div>
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul class="nav no-search">
+                <li class="nav-item"><a href="#dashboard">Dashboard</a></li>
+                <li class="nav-item"><a href="#projects">Projects</a></li>
+                <li class="nav-item"><a href="#tasks">Tasks</a></li>
             </ul>
         </nav>
     </header>
     <main>
         <section id="hero">
-            <h1>Welcome to TaskManager</h1>
-            <p>Manage your projects and tasks efficiently.</p>
+            <h1>Manage Your Projects Efficiently</h1>
+            <p>Keep track of tasks and projects with ease.</p>
         </section>
         <section id="dashboard">
             <h2>Dashboard</h2>
@@ -42,7 +46,9 @@
         </section>
         <section id="projects">
             <h2>Projects</h2>
-            <div id="project-list" class="empty-state">No projects available. Add a new project to get started.</div>
+            <ul id="project-list">
+                <!-- Project items will be dynamically added here -->
+            </ul>
         </section>
         <section id="tasks">
             <h2>Tasks</h2>
@@ -56,27 +62,29 @@
                 </select>
                 <select id="status-filter">
                     <option value="">All Statuses</option>
-                    <option value="complete">Complete</option>
-                    <option value="incomplete">Incomplete</option>
+                    <option value="completed">Completed</option>
+                    <option value="pending">Pending</option>
                 </select>
             </div>
-            <div id="task-list" class="empty-state">No tasks available. Add a new task to get started.</div>
-            <button id="add-task-btn">Add Task</button>
-            <form id="task-form" class="hidden">
-                <input type="text" id="task-title" placeholder="Task Title" required>
-                <textarea id="task-desc" placeholder="Task Description"></textarea>
-                <select id="task-priority">
+            <ul id="task-list">
+                <!-- Task items will be dynamically added here -->
+            </ul>
+            <form id="task-form">
+                <h3>Add New Task</h3>
+                <input type="text" id="task-name" placeholder="Task Name" required>
+                <input type="text" id="task-project" placeholder="Project Name" required>
+                <select id="task-priority" required>
+                    <option value="">Select Priority</option>
                     <option value="high">High</option>
                     <option value="medium">Medium</option>
                     <option value="low">Low</option>
                 </select>
-                <button type="submit">Save Task</button>
-                <button type="button" id="cancel-task-btn">Cancel</button>
+                <button type="submit">Add Task</button>
             </form>
         </section>
     </main>
     <footer>
-        <p>&copy; 2023 TaskManager. All rights reserved.</p>
+        <p>&copy; 2023 Task Manager</p>
     </footer>
     <script src="script.js"></script>
 </body>
