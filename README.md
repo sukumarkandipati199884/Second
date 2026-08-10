@@ -1,29 +1,30 @@
-# Task & Project Management Application
+# Task & Project Management Static Website
 
-This is a static website for managing tasks and projects for a small software team. It is built using plain HTML, CSS, and vanilla JavaScript, with no external dependencies or frameworks.
+This is a responsive static website for managing tasks and projects, designed for a small software team. It is built using plain HTML, CSS, and vanilla JavaScript, with no external dependencies or build steps required.
 
 ## Features
-- Dashboard with live statistics
+
+- Responsive navigation
+- Dashboard with statistics
 - Projects section
-- Add and edit tasks
+- Task management: add, edit, delete, mark complete
 - Priority and status filters
 - Task search
-- Form validation
 - LocalStorage persistence
-- Responsive design with navigation toggle
+- Mobile-friendly design
 
 ## Usage
 
-1. Open `index.html` in your web browser.
-2. Use the navigation links to switch between sections.
-3. Add tasks using the form provided. Tasks will be saved in your browser's localStorage.
-4. Use the search and filter options to find tasks.
+Simply open `index.html` in your browser to start using the application. All data is stored locally in your browser's LocalStorage.
 
-## Responsive Design
-The website is designed to be responsive and works well on both desktop and mobile devices.
+## Development
 
-## LocalStorage
-All tasks and projects are stored in the browser's localStorage, ensuring data persistence across sessions.
+- HTML: `index.html`
+- CSS: `styles.css`
+- JavaScript: `script.js`
 
-## Note
-This application is a static demo and does not include backend functionality or real-time collaboration features.
+## Notes
+
+- This application is a static website and does not require a server.
+- All state is maintained locally in the browser using LocalStorage.
+- Ensure JavaScript is enabled in your browser for full functionality.
