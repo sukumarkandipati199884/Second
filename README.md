@@ -1,26 +1,38 @@
 # Modern Restaurant Website
 
-This is a static website for a modern restaurant, featuring a responsive design and interactive elements.
+This is a static website for a modern restaurant, featuring a responsive design with sections for a hero, about, menu, gallery, testimonials, and contact information.
 
 ## Features
-- Responsive navigation
-- Hero section with call-to-action
-- About section
-- Menu with categories
-- Opening hours and location
+- Responsive layout
+- Visually engaging hero section
+- Restaurant introduction
+- Food menu with categories
+- Opening hours
+- Location and contact information
 - Gallery of featured dishes
 - Customer testimonials
-- Reservation form with date validation
+- Reservation or contact call-to-action
+- Responsive navigation
+- Professional footer
 
 ## Setup
-No special setup is required. Simply open `index.html` in a web browser to view the website.
 
-## Deployment
-This project is ready to be deployed to any static site hosting service, such as GitHub Pages, Netlify, or Vercel.
+1. Clone the repository:
+   bash
+   git clone <repository-url>
+   
+
+2. Open `index.html` in your web browser to view the website.
 
 ## Usage
-- Navigate through the sections using the navigation bar.
-- Use the reservation form to select a date and time for booking.
+
+- Navigate through the website using the navigation bar.
+- Click on "Reserve a Table" to simulate a reservation action.
+
+## Deployment
+
+This website can be deployed on any static hosting service, such as GitHub Pages, Netlify, or Vercel.
 
 ## Note
-The reservation form is a demo and does not store or transmit data.
+
+This is a static website and does not include backend functionality for reservations or contact forms. The reservation link is for demonstration purposes only.
