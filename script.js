@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', function() {
     const menuToggle = document.querySelector('.menu-toggle');
     const navLinks = document.querySelector('.nav-links');
     const taskModal = document.getElementById('task-modal');
@@ -9,16 +9,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const taskSearch = document.getElementById('task-search');
     const priorityFilter = document.getElementById('priority-filter');
     const statusFilter = document.getElementById('status-filter');
-    const totalProjectsElem = document.getElementById('total-projects');
-    const totalTasksElem = document.getElementById('total-tasks');
-    const completedTasksElem = document.getElementById('completed-tasks');
-
+    const emptyTaskListMessage = document.getElementById('empty-task-list');
     let tasks = [];
 
     try {
         tasks = JSON.parse(localStorage.getItem('tasks')) || [];
     } catch (error) {
-        console.error('Error loading tasks from localStorage', error);
+        console.error('Error loading tasks from localStorage:', error);
+        tasks = [];
     }
 
     menuToggle.addEventListener('click', () => {
@@ -26,120 +24,119 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     addTaskBtn.addEventListener('click', () => {
-        taskModal.style.display = 'flex';
+        taskModal.style.display = 'block';
     });
 
     closeModal.addEventListener('click', () => {
         taskModal.style.display = 'none';
     });
 
-    window.onclick = function(event) {
-        if (event.target == taskModal) {
+    window.addEventListener('click', (event) => {
+        if (event.target === taskModal) {
             taskModal.style.display = 'none';
         }
-    }
+    });
 
-    taskForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const taskName = document.getElementById('task-name').value;
+    taskForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const taskName = document.getElementById('task-name').value.trim();
         const taskPriority = document.getElementById('task-priority').value;
         const taskStatus = document.getElementById('task-status').value;
 
         if (!taskName) {
-            alert('Task name is required');
+            alert('Task name is required.');
             return;
         }
 
-        const newTask = {
+        const task = {
             id: Date.now(),
             name: taskName,
             priority: taskPriority,
             status: taskStatus
         };
 
-        tasks.push(newTask);
-        try {
-            localStorage.setItem('tasks', JSON.stringify(tasks));
-        } catch (error) {
-            console.error('Error saving tasks to localStorage', error);
-        }
+        tasks.push(task);
+        saveTasks();
         renderTasks();
         taskModal.style.display = 'none';
         taskForm.reset();
     });
 
-    function renderTasks() {
-        taskList.innerHTML = '';
-        const filteredTasks = tasks.filter(task => {
-            const matchesSearch = task.name.toLowerCase().includes(taskSearch.value.toLowerCase());
-            const matchesPriority = priorityFilter.value ? task.priority === priorityFilter.value : true;
-            const matchesStatus = statusFilter.value ? task.status === statusFilter.value : true;
-            return matchesSearch && matchesPriority && matchesStatus;
-        });
-
-        if (filteredTasks.length === 0) {
-            taskList.innerHTML = '<p>No tasks found.</p>';
-            return;
-        }
-
-        filteredTasks.forEach(task => {
-            const taskItem = document.createElement('div');
-            taskItem.className = 'task-item';
-            taskItem.innerHTML = `
-                <p>${task.name}</p>
-                <p>Priority: ${task.priority}</p>
-                <p>Status: ${task.status}</p>
-                <button onclick="editTask(${task.id})">Edit</button>
-                <button onclick="deleteTask(${task.id})">Delete</button>
-                <button onclick="toggleTaskStatus(${task.id})">${task.status === 'Complete' ? 'Mark Incomplete' : 'Mark Complete'}</button>
-            `;
-            taskList.appendChild(taskItem);
-        });
-
-        updateStatistics();
-    }
-
-    function updateStatistics() {
-        totalProjectsElem.textContent = '1'; // Assuming 1 project for simplicity
-        totalTasksElem.textContent = tasks.length;
-        completedTasksElem.textContent = tasks.filter(task => task.status === 'Complete').length;
-    }
-
     taskSearch.addEventListener('input', renderTasks);
     priorityFilter.addEventListener('change', renderTasks);
     statusFilter.addEventListener('change', renderTasks);
 
-    window.editTask = function(id) {
+    function renderTasks() {
+        const searchQuery = taskSearch.value.toLowerCase();
+        const priority = priorityFilter.value;
+        const status = statusFilter.value;
+
+        const filteredTasks = tasks.filter(task => {
+            const matchesSearch = task.name.toLowerCase().includes(searchQuery);
+            const matchesPriority = priority ? task.priority === priority : true;
+            const matchesStatus = status ? task.status === status : true;
+            return matchesSearch && matchesPriority && matchesStatus;
+        });
+
+        taskList.innerHTML = '';
+        filteredTasks.forEach(task => {
+            const taskItem = document.createElement('li');
+            taskItem.textContent = `${task.name} - ${task.priority} - ${task.status}`;
+
+            const deleteButton = document.createElement('button');
+            deleteButton.textContent = 'Delete';
+            deleteButton.addEventListener('click', () => deleteTask(task.id));
+
+            taskItem.appendChild(deleteButton);
+            taskItem.addEventListener('click', () => editTask(task.id));
+            taskList.appendChild(taskItem);
+        });
+
+        emptyTaskListMessage.style.display = filteredTasks.length === 0 ? 'block' : 'none';
+
+        document.getElementById('total-tasks').textContent = tasks.length;
+        document.getElementById('completed-tasks').textContent = tasks.filter(t => t.status === 'complete').length;
+    }
+
+    function editTask(id) {
         const task = tasks.find(t => t.id === id);
         if (task) {
             document.getElementById('task-name').value = task.name;
             document.getElementById('task-priority').value = task.priority;
             document.getElementById('task-status').value = task.status;
-            taskModal.style.display = 'flex';
-            tasks = tasks.filter(t => t.id !== id);
+            taskModal.style.display = 'block';
+
+            taskForm.onsubmit = function(event) {
+                event.preventDefault();
+                task.name = document.getElementById('task-name').value.trim();
+                task.priority = document.getElementById('task-priority').value;
+                task.status = document.getElementById('task-status').value;
+
+                if (!task.name) {
+                    alert('Task name is required.');
+                    return;
+                }
+
+                saveTasks();
+                renderTasks();
+                taskModal.style.display = 'none';
+                taskForm.reset();
+                taskForm.onsubmit = null;
+            };
         }
     }
 
-    window.deleteTask = function(id) {
-        tasks = tasks.filter(t => t.id !== id);
-        try {
-            localStorage.setItem('tasks', JSON.stringify(tasks));
-        } catch (error) {
-            console.error('Error saving tasks to localStorage', error);
-        }
+    function deleteTask(id) {
+        tasks = tasks.filter(task => task.id !== id);
+        saveTasks();
         renderTasks();
     }
 
-    window.toggleTaskStatus = function(id) {
-        const task = tasks.find(t => t.id === id);
-        if (task) {
-            task.status = task.status === 'Complete' ? 'Incomplete' : 'Complete';
-            try {
-                localStorage.setItem('tasks', JSON.stringify(tasks));
-            } catch (error) {
-                console.error('Error saving tasks to localStorage', error);
-            }
-            renderTasks();
+    function saveTasks() {
+        try {
+            localStorage.setItem('tasks', JSON.stringify(tasks));
+        } catch (error) {
+            console.error('Error saving tasks to localStorage:', error);
         }
     }
 
