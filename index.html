@@ -46,9 +46,11 @@
         </section>
         <section id="projects">
             <h2>Projects</h2>
-            <ul id="project-list">
-                <!-- Project items will be dynamically added here -->
-            </ul>
+            <div id="project-list">
+                <!-- Projects will be dynamically added here -->
+            </div>
+            <p id="empty-projects" class="empty-state">No projects available. Add a new project to get started.</p>
+            <button id="add-project">Add Project</button>
         </section>
         <section id="tasks">
             <h2>Tasks</h2>
@@ -62,20 +64,20 @@
                 </select>
                 <select id="status-filter">
                     <option value="">All Statuses</option>
-                    <option value="pending">Pending</option>
-                    <option value="completed">Completed</option>
+                    <option value="complete">Complete</option>
+                    <option value="incomplete">Incomplete</option>
                 </select>
             </div>
-            <ul id="task-list">
-                <!-- Task items will be dynamically added here -->
-            </ul>
-            <form id="task-form">
-                <input type="text" id="task-name" placeholder="Task Name" required>
-                <input type="text" id="task-priority" placeholder="Priority" required>
-                <button type="submit">Add Task</button>
-            </form>
+            <div id="task-list">
+                <!-- Tasks will be dynamically added here -->
+            </div>
+            <p id="empty-tasks" class="empty-state">No tasks available. Add a new task to get started.</p>
+            <button id="add-task">Add Task</button>
         </section>
     </main>
+    <footer>
+        <p>&copy; 2023 TaskManager. All rights reserved.</p>
+    </footer>
     <script src="script.js"></script>
 </body>
 </html>
