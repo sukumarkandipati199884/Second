@@ -1,36 +1,28 @@
 # Task & Project Management Static Website
 
-This is a responsive static website for managing tasks and projects, designed for a small software team. It is built using plain HTML, CSS, and vanilla JavaScript, with no external dependencies or build steps.
+This is a responsive static website for managing tasks and projects, designed for a small software team. It uses plain HTML, CSS, and vanilla JavaScript, with no external dependencies or build steps.
 
 ## Features
-
-- Responsive layout with a modern dark UI
-- Dashboard with statistics
-- Projects and tasks management
-- Add, edit, delete, and mark tasks as complete
+- Dashboard with live project/task statistics
+- Projects section
+- Add, delete, and mark tasks as complete
 - Priority and status filters
-- Task search functionality
-- Task form validation
+- Task search
+- Form validation
 - LocalStorage persistence
-- Mobile-friendly navigation
-- Empty state messages for task lists
-- Defensive error handling for JavaScript operations
+- Responsive navigation
+- Modern dark UI styling
 
 ## Usage
+Simply open `index.html` in a web browser to start using the application. All data is stored locally in your browser's localStorage.
 
-Simply open `index.html` in your web browser to use the application. All data is stored locally in your browser's LocalStorage.
-
-## File Structure
-
+## Structure
 - `index.html`: Main HTML file
-- `styles.css`: CSS styles for the website
-- `script.js`: JavaScript for interactivity and data management
-- `README.md`: Documentation for the project
+- `styles.css`: CSS for styling
+- `script.js`: JavaScript for interactivity
 
 ## Development
-
-To modify the website, edit the HTML, CSS, and JavaScript files directly. No build tools or servers are required.
+This project does not require any build tools or package managers. All functionality works directly in the browser.
 
 ## License
-
-This project is open-source and available under the MIT License.
+This project is open source and available under the MIT License.
