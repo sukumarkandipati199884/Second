@@ -1,14 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const burger = document.querySelector('.burger');
+    const navToggle = document.querySelector('.nav-toggle');
     const navLinks = document.querySelector('.nav-links');
 
-    burger.addEventListener('click', () => {
+    navToggle.addEventListener('click', () => {
         navLinks.classList.toggle('active');
-    });
-
-    const form = document.getElementById('contact-form');
-    form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        alert('Demo form: data is not stored or transmitted.');
     });
 });
