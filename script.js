@@ -1,74 +1,141 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const navToggle = document.querySelector('.nav-toggle');
-    const navLinks = document.querySelector('.nav-links');
+    const inventoryList = document.getElementById('inventory-list');
+    const totalItems = document.getElementById('total-items');
+    const lowStockItems = document.getElementById('low-stock-items');
+    const categories = document.getElementById('categories');
+    const searchInput = document.getElementById('search');
+    const filterCategory = document.getElementById('filter-category');
+    const filterStock = document.getElementById('filter-stock');
+    const addItemButton = document.getElementById('add-item');
+    const generateReportButton = document.getElementById('generate-report');
+    const reportOutput = document.getElementById('report-output');
+    const emptyState = document.getElementById('empty-state');
 
-    navToggle.addEventListener('click', () => {
-        navLinks.classList.toggle('active');
-    });
-
-    const products = JSON.parse(localStorage.getItem('products')) || [
-        { id: 1, name: 'Product A', stock: 20 },
-        { id: 2, name: 'Product B', stock: 5 },
-        { id: 3, name: 'Product C', stock: 0 },
-        { id: 4, name: 'Product D', stock: 15 }
+    let inventory = [
+        { name: 'Item 1', category: 'Category 1', stock: 20 },
+        { name: 'Item 2', category: 'Category 2', stock: 5 },
+        { name: 'Item 3', category: 'Category 1', stock: 0 },
     ];
 
-    const productList = document.getElementById('product-list');
-    const totalProducts = document.getElementById('total-products');
-    const lowStockItems = document.getElementById('low-stock-items');
-    const outOfStock = document.getElementById('out-of-stock');
-    const emptyState = document.getElementById('empty-state');
-    const searchInput = document.getElementById('search');
-    const filterSelect = document.getElementById('filter');
-
-    function updateDashboard() {
-        const lowStockCount = products.filter(p => p.stock > 0 && p.stock < 10).length;
-        const outOfStockCount = products.filter(p => p.stock === 0).length;
-
-        totalProducts.textContent = products.length;
-        lowStockItems.textContent = lowStockCount;
-        outOfStock.textContent = outOfStockCount;
+    function renderInventory() {
+        inventoryList.innerHTML = '';
+        inventory.forEach(item => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${item.name}</td>
+                <td>${item.category}</td>
+                <td>${item.stock}</td>
+                <td>
+                    <button class="edit-button" data-name="${item.name}">Edit</button>
+                    <button class="delete-button" data-name="${item.name}">Delete</button>
+                </td>
+            `;
+            inventoryList.appendChild(row);
+        });
+        updateStats();
+        toggleEmptyState();
     }
 
-    function renderProducts(filter = 'all', search = '') {
-        productList.innerHTML = '';
-        const filteredProducts = products.filter(product => {
-            if (filter === 'low-stock' && (product.stock >= 10 || product.stock === 0)) return false;
-            if (filter === 'out-of-stock' && product.stock !== 0) return false;
-            if (search && !product.name.toLowerCase().includes(search.toLowerCase())) return false;
-            return true;
-        });
+    function updateStats() {
+        totalItems.textContent = inventory.length;
+        lowStockItems.textContent = inventory.filter(item => item.stock < 10).length;
+        const uniqueCategories = [...new Set(inventory.map(item => item.category))];
+        categories.textContent = uniqueCategories.length;
+    }
 
-        if (filteredProducts.length === 0) {
-            emptyState.style.display = 'block';
+    function toggleEmptyState() {
+        if (inventory.length === 0) {
+            emptyState.classList.remove('hidden');
         } else {
-            emptyState.style.display = 'none';
-            filteredProducts.forEach(product => {
-                const productItem = document.createElement('div');
-                productItem.className = 'product-item';
-                productItem.innerHTML = `
-                    <h3>${product.name}</h3>
-                    <p>Stock: ${product.stock}</p>
-                `;
-                productList.appendChild(productItem);
-            });
+            emptyState.classList.add('hidden');
         }
     }
 
-    function saveProducts() {
-        localStorage.setItem('products', JSON.stringify(products));
+    function editItem(name) {
+        alert(`Edit functionality for ${name} is not implemented in this demo.`);
     }
 
+    function deleteItem(name) {
+        inventory = inventory.filter(item => item.name !== name);
+        renderInventory();
+    }
+
+    addItemButton.addEventListener('click', () => {
+        alert('Add item functionality is not implemented in this demo.');
+    });
+
+    generateReportButton.addEventListener('click', () => {
+        reportOutput.textContent = 'Report generation is not implemented in this demo.';
+    });
+
     searchInput.addEventListener('input', () => {
-        renderProducts(filterSelect.value, searchInput.value);
+        const query = searchInput.value.toLowerCase();
+        inventoryList.innerHTML = '';
+        inventory.filter(item => item.name.toLowerCase().includes(query)).forEach(item => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${item.name}</td>
+                <td>${item.category}</td>
+                <td>${item.stock}</td>
+                <td>
+                    <button class="edit-button" data-name="${item.name}">Edit</button>
+                    <button class="delete-button" data-name="${item.name}">Delete</button>
+                </td>
+            `;
+            inventoryList.appendChild(row);
+        });
+        toggleEmptyState();
     });
 
-    filterSelect.addEventListener('change', () => {
-        renderProducts(filterSelect.value, searchInput.value);
+    filterCategory.addEventListener('change', () => {
+        const category = filterCategory.value;
+        inventoryList.innerHTML = '';
+        inventory.filter(item => !category || item.category === category).forEach(item => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${item.name}</td>
+                <td>${item.category}</td>
+                <td>${item.stock}</td>
+                <td>
+                    <button class="edit-button" data-name="${item.name}">Edit</button>
+                    <button class="delete-button" data-name="${item.name}">Delete</button>
+                </td>
+            `;
+            inventoryList.appendChild(row);
+        });
+        toggleEmptyState();
     });
 
-    window.addEventListener('beforeunload', saveProducts);
+    filterStock.addEventListener('change', () => {
+        const stockStatus = filterStock.value;
+        inventoryList.innerHTML = '';
+        inventory.filter(item => {
+            if (stockStatus === 'in-stock') return item.stock > 0;
+            if (stockStatus === 'low-stock') return item.stock < 10;
+            return true;
+        }).forEach(item => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${item.name}</td>
+                <td>${item.category}</td>
+                <td>${item.stock}</td>
+                <td>
+                    <button class="edit-button" data-name="${item.name}">Edit</button>
+                    <button class="delete-button" data-name="${item.name}">Delete</button>
+                </td>
+            `;
+            inventoryList.appendChild(row);
+        });
+        toggleEmptyState();
+    });
 
-    updateDashboard();
-    renderProducts();
+    inventoryList.addEventListener('click', (event) => {
+        if (event.target.classList.contains('edit-button')) {
+            editItem(event.target.dataset.name);
+        } else if (event.target.classList.contains('delete-button')) {
+            deleteItem(event.target.dataset.name);
+        }
+    });
+
+    renderInventory();
 });
