@@ -15,7 +15,7 @@
                 <span class="hamburger"></span>
             </button>
             <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
+                <li><a href="#hero">Home</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#menu">Menu</a></li>
                 <li><a href="#gallery">Gallery</a></li>
@@ -24,14 +24,16 @@
         </nav>
     </header>
     <main>
-        <section id="home" class="hero">
-            <h1>Welcome to Modern Restaurant</h1>
-            <p>Experience the finest dining with a touch of elegance.</p>
-            <a href="#reservation" class="cta">Reserve a Table</a>
+        <section id="hero" class="hero">
+            <div class="hero-content">
+                <h1>Welcome to Modern Restaurant</h1>
+                <p>Experience the finest dining with our exquisite menu and warm ambiance.</p>
+                <a href="#contact" class="cta">Reserve a Table</a>
+            </div>
         </section>
         <section id="about" class="about">
             <h2>About Us</h2>
-            <p>Modern Restaurant offers a unique dining experience with a blend of traditional and contemporary cuisine. Our chefs use the freshest ingredients to create dishes that are both delicious and visually stunning.</p>
+            <p>At Modern Restaurant, we pride ourselves on offering a unique dining experience with a focus on fresh, locally sourced ingredients. Our chefs craft each dish with passion and creativity, ensuring a memorable meal every time.</p>
         </section>
         <section id="menu" class="menu">
             <h2>Our Menu</h2>
@@ -62,16 +64,12 @@
             <p>Monday - Friday: 11:00 AM - 10:00 PM</p>
             <p>Saturday - Sunday: 10:00 AM - 11:00 PM</p>
         </section>
-        <section id="location" class="location">
-            <h2>Find Us</h2>
-            <p>123 Culinary Street, Food City</p>
-            <p>Phone: (123) 456-7890</p>
-        </section>
         <section id="gallery" class="gallery">
             <h2>Gallery</h2>
             <div class="gallery-images">
-                <img src="images/dish1.jpg" alt="Delicious Dish 1">
-                <img src="images/dish2.jpg" alt="Delicious Dish 2">
+                <img src="images/dish1.jpg" alt="Featured Dish 1">
+                <img src="images/dish2.jpg" alt="Featured Dish 2">
+                <img src="images/dish3.jpg" alt="Featured Dish 3">
             </div>
         </section>
         <section id="testimonials" class="testimonials">
@@ -80,27 +78,20 @@
                 <p>"The best dining experience I've ever had! The food was exquisite and the service was impeccable." - Jane Doe</p>
             </blockquote>
             <blockquote>
-                <p>"A perfect blend of flavors and a cozy atmosphere. Highly recommend!" - John Smith</p>
+                <p>"A wonderful atmosphere with delicious food. Highly recommend!" - John Smith</p>
             </blockquote>
         </section>
-        <section id="reservation" class="reservation">
-            <h2>Make a Reservation</h2>
-            <form>
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name" required>
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
-                <label for="date">Date:</label>
-                <input type="date" id="date" name="date" required>
-                <label for="time">Time:</label>
-                <input type="time" id="time" name="time" required>
-                <button type="submit">Submit</button>
-            </form>
+        <section id="contact" class="contact">
+            <h2>Contact Us</h2>
+            <p>Address: 123 Culinary Lane, Food City</p>
+            <p>Phone: (123) 456-7890</p>
+            <p>Email: reservations@modernrestaurant.com</p>
+            <a href="#" class="cta" id="reservation-link">Make a Reservation</a>
         </section>
     </main>
     <footer>
         <p>&copy; 2023 Modern Restaurant. All rights reserved.</p>
-        <p>Follow us on <a href="#">Facebook</a> | <a href="#">Instagram</a></p>
+        <p>Follow us on <a href="#" id="instagram-link">Instagram</a> | <a href="#" id="facebook-link">Facebook</a></p>
     </footer>
 </body>
 </html>
