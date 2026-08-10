@@ -21,7 +21,7 @@
     <main>
         <section id="hero">
             <h1>Welcome to TaskManager</h1>
-            <p>Manage your team's tasks and projects efficiently.</p>
+            <p>Manage your projects and tasks efficiently.</p>
         </section>
         <section id="dashboard">
             <h2>Dashboard</h2>
@@ -42,9 +42,9 @@
         </section>
         <section id="projects">
             <h2>Projects</h2>
-            <div id="project-list" class="project-list">
-                <!-- Projects will be dynamically added here -->
-            </div>
+            <ul id="project-list">
+                <!-- Project items will be inserted here -->
+            </ul>
         </section>
         <section id="tasks">
             <h2>Tasks</h2>
@@ -52,19 +52,20 @@
                 <input type="text" id="task-search" placeholder="Search tasks...">
                 <select id="priority-filter">
                     <option value="">All Priorities</option>
-                    <option value="High">High</option>
-                    <option value="Medium">Medium</option>
-                    <option value="Low">Low</option>
+                    <option value="high">High</option>
+                    <option value="medium">Medium</option>
+                    <option value="low">Low</option>
                 </select>
                 <select id="status-filter">
                     <option value="">All Statuses</option>
-                    <option value="Incomplete">Incomplete</option>
-                    <option value="Complete">Complete</option>
+                    <option value="complete">Complete</option>
+                    <option value="incomplete">Incomplete</option>
                 </select>
             </div>
-            <div id="task-list" class="task-list">
-                <!-- Tasks will be dynamically added here -->
-            </div>
+            <ul id="task-list">
+                <!-- Task items will be inserted here -->
+            </ul>
+            <p id="empty-task-list" class="empty-state">No tasks available. Add a new task to get started!</p>
             <button id="add-task-btn">Add Task</button>
         </section>
     </main>
@@ -79,15 +80,15 @@
                 <label for="task-name">Task Name</label>
                 <input type="text" id="task-name" required>
                 <label for="task-priority">Priority</label>
-                <select id="task-priority" required>
-                    <option value="High">High</option>
-                    <option value="Medium">Medium</option>
-                    <option value="Low">Low</option>
+                <select id="task-priority">
+                    <option value="high">High</option>
+                    <option value="medium">Medium</option>
+                    <option value="low">Low</option>
                 </select>
                 <label for="task-status">Status</label>
-                <select id="task-status" required>
-                    <option value="Incomplete">Incomplete</option>
-                    <option value="Complete">Complete</option>
+                <select id="task-status">
+                    <option value="incomplete">Incomplete</option>
+                    <option value="complete">Complete</option>
                 </select>
                 <button type="submit">Save Task</button>
             </form>
