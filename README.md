@@ -1,38 +1,28 @@
 # Inventory Management Dashboard
 
-This is a static web application for managing inventory items in a small business. It allows users to view, add, edit, delete, search, and filter inventory items, as well as generate reports.
+This is a static web application for managing inventory items. It allows users to view, add, edit, delete, search, and filter inventory items. It also provides an overview of inventory statistics and the ability to generate reports.
 
 ## Features
-
 - View inventory items
-- Add new inventory items (demo only)
-- Edit existing inventory items (demo only)
+- Add new inventory items (demo functionality)
+- Edit existing inventory items (demo functionality)
 - Delete inventory items
 - Search inventory
-- Filter inventory by category and stock status
+- Filter inventory by stock status
 - View current stock quantities
 - Identify low-stock items
 - View inventory statistics
-- Generate an inventory report (demo only)
+- Generate an inventory report (demo functionality)
 
 ## Setup
-
-1. Clone the repository or download the files.
-2. Open `index.html` in a web browser.
+No setup is required as this is a static web application. Simply open `index.html` in a web browser to view the dashboard.
 
 ## Usage
-
 - Navigate through the dashboard using the navigation links.
-- Use the search bar to find specific items.
-- Filter items by category or stock status using the dropdown menus.
-- Click "Add Item" to simulate adding a new item.
-- Click "Edit" or "Delete" next to an item to simulate editing or deleting it.
-- Click "Generate Report" to simulate generating an inventory report.
+- Use the search and filter controls to find specific inventory items.
+- Click on 'Add New Item' to simulate adding a new item.
+- Click on 'Edit' or 'Delete' to modify or remove items from the inventory.
+- Click 'Generate Report' to simulate generating an inventory report.
 
 ## Note
-
-This application is a static demo and does not persist data. The add, edit, and report generation functionalities are not implemented in this demo.
-
-## License
-
-This project is licensed under the MIT License.
+This application is a demo and does not persist data. All actions are simulated for demonstration purposes.
