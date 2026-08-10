@@ -1,57 +1,41 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background-color: #121212;
-  color: #ffffff;
+  line-height: 1.6;
+  color: #333;
 }
 
-.app-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.App {
+  max-width: 1200px;
+  margin: 0 auto;
   padding: 20px;
 }
 
-@media (min-width: 768px) {
-  .app-container {
-    flex-direction: row;
-    justify-content: space-around;
-  }
+header, footer {
+  background-color: #f8f9fa;
+  padding: 20px 0;
+  text-align: center;
 }
 
-.dashboard, .projects, .tasks {
-  background-color: #1e1e1e;
-  border-radius: 8px;
-  padding: 20px;
-  margin: 10px;
-  width: 100%;
-  max-width: 400px;
+h1, h2, h3 {
+  margin: 0 0 20px 0;
 }
 
 button {
-  background-color: #6200ea;
-  color: #ffffff;
+  background-color: #007bff;
+  color: white;
   border: none;
-  padding: 10px;
-  border-radius: 4px;
+  padding: 10px 20px;
   cursor: pointer;
+  border-radius: 5px;
 }
 
 button:hover {
-  background-color: #3700b3;
+  background-color: #0056b3;
 }
 
-input, select {
-  width: 100%;
-  padding: 10px;
-  margin: 5px 0;
-  border-radius: 4px;
-  border: 1px solid #333;
-  background-color: #2c2c2c;
-  color: #ffffff;
-}
-
-input:focus, select:focus {
-  outline: none;
-  border-color: #6200ea;
+@media (max-width: 768px) {
+  .App {
+    padding: 10px;
+  }
 }
