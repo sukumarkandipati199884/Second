@@ -1,25 +1,38 @@
-# La Bella Cucina - Modern Italian Restaurant Website
+# TeamBoost - Productivity for Small Teams
 
-This is a static website for a modern Italian restaurant, La Bella Cucina. The website is built using HTML, CSS, and vanilla JavaScript, and it features a responsive design suitable for all devices.
+## Overview
+
+TeamBoost is a static website designed as a landing page for a SaaS productivity product aimed at small teams. It features a responsive design with sections for features, how it works, pricing plans, testimonials, and FAQs.
 
 ## Features
-- Responsive navigation menu
-- Hero section with a call-to-action
-- Menu section showcasing popular dishes
-- Opening hours and location information
-- Gallery section with images of dishes
-- Contact form for reservations or inquiries
+
+- Responsive navigation
+- Hero section with a clear value proposition
+- Product features overview
+- How-it-works section
+- Pricing plans
+- Testimonials and social proof
+- FAQ section
+- Strong call-to-action buttons
 
 ## Setup
-No special setup is required. Simply open the `index.html` file in your web browser to view the website.
+
+1. Clone the repository:
+   bash
+   git clone <repository-url>
+   
+
+2. Open `index.html` in your web browser to view the website.
 
 ## Usage
-- Navigate through the sections using the navigation menu.
-- Click on "Reserve a Table" in the hero section to jump to the contact form.
-- The contact form is a demo and does not submit data to a server.
+
+- Navigate through the sections using the navigation bar.
+- Click on call-to-action buttons to simulate starting a free trial or choosing a plan.
 
 ## Deployment
-This is a static website and can be deployed on any static hosting service such as GitHub Pages, Netlify, or Vercel.
 
-## Note
-The contact form is a demonstration only and does not send data to a server.
+This project is a static website and can be deployed on any static hosting service like GitHub Pages, Netlify, or Vercel.
+
+## License
+
+This project is licensed under the MIT License.
