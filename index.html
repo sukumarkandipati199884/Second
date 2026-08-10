@@ -3,132 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TeamBoost - Productivity for Small Teams</title>
+    <title>Task & Project Management</title>
     <link rel="stylesheet" href="styles.css">
-    <script defer src="script.js"></script>
 </head>
 <body>
     <header>
         <nav>
-            <div class="logo">TeamBoost</div>
+            <div class="logo">Task Manager</div>
             <button class="nav-toggle" aria-label="toggle navigation">
                 <span class="hamburger"></span>
             </button>
-            <ul class="nav-links">
-                <li><a href="#features">Features</a></li>
-                <li><a href="#how-it-works">How It Works</a></li>
-                <li><a href="#pricing">Pricing</a></li>
-                <li><a href="#testimonials">Testimonials</a></li>
-                <li><a href="#faq">FAQ</a></li>
-                <li><a href="#contact">Contact</a></li>
+            <ul class="nav-list">
+                <li><a href="#dashboard">Dashboard</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#tasks">Tasks</a></li>
             </ul>
         </nav>
     </header>
     <main>
-        <section class="hero">
-            <h1>Boost Your Team's Productivity</h1>
-            <p>Efficient tools for small teams to collaborate and achieve more.</p>
-            <a href="#pricing" class="cta">Start Your Free Trial</a>
+        <section id="hero">
+            <h1>Manage Your Projects Efficiently</h1>
+            <p>Keep track of tasks, deadlines, and progress with ease.</p>
         </section>
-        <section id="features" class="features">
-            <h2>Features</h2>
-            <div class="feature-list">
-                <div class="feature-item">
-                    <h3>Task Management</h3>
-                    <p>Organize and prioritize your tasks with ease.</p>
+        <section id="dashboard">
+            <h2>Dashboard</h2>
+            <div class="stats">
+                <div class="stat">
+                    <h3>Total Projects</h3>
+                    <p id="total-projects">0</p>
                 </div>
-                <div class="feature-item">
-                    <h3>Team Collaboration</h3>
-                    <p>Communicate and collaborate in real-time.</p>
+                <div class="stat">
+                    <h3>Completed Tasks</h3>
+                    <p id="completed-tasks">0</p>
                 </div>
-                <div class="feature-item">
-                    <h3>Analytics</h3>
-                    <p>Track your team's performance with detailed reports.</p>
-                </div>
-            </div>
-        </section>
-        <section id="how-it-works" class="how-it-works">
-            <h2>How It Works</h2>
-            <div class="steps">
-                <div class="step">
-                    <h3>Step 1: Sign Up</h3>
-                    <p>Create an account to get started.</p>
-                </div>
-                <div class="step">
-                    <h3>Step 2: Set Up Your Team</h3>
-                    <p>Invite your team members and set up your workspace.</p>
-                </div>
-                <div class="step">
-                    <h3>Step 3: Start Collaborating</h3>
-                    <p>Use our tools to enhance your team's productivity.</p>
+                <div class="stat">
+                    <h3>Pending Tasks</h3>
+                    <p id="pending-tasks">0</p>
                 </div>
             </div>
         </section>
-        <section id="pricing" class="pricing">
-            <h2>Pricing Plans</h2>
-            <div class="pricing-cards">
-                <div class="pricing-card">
-                    <h3>Basic</h3>
-                    <p>Free</p>
-                    <ul>
-                        <li>Up to 5 users</li>
-                        <li>Basic features</li>
-                    </ul>
-                    <a href="#" class="cta">Get Started</a>
-                </div>
-                <div class="pricing-card">
-                    <h3>Pro</h3>
-                    <p>$9.99/month</p>
-                    <ul>
-                        <li>Up to 20 users</li>
-                        <li>Advanced features</li>
-                    </ul>
-                    <a href="#" class="cta">Choose Plan</a>
-                </div>
-                <div class="pricing-card">
-                    <h3>Enterprise</h3>
-                    <p>Contact Us</p>
-                    <ul>
-                        <li>Unlimited users</li>
-                        <li>All features</li>
-                    </ul>
-                    <a href="#" class="cta">Contact Sales</a>
-                </div>
-            </div>
+        <section id="projects">
+            <h2>Projects</h2>
+            <ul id="project-list">
+                <!-- Project items will be dynamically added here -->
+            </ul>
+            <button id="add-project">Add Project</button>
         </section>
-        <section id="testimonials" class="testimonials">
-            <h2>What Our Users Say</h2>
-            <div class="testimonial-list">
-                <div class="testimonial-item">
-                    <p>"TeamBoost has transformed the way we work. Our productivity has doubled!"</p>
-                    <h4>- Alex Johnson, CEO of TechCorp</h4>
-                </div>
-                <div class="testimonial-item">
-                    <p>"A must-have tool for any small team looking to improve collaboration."</p>
-                    <h4>- Sarah Lee, Project Manager at Innovate Inc.</h4>
-                </div>
+        <section id="tasks">
+            <h2>Tasks</h2>
+            <div class="task-controls">
+                <input type="text" id="task-search" placeholder="Search tasks...">
+                <select id="priority-filter">
+                    <option value="">All Priorities</option>
+                    <option value="high">High</option>
+                    <option value="medium">Medium</option>
+                    <option value="low">Low</option>
+                </select>
+                <select id="status-filter">
+                    <option value="">All Statuses</option>
+                    <option value="complete">Complete</option>
+                    <option value="incomplete">Incomplete</option>
+                </select>
             </div>
-        </section>
-        <section id="faq" class="faq">
-            <h2>Frequently Asked Questions</h2>
-            <div class="faq-item">
-                <h3>Is there a free trial available?</h3>
-                <p>Yes, we offer a 14-day free trial for all new users.</p>
-            </div>
-            <div class="faq-item">
-                <h3>Can I change my plan later?</h3>
-                <p>Absolutely, you can upgrade or downgrade your plan at any time.</p>
-            </div>
+            <ul id="task-list">
+                <!-- Task items will be dynamically added here -->
+            </ul>
+            <p id="empty-task-list" class="empty-state">No tasks available. Add a new task to get started!</p>
+            <button id="add-task">Add Task</button>
         </section>
     </main>
     <footer>
-        <div class="footer-content">
-            <p>&copy; 2023 TeamBoost. All rights reserved.</p>
-            <ul class="footer-links">
-                <li><a href="#">Privacy Policy</a></li>
-                <li><a href="#">Terms of Service</a></li>
-            </ul>
-        </div>
+        <p>&copy; 2023 Task Manager</p>
     </footer>
+    <script src="script.js"></script>
 </body>
 </html>
