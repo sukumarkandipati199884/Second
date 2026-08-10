@@ -1,116 +1,74 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const projects = JSON.parse(localStorage.getItem('projects')) || [];
-    const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+    const navToggle = document.querySelector('.nav-toggle');
+    const navLinks = document.querySelector('.nav-links');
 
-    const projectList = document.getElementById('project-list');
-    const taskList = document.getElementById('task-list');
-    const totalProjects = document.getElementById('total-projects');
-    const completedTasks = document.getElementById('completed-tasks');
-    const pendingTasks = document.getElementById('pending-tasks');
-    const taskSearch = document.getElementById('task-search');
-    const priorityFilter = document.getElementById('priority-filter');
-    const statusFilter = document.getElementById('status-filter');
-    const emptyTaskListMessage = document.getElementById('empty-task-list');
+    navToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+    });
 
-    const renderProjects = () => {
-        projectList.innerHTML = '';
-        projects.forEach((project, index) => {
-            const li = document.createElement('li');
-            li.textContent = project.name;
-            li.dataset.index = index;
-            projectList.appendChild(li);
-        });
-        totalProjects.textContent = projects.length;
-    };
+    const products = JSON.parse(localStorage.getItem('products')) || [
+        { id: 1, name: 'Product A', stock: 20 },
+        { id: 2, name: 'Product B', stock: 5 },
+        { id: 3, name: 'Product C', stock: 0 },
+        { id: 4, name: 'Product D', stock: 15 }
+    ];
 
-    const renderTasks = () => {
-        taskList.innerHTML = '';
-        let completedCount = 0;
-        const filteredTasks = tasks.filter(task => {
-            const matchesSearch = task.name.toLowerCase().includes(taskSearch.value.toLowerCase());
-            const matchesPriority = priorityFilter.value === '' || task.priority === priorityFilter.value;
-            const matchesStatus = statusFilter.value === '' || task.status === statusFilter.value;
-            return matchesSearch && matchesPriority && matchesStatus;
-        });
+    const productList = document.getElementById('product-list');
+    const totalProducts = document.getElementById('total-products');
+    const lowStockItems = document.getElementById('low-stock-items');
+    const outOfStock = document.getElementById('out-of-stock');
+    const emptyState = document.getElementById('empty-state');
+    const searchInput = document.getElementById('search');
+    const filterSelect = document.getElementById('filter');
 
-        filteredTasks.forEach((task, index) => {
-            const li = document.createElement('li');
-            li.textContent = `${task.name} - ${task.priority}`;
-            li.dataset.index = index;
-            if (task.status === 'complete') {
-                li.classList.add('complete');
-                completedCount++;
-            }
-            const deleteButton = document.createElement('button');
-            deleteButton.textContent = 'Delete';
-            deleteButton.addEventListener('click', () => deleteTask(index));
-            const toggleStatusButton = document.createElement('button');
-            toggleStatusButton.textContent = task.status === 'complete' ? 'Mark Incomplete' : 'Mark Complete';
-            toggleStatusButton.addEventListener('click', () => toggleTaskStatus(index));
-            li.appendChild(deleteButton);
-            li.appendChild(toggleStatusButton);
-            taskList.appendChild(li);
+    function updateDashboard() {
+        const lowStockCount = products.filter(p => p.stock > 0 && p.stock < 10).length;
+        const outOfStockCount = products.filter(p => p.stock === 0).length;
+
+        totalProducts.textContent = products.length;
+        lowStockItems.textContent = lowStockCount;
+        outOfStock.textContent = outOfStockCount;
+    }
+
+    function renderProducts(filter = 'all', search = '') {
+        productList.innerHTML = '';
+        const filteredProducts = products.filter(product => {
+            if (filter === 'low-stock' && (product.stock >= 10 || product.stock === 0)) return false;
+            if (filter === 'out-of-stock' && product.stock !== 0) return false;
+            if (search && !product.name.toLowerCase().includes(search.toLowerCase())) return false;
+            return true;
         });
 
-        completedTasks.textContent = completedCount;
-        pendingTasks.textContent = tasks.length - completedCount;
-
-        if (filteredTasks.length === 0) {
-            emptyTaskListMessage.style.display = 'block';
+        if (filteredProducts.length === 0) {
+            emptyState.style.display = 'block';
         } else {
-            emptyTaskListMessage.style.display = 'none';
+            emptyState.style.display = 'none';
+            filteredProducts.forEach(product => {
+                const productItem = document.createElement('div');
+                productItem.className = 'product-item';
+                productItem.innerHTML = `
+                    <h3>${product.name}</h3>
+                    <p>Stock: ${product.stock}</p>
+                `;
+                productList.appendChild(productItem);
+            });
         }
-    };
+    }
 
-    const addProject = (name) => {
-        projects.push({ name });
-        localStorage.setItem('projects', JSON.stringify(projects));
-        renderProjects();
-    };
+    function saveProducts() {
+        localStorage.setItem('products', JSON.stringify(products));
+    }
 
-    const addTask = (name, priority, status = 'incomplete') => {
-        tasks.push({ name, priority, status });
-        localStorage.setItem('tasks', JSON.stringify(tasks));
-        renderTasks();
-    };
-
-    const deleteTask = (index) => {
-        tasks.splice(index, 1);
-        localStorage.setItem('tasks', JSON.stringify(tasks));
-        renderTasks();
-    };
-
-    const toggleTaskStatus = (index) => {
-        tasks[index].status = tasks[index].status === 'complete' ? 'incomplete' : 'complete';
-        localStorage.setItem('tasks', JSON.stringify(tasks));
-        renderTasks();
-    };
-
-    document.getElementById('add-project').addEventListener('click', () => {
-        const projectName = prompt('Enter project name:');
-        if (projectName) {
-            addProject(projectName);
-        }
+    searchInput.addEventListener('input', () => {
+        renderProducts(filterSelect.value, searchInput.value);
     });
 
-    document.getElementById('add-task').addEventListener('click', () => {
-        const taskName = prompt('Enter task name:');
-        const taskPriority = prompt('Enter task priority (high, medium, low):');
-        if (!taskName || !taskPriority || !['high', 'medium', 'low'].includes(taskPriority.toLowerCase())) {
-            alert('Invalid input. Please enter a valid task name and priority.');
-            return;
-        }
-        addTask(taskName, taskPriority.toLowerCase());
+    filterSelect.addEventListener('change', () => {
+        renderProducts(filterSelect.value, searchInput.value);
     });
 
-    taskSearch.addEventListener('input', renderTasks);
-    priorityFilter.addEventListener('change', renderTasks);
-    statusFilter.addEventListener('change', renderTasks);
+    window.addEventListener('beforeunload', saveProducts);
 
-    document.querySelector('.nav-toggle').addEventListener('click', () => {
-        document.querySelector('.nav-list').classList.toggle('active');
-    });
-
-    renderProjects();
-    renderTasks();
+    updateDashboard();
+    renderProducts();
 });
