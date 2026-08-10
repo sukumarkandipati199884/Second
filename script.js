@@ -1,26 +1,44 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const navToggle = document.querySelector('.nav-toggle');
-    const navList = document.querySelector('.nav-list');
+document.addEventListener('DOMContentLoaded', () => {
+    const navLinks = document.querySelector('.nav-links');
+    const burger = document.querySelector('.burger');
+    const form = document.getElementById('contact-form');
+    const feedback = document.getElementById('form-feedback');
+    const detailButtons = document.querySelectorAll('.details-btn');
 
-    navToggle.addEventListener('click', function() {
-        navList.classList.toggle('active');
+    burger.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+        burger.classList.toggle('toggle');
     });
 
-    const dateInput = document.querySelector('#date');
-    const today = new Date().toISOString().split('T')[0];
-    dateInput.setAttribute('min', today);
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = form.name.value.trim();
+        const email = form.email.value.trim();
+        const message = form.message.value.trim();
 
-    // Add event listeners for social media links
-    const instagramLink = document.querySelector('#instagram-link');
-    const facebookLink = document.querySelector('#facebook-link');
+        if (name === '' || email === '' || message === '') {
+            feedback.textContent = 'Please fill in all fields.';
+            return;
+        }
 
-    instagramLink.addEventListener('click', function(event) {
-        event.preventDefault();
-        window.open('https://www.instagram.com', '_blank');
+        if (!validateEmail(email)) {
+            feedback.textContent = 'Please enter a valid email address.';
+            return;
+        }
+
+        feedback.textContent = 'Demo form: data is not stored or transmitted.';
     });
 
-    facebookLink.addEventListener('click', function(event) {
-        event.preventDefault();
-        window.open('https://www.facebook.com', '_blank');
+    function validateEmail(email) {
+        const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@(([^<>()[\]\\.,;:\s@"]+\.)+[^<>()[\]\\.,;:\s@"]{2,})$/i;
+        return re.test(String(email).toLowerCase());
+    }
+
+    detailButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const projectCard = button.parentElement;
+            const projectDetails = projectCard.querySelector('p').textContent;
+            alert(`Project Details: ${projectDetails}`);
+        });
     });
 });
