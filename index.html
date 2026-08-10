@@ -9,23 +9,23 @@
 <body>
     <header>
         <nav>
-            <div class="logo">Task Manager</div>
-            <div class="menu-toggle" id="mobile-menu">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
-            <ul class="nav no-search">
-                <li class="nav-item"><a href="#dashboard">Dashboard</a></li>
-                <li class="nav-item"><a href="#projects">Projects</a></li>
-                <li class="nav-item"><a href="#tasks">Tasks</a></li>
+            <div class="logo">TaskManager</div>
+            <ul class="nav-links">
+                <li><a href="#dashboard">Dashboard</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#tasks">Tasks</a></li>
             </ul>
+            <div class="burger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
         </nav>
     </header>
     <main>
         <section id="hero">
-            <h1>Manage Your Projects Efficiently</h1>
-            <p>Keep track of tasks and projects with ease.</p>
+            <h1>Welcome to TaskManager</h1>
+            <p>Manage your projects and tasks efficiently.</p>
         </section>
         <section id="dashboard">
             <h2>Dashboard</h2>
@@ -62,30 +62,20 @@
                 </select>
                 <select id="status-filter">
                     <option value="">All Statuses</option>
-                    <option value="completed">Completed</option>
                     <option value="pending">Pending</option>
+                    <option value="completed">Completed</option>
                 </select>
             </div>
             <ul id="task-list">
                 <!-- Task items will be dynamically added here -->
             </ul>
             <form id="task-form">
-                <h3>Add New Task</h3>
                 <input type="text" id="task-name" placeholder="Task Name" required>
-                <input type="text" id="task-project" placeholder="Project Name" required>
-                <select id="task-priority" required>
-                    <option value="">Select Priority</option>
-                    <option value="high">High</option>
-                    <option value="medium">Medium</option>
-                    <option value="low">Low</option>
-                </select>
+                <input type="text" id="task-priority" placeholder="Priority" required>
                 <button type="submit">Add Task</button>
             </form>
         </section>
     </main>
-    <footer>
-        <p>&copy; 2023 Task Manager</p>
-    </footer>
     <script src="script.js"></script>
 </body>
 </html>
