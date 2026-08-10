@@ -10,18 +10,22 @@
     <header>
         <nav>
             <div class="logo">Task Manager</div>
-            <button class="menu-toggle" aria-label="Toggle navigation">☰</button>
             <ul class="nav-links">
                 <li><a href="#dashboard">Dashboard</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#tasks">Tasks</a></li>
             </ul>
+            <div class="burger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
         </nav>
     </header>
     <main>
         <section id="hero">
-            <h1>Manage Your Projects Efficiently</h1>
-            <p>Keep track of tasks and projects with ease.</p>
+            <h1>Welcome to Task Manager</h1>
+            <p>Manage your projects and tasks efficiently.</p>
         </section>
         <section id="dashboard">
             <h2>Dashboard</h2>
@@ -43,45 +47,56 @@
         <section id="projects">
             <h2>Projects</h2>
             <ul id="project-list">
-                <!-- Project items will be dynamically added here -->
+                <!-- Project items will be dynamically inserted here -->
             </ul>
         </section>
         <section id="tasks">
             <h2>Tasks</h2>
             <div class="task-controls">
-                <input type="text" id="task-search" placeholder="Search tasks..." aria-label="Search tasks">
-                <select id="priority-filter" aria-label="Filter by priority">
+                <input type="text" id="task-search" placeholder="Search tasks...">
+                <select id="priority-filter">
                     <option value="">All Priorities</option>
                     <option value="high">High</option>
                     <option value="medium">Medium</option>
                     <option value="low">Low</option>
                 </select>
-                <select id="status-filter" aria-label="Filter by status">
+                <select id="status-filter">
                     <option value="">All Statuses</option>
                     <option value="complete">Complete</option>
                     <option value="incomplete">Incomplete</option>
                 </select>
             </div>
             <ul id="task-list">
-                <!-- Task items will be dynamically added here -->
+                <!-- Task items will be dynamically inserted here -->
             </ul>
+            <button id="add-task-btn">Add Task</button>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2023 Task Manager. All rights reserved.</p>
+    </footer>
+    <div id="task-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>Add/Edit Task</h2>
             <form id="task-form">
-                <h3>Add New Task</h3>
-                <input type="text" id="task-name" placeholder="Task Name" required aria-label="Task Name">
-                <input type="text" id="task-project" placeholder="Project Name" required aria-label="Project Name">
-                <select id="task-priority" required aria-label="Task Priority">
-                    <option value="">Select Priority</option>
+                <label for="task-name">Task Name:</label>
+                <input type="text" id="task-name" required>
+                <label for="task-priority">Priority:</label>
+                <select id="task-priority" required>
                     <option value="high">High</option>
                     <option value="medium">Medium</option>
                     <option value="low">Low</option>
                 </select>
-                <button type="submit">Add Task</button>
+                <label for="task-status">Status:</label>
+                <select id="task-status" required>
+                    <option value="incomplete">Incomplete</option>
+                    <option value="complete">Complete</option>
+                </select>
+                <button type="submit">Save Task</button>
             </form>
-        </section>
-    </main>
-    <footer>
-        <p>&copy; 2023 Task Manager</p>
-    </footer>
+        </div>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>
