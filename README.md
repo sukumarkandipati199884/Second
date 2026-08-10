@@ -1,29 +1,37 @@
-# Task & Project Management Static Website
+# Task & Project Management Application
 
-This is a static website for managing tasks and projects for a small software team. It is built using plain HTML, CSS, and vanilla JavaScript, with no external dependencies or build steps required.
+This is a static web application for managing tasks and projects, designed for a small software team. It is built using plain HTML, CSS, and JavaScript, with no external libraries or frameworks.
 
 ## Features
+
 - Responsive design with a modern dark UI
-- Dashboard with statistics
-- Projects section
-- Add, edit, delete, and mark tasks complete
-- Priority and status filters
-- Task search
-- Task form validation
-- LocalStorage persistence
-- Responsive navigation
-- Empty states for no tasks or projects
+- Dashboard with statistics on projects and tasks
+- Projects section to list all projects
+- Tasks section with the ability to add, delete, and mark tasks as complete
+- Filters for task priority and status
+- Task search functionality
+- Form validation for adding tasks
+- Local storage for task persistence
+- Mobile-friendly navigation
+
+## Getting Started
+
+Simply open the `index.html` file in your web browser to start using the application.
 
 ## Usage
-Simply open `index.html` in your browser to start using the application. All data is stored locally in your browser's LocalStorage.
 
-## File Structure
-- `index.html`: Main HTML file
-- `styles.css`: CSS for styling the application
-- `script.js`: JavaScript for interactivity and data management
+- **Dashboard**: View statistics about your projects and tasks.
+- **Projects**: View a list of all projects.
+- **Tasks**: Add new tasks, search, filter by priority or status, and manage existing tasks.
 
-## Development
-This project does not require any build tools or package managers. Just edit the HTML, CSS, and JavaScript files directly.
+## Local Storage
+
+All tasks are stored in the browser's local storage, so they persist across page reloads.
+
+## Responsive Design
+
+The application is designed to be responsive and works well on both desktop and mobile devices.
 
 ## License
-This project is licensed under the MIT License.
+
+This project is open source and available under the MIT License.
