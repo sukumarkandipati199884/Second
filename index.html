@@ -3,58 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inventory Management Dashboard</title>
+    <title>Developer Portfolio</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
         <nav>
-            <div class="logo">Inventory Dashboard</div>
-            <button class="nav-toggle" aria-label="Toggle navigation">
-                ☰
-            </button>
+            <div class="logo">My Portfolio</div>
             <ul class="nav-links">
-                <li><a href="#dashboard">Dashboard</a></li>
-                <li><a href="#products">Products</a></li>
-                <li><a href="#reports">Reports</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
+            <div class="burger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
         </nav>
     </header>
     <main>
-        <section id="dashboard" class="hero">
-            <h1>Welcome to Your Inventory Dashboard</h1>
-            <p>Manage your products efficiently and effectively.</p>
+        <section id="hero">
+            <h1>Welcome to My Portfolio</h1>
+            <p>I am a passionate software engineer dedicated to building efficient and scalable applications.</p>
         </section>
-        <section id="summary" class="summary">
-            <div class="card">
-                <h2>Total Products</h2>
-                <p id="total-products">0</p>
+        <section id="about">
+            <h2>About Me</h2>
+            <p>Hi, I'm John Doe, a software engineer with a love for technology and innovation. I specialize in creating dynamic and beautiful web applications.</p>
+        </section>
+        <section id="skills">
+            <h2>Skills</h2>
+            <ul>
+                <li>JavaScript</li>
+                <li>HTML & CSS</li>
+                <li>Python</li>
+                <li>React</li>
+                <li>Node.js</li>
+            </ul>
+        </section>
+        <section id="projects">
+            <h2>Selected Projects</h2>
+            <div class="project">
+                <h3>Project One</h3>
+                <p>A web application that allows users to track their tasks and manage time efficiently.</p>
             </div>
-            <div class="card">
-                <h2>Low Stock Items</h2>
-                <p id="low-stock">0</p>
-            </div>
-            <div class="card">
-                <h2>Out of Stock</h2>
-                <p id="out-of-stock">0</p>
+            <div class="project">
+                <h3>Project Two</h3>
+                <p>An e-commerce platform with a seamless user experience and robust backend.</p>
             </div>
         </section>
-        <section id="products" class="products">
-            <h2>Product List</h2>
-            <input type="text" id="search" placeholder="Search products..." aria-label="Search products">
-            <div id="product-list" class="product-list">
-                <!-- Product items will be dynamically inserted here -->
+        <section id="experience">
+            <h2>Experience</h2>
+            <div class="job">
+                <h3>Software Engineer at TechCorp</h3>
+                <p>Developed scalable web applications and collaborated with cross-functional teams to enhance product features.</p>
             </div>
-            <p id="empty-state" class="empty-state">No products available.</p>
+            <div class="job">
+                <h3>Frontend Developer at WebSolutions</h3>
+                <p>Implemented responsive designs and optimized web applications for better performance.</p>
+            </div>
         </section>
-        <section id="reports" class="reports">
-            <h2>Inventory Reports</h2>
-            <p>Generate and view detailed reports of your inventory.</p>
+        <section id="contact">
+            <h2>Contact</h2>
+            <form id="contact-form">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" required></textarea>
+                <button type="submit">Send</button>
+            </form>
         </section>
     </main>
     <footer>
-        <p>&copy; 2023 Inventory Management. All rights reserved.</p>
-        <p>Contact us at support@inventory.com</p>
+        <p>&copy; 2023 John Doe</p>
     </footer>
     <script src="script.js"></script>
 </body>
