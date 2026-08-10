@@ -3,76 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Task & Project Management</title>
+    <title>Inventory Management Dashboard</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
         <nav>
-            <div class="logo">TaskManager</div>
+            <div class="logo">Inventory Dashboard</div>
+            <button class="nav-toggle" aria-label="Toggle navigation">
+                ☰
+            </button>
             <ul class="nav-links">
                 <li><a href="#dashboard">Dashboard</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#tasks">Tasks</a></li>
+                <li><a href="#products">Products</a></li>
+                <li><a href="#reports">Reports</a></li>
             </ul>
-            <div class="burger">
-                <div class="line1"></div>
-                <div class="line2"></div>
-                <div class="line3"></div>
-            </div>
         </nav>
     </header>
     <main>
-        <section id="hero">
-            <h1>Welcome to TaskManager</h1>
-            <p>Manage your projects and tasks efficiently.</p>
+        <section id="dashboard" class="hero">
+            <h1>Welcome to Your Inventory Dashboard</h1>
+            <p>Manage your products efficiently and effectively.</p>
         </section>
-        <section id="dashboard">
-            <h2>Dashboard</h2>
-            <div class="stats">
-                <div class="stat">
-                    <h3>Total Projects</h3>
-                    <p id="total-projects">0</p>
-                </div>
-                <div class="stat">
-                    <h3>Total Tasks</h3>
-                    <p id="total-tasks">0</p>
-                </div>
-                <div class="stat">
-                    <h3>Completed Tasks</h3>
-                    <p id="completed-tasks">0</p>
-                </div>
+        <section id="summary" class="summary">
+            <div class="card">
+                <h2>Total Products</h2>
+                <p id="total-products">0</p>
+            </div>
+            <div class="card">
+                <h2>Low Stock Items</h2>
+                <p id="low-stock">0</p>
+            </div>
+            <div class="card">
+                <h2>Out of Stock</h2>
+                <p id="out-of-stock">0</p>
             </div>
         </section>
-        <section id="projects">
-            <h2>Projects</h2>
-            <div id="project-list">
-                <!-- Projects will be dynamically added here -->
+        <section id="products" class="products">
+            <h2>Product List</h2>
+            <input type="text" id="search" placeholder="Search products..." aria-label="Search products">
+            <div id="product-list" class="product-list">
+                <!-- Product items will be dynamically inserted here -->
             </div>
-            <button id="add-project">Add Project</button>
+            <p id="empty-state" class="empty-state">No products available.</p>
         </section>
-        <section id="tasks">
-            <h2>Tasks</h2>
-            <div class="filters">
-                <input type="text" id="task-search" placeholder="Search tasks...">
-                <select id="priority-filter">
-                    <option value="">All Priorities</option>
-                    <option value="high">High</option>
-                    <option value="medium">Medium</option>
-                    <option value="low">Low</option>
-                </select>
-                <select id="status-filter">
-                    <option value="">All Statuses</option>
-                    <option value="completed">Completed</option>
-                    <option value="pending">Pending</option>
-                </select>
-            </div>
-            <div id="task-list">
-                <!-- Tasks will be dynamically added here -->
-            </div>
-            <button id="add-task">Add Task</button>
+        <section id="reports" class="reports">
+            <h2>Inventory Reports</h2>
+            <p>Generate and view detailed reports of your inventory.</p>
         </section>
     </main>
+    <footer>
+        <p>&copy; 2023 Inventory Management. All rights reserved.</p>
+        <p>Contact us at support@inventory.com</p>
+    </footer>
     <script src="script.js"></script>
 </body>
 </html>
