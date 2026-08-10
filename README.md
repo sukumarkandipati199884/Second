@@ -1,33 +1,25 @@
-# Modern Restaurant Website
+# Professional Portfolio
 
-This is a static website for a modern restaurant, designed to be responsive and visually engaging. It includes sections for a hero, about, menu, gallery, testimonials, and a reservation form.
+This is a professional portfolio website built using HTML, CSS, and JavaScript. It is a static website suitable for deployment on platforms like AWS S3 and CloudFront.
 
 ## Features
-- Responsive layout with a mobile-friendly navigation menu
-- Visually engaging hero section
-- Detailed food menu with categories
-- Opening hours and location information
-- Gallery of featured dishes
-- Customer testimonials
-- Reservation form with date and time selection
+- Responsive navigation bar with links to Home, About, Skills, Projects, and Contact sections.
+- Modern hero section with a professional introduction and call-to-action buttons.
+- About section with professional content.
+- Skills section displaying technical skills.
+- Projects section with four project cards.
+- Contact section with a form for name, email, and message.
+- Client-side form validation with feedback.
+- Responsive mobile navigation menu.
+- Smooth scrolling between sections.
+- JavaScript interactions for mobile menu and form validation.
 
 ## Setup
-
-1. Clone the repository:
-   
-   git clone <repository-url>
-   
-2. Open `index.html` in your web browser to view the website.
-
-## Usage
-
-- Navigate through the sections using the navigation menu.
-- Use the reservation form to select a date and time for your reservation.
+1. Clone the repository.
+2. Open `index.html` in a web browser.
 
 ## Deployment
-
-This website can be deployed on any static hosting service, such as GitHub Pages, Netlify, or Vercel.
+This project can be deployed as a static website on AWS S3 and CloudFront. Simply upload the files to your S3 bucket and configure CloudFront for distribution.
 
 ## Note
-
-The reservation form is a demo and does not store or transmit data.
+The contact form is a demo and does not store or transmit data.
