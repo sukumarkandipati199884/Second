@@ -1,28 +1,37 @@
-# Inventory Management Dashboard
+# Task Management App
 
-This is a static web application for managing inventory items. It allows users to view, add, edit, delete, search, and filter inventory items. It also provides an overview of inventory statistics and the ability to generate reports.
+This is a modern task and project management web application that allows users to manage their tasks effectively.
 
 ## Features
-- View inventory items
-- Add new inventory items (demo functionality)
-- Edit existing inventory items (demo functionality)
-- Delete inventory items
-- Search inventory
-- Filter inventory by stock status
-- View current stock quantities
-- Identify low-stock items
-- View inventory statistics
-- Generate an inventory report (demo functionality)
+- Create, edit, and delete tasks
+- Mark tasks as complete or incomplete
+- Assign priorities to tasks
+- Search and filter tasks by status and priority
+- View task statistics
+- Persist task data in the browser using local storage
 
 ## Setup
-No setup is required as this is a static web application. Simply open `index.html` in a web browser to view the dashboard.
+
+1. Clone the repository:
+   ```bash
+   git clone <repository-url>
+   ```
+
+2. Open the `index.html` file in your web browser to run the application.
 
 ## Usage
-- Navigate through the dashboard using the navigation links.
-- Use the search and filter controls to find specific inventory items.
-- Click on 'Add New Item' to simulate adding a new item.
-- Click on 'Edit' or 'Delete' to modify or remove items from the inventory.
-- Click 'Generate Report' to simulate generating an inventory report.
 
-## Note
-This application is a demo and does not persist data. All actions are simulated for demonstration purposes.
+- Navigate through the application using the header links.
+- Use the "Add Task" button to create new tasks.
+- Search tasks using the search bar.
+- Filter tasks by priority using the dropdown menu.
+- Edit or delete tasks using the respective buttons next to each task.
+- View task statistics on the dashboard.
+
+## Deployment
+
+This application is a static web application and can be deployed on any static hosting service like GitHub Pages, Netlify, or Vercel.
+
+## License
+
+This project is licensed under the MIT License.
