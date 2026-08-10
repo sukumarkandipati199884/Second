@@ -1,14 +1,14 @@
 body {
     font-family: Arial, sans-serif;
-    line-height: 1.6;
     margin: 0;
     padding: 0;
-    overflow-x: hidden;
+    line-height: 1.6;
+    color: #333;
 }
 header {
     background: #333;
     color: #fff;
-    padding: 1rem 0;
+    padding: 10px 0;
 }
 nav {
     display: flex;
@@ -16,73 +16,73 @@ nav {
     align-items: center;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 1rem;
+    padding: 0 20px;
 }
-.nav-links {
+.nav-list {
     list-style: none;
     display: flex;
-    gap: 1rem;
+    gap: 20px;
 }
-.nav-links a {
+.nav-list li a {
     color: #fff;
     text-decoration: none;
 }
-.nav-toggle {
-    display: none;
-}
-#hero {
-    background: #f4f4f4;
-    padding: 2rem 1rem;
+.hero {
+    background: url('images/hero.jpg') no-repeat center center/cover;
+    color: #fff;
     text-align: center;
-}
-#hero h1 {
-    margin-bottom: 0.5rem;
+    padding: 100px 20px;
 }
 .cta {
-    display: inline-block;
-    margin-top: 1rem;
-    padding: 0.5rem 1rem;
-    background: #007BFF;
+    background: #ff6347;
     color: #fff;
+    padding: 10px 20px;
     text-decoration: none;
     border-radius: 5px;
 }
-section {
-    padding: 2rem 1rem;
-    max-width: 800px;
+.about, .menu, .hours, .location, .gallery, .testimonials, .reservation {
+    padding: 50px 20px;
+    max-width: 1200px;
     margin: 0 auto;
 }
-.project, .experience {
-    margin-bottom: 1.5rem;
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
 }
 footer {
     background: #333;
     color: #fff;
     text-align: center;
-    padding: 1rem 0;
-}
-.social-links {
-    list-style: none;
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    padding: 0;
-}
-.social-links a {
-    color: #fff;
-    text-decoration: none;
+    padding: 20px 0;
 }
 @media (max-width: 768px) {
-    .nav-links {
+    .nav-list {
         display: none;
         flex-direction: column;
-        gap: 0;
+        background: #333;
+        position: absolute;
+        top: 60px;
+        right: 20px;
+        width: 200px;
+        border-radius: 5px;
+    }
+    .nav-list.active {
+        display: flex;
     }
     .nav-toggle {
         display: block;
         cursor: pointer;
     }
-    .nav-toggle.active + .nav-links {
-        display: flex;
+    .hamburger {
+        width: 30px;
+        height: 3px;
+        background: #fff;
+        margin: 5px 0;
+    }
+}
+@media (max-width: 480px) {
+    .hero {
+        padding: 50px 20px;
     }
 }
