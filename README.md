@@ -8,8 +8,8 @@ This is a responsive personal portfolio website for a software engineer named Al
 - `styles.css`: The CSS file for styling the website.
 - `script.js`: The JavaScript file for adding interactivity and smooth scrolling.
 
-## Running Locally
-To view the website locally, simply open the `index.html` file in a web browser. No build steps or server setup is required.
+## How to Run Locally
+To view the website locally, simply open the `index.html` file in any web browser. No build steps or server setup is required.
 
 ## Deployment Notes
-This static website is suitable for deployment to static hosting services such as AWS S3 and CloudFront. Ensure all files are uploaded and paths are correctly configured for static hosting.
+This static website is suitable for deployment to AWS S3 and CloudFront or any other static hosting service. Ensure all files are uploaded and paths are correctly configured for the hosting environment.
