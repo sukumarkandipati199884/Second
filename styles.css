@@ -3,116 +3,89 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    overflow-x: hidden;
 }
-
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+header {
     background-color: #333;
-    padding: 1rem;
+    color: #fff;
+    padding: 10px 0;
 }
-
-.nav-links {
+nav ul {
     list-style: none;
     display: flex;
+    justify-content: center;
+    padding: 0;
 }
-
-.nav-links li {
-    margin: 0 1rem;
+nav ul li {
+    margin: 0 15px;
 }
-
-.nav-links a {
-    color: white;
+nav ul li a {
+    color: #fff;
     text-decoration: none;
-    font-weight: bold;
 }
-
-.burger {
-    display: none;
-    cursor: pointer;
+#hero {
+    background-color: #f4f4f4;
+    padding: 50px 20px;
+    text-align: center;
 }
-
-.burger div {
-    width: 25px;
-    height: 3px;
-    background-color: white;
-    margin: 5px;
+#hero h1 {
+    margin: 0;
+    font-size: 2.5em;
 }
-
-.hero {
-    background: url('images/hero.jpg') no-repeat center center/cover;
-    height: 100vh;
-    color: white;
+#hero p {
+    font-size: 1.2em;
+}
+.cta {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+}
+section {
+    padding: 40px 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+section h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+.project {
+    margin-bottom: 20px;
+}
+form {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
 }
-
-.menu, .about, .gallery, .reservation, .contact {
-    padding: 2rem;
-    text-align: center;
+form label {
+    margin-bottom: 5px;
 }
-
-.menu-categories {
-    margin-bottom: 1rem;
+form input, form textarea {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
-
-.filter-btn {
-    padding: 0.5rem 1rem;
-    margin: 0.5rem;
+form button {
+    padding: 10px;
+    background-color: #007BFF;
+    color: #fff;
     border: none;
-    background-color: #333;
-    color: white;
+    border-radius: 5px;
     cursor: pointer;
 }
-
-.menu-items {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.menu-item {
-    border: 1px solid #ddd;
-    margin: 1rem;
-    padding: 1rem;
-    width: 200px;
-}
-
-.gallery-images img {
-    width: 30%;
-    margin: 1%;
-}
-
-footer {
-    background-color: #333;
-    color: white;
-    text-align: center;
-    padding: 1rem;
-}
-
 @media (max-width: 768px) {
-    .nav-links {
-        display: none;
+    nav ul {
         flex-direction: column;
+        align-items: center;
     }
-
-    .burger {
-        display: block;
+    #hero h1 {
+        font-size: 2em;
     }
-
-    .nav-links.active {
-        display: flex;
-    }
-
-    .menu-items {
-        flex-direction: column;
-    }
-
-    .gallery-images img {
-        width: 80%;
+    #hero p {
+        font-size: 1em;
     }
 }
