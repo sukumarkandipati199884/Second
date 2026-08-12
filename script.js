@@ -1,42 +1,47 @@
 document.addEventListener('DOMContentLoaded', function() {
     const sampleData = {
         totalRevenue: 50000,
-        totalOrders: 150,
-        averageOrderValue: 333.33,
-        totalCustomers: 120,
-        orders: [
-            { id: 1, customer: 'John Doe', category: 'electronics', total: 299.99 },
-            { id: 2, customer: 'Jane Smith', category: 'clothing', total: 89.99 },
-            { id: 3, customer: 'Alice Johnson', category: 'home', total: 45.00 },
-            { id: 4, customer: 'Chris Lee', category: 'electronics', total: 199.99 }
-        ]
+        totalOrders: 1200,
+        averageOrderValue: 42,
+        totalCustomers: 800,
+        recentOrders: [
+            { id: '001', customer: 'John Doe', date: '2023-10-01', amount: 150 },
+            { id: '002', customer: 'Jane Smith', date: '2023-10-02', amount: 200 },
+            { id: '003', customer: 'Sam Green', date: '2023-10-03', amount: 75 }
+        ],
+        categoryData: {
+            all: { totalRevenue: 50000, totalOrders: 1200, averageOrderValue: 42, totalCustomers: 800 },
+            electronics: { totalRevenue: 20000, totalOrders: 400, averageOrderValue: 50, totalCustomers: 300 },
+            fashion: { totalRevenue: 15000, totalOrders: 500, averageOrderValue: 30, totalCustomers: 250 },
+            home: { totalRevenue: 15000, totalOrders: 300, averageOrderValue: 50, totalCustomers: 250 }
+        }
     };
 
-    function updateSummary() {
-        document.getElementById('total-revenue').textContent = `$${sampleData.totalRevenue}`;
-        document.getElementById('total-orders').textContent = sampleData.totalOrders;
-        document.getElementById('average-order-value').textContent = `$${sampleData.averageOrderValue.toFixed(2)}`;
-        document.getElementById('total-customers').textContent = sampleData.totalCustomers;
+    function updateSummaryCards(category) {
+        const data = sampleData.categoryData[category];
+        document.getElementById('total-revenue').textContent = `$${data.totalRevenue}`;
+        document.getElementById('total-orders').textContent = data.totalOrders;
+        document.getElementById('average-order-value').textContent = `$${data.averageOrderValue}`;
+        document.getElementById('total-customers').textContent = data.totalCustomers;
     }
 
-    function renderOrders(category) {
-        const ordersTable = document.getElementById('orders-table');
-        ordersTable.innerHTML = '';
-        const filteredOrders = sampleData.orders.filter(order => category === 'all' || order.category === category);
-        filteredOrders.forEach(order => {
-            const row = document.createElement('tr');
-            row.innerHTML = `<td>${order.id}</td><td>${order.customer}</td><td>${order.category}</td><td>$${order.total.toFixed(2)}</td>`;
-            ordersTable.appendChild(row);
-        });
-    }
+    updateSummaryCards('all');
 
-    document.getElementById('category-filter').addEventListener('change', function(event) {
-        renderOrders(event.target.value);
+    const recentOrdersTable = document.getElementById('recent-orders');
+    sampleData.recentOrders.forEach(order => {
+        const row = document.createElement('tr');
+        row.innerHTML = `<td>${order.id}</td><td>${order.customer}</td><td>${order.date}</td><td>$${order.amount}</td>`;
+        recentOrdersTable.appendChild(row);
     });
 
-    updateSummary();
-    renderOrders('all');
+    const categoryFilter = document.getElementById('category-filter');
+    categoryFilter.addEventListener('change', function() {
+        const selectedCategory = categoryFilter.value;
+        updateSummaryCards(selectedCategory);
+        console.log(`Filter applied: ${selectedCategory}`);
+    });
 
-    // Placeholder for chart rendering logic
-    // Use a library like Chart.js to render charts in the canvas elements
+    // Initialize charts using a library like Chart.js
+    // Example: new Chart(document.getElementById('monthly-sales-chart'), { /* chart config */ });
+    // Example: new Chart(document.getElementById('category-performance-chart'), { /* chart config */ });
 });
