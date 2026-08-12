@@ -3,72 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio - Data Science Graduate</title>
+    <title>Sales Analytics Dashboard</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
+        <h1>Sales Analytics Dashboard</h1>
         <nav>
             <ul>
-                <li><a href="#hero">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#education">Education</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#summary">Summary</a></li>
+                <li><a href="#charts">Charts</a></li>
+                <li><a href="#orders">Recent Orders</a></li>
             </ul>
         </nav>
     </header>
     <main>
-        <section id="hero">
-            <h1>Welcome to My Portfolio</h1>
-            <p>Data Science Graduate Student</p>
-            <a href="#contact" class="cta">Get in Touch</a>
-        </section>
-        <section id="about">
-            <h2>About Me</h2>
-            <p>I am a passionate data science graduate student with a keen interest in machine learning and data analysis. I enjoy turning complex data into actionable insights.</p>
-        </section>
-        <section id="skills">
-            <h2>Skills</h2>
-            <ul>
-                <li>Python</li>
-                <li>R</li>
-                <li>Machine Learning</li>
-                <li>Data Visualization</li>
-                <li>SQL</li>
-            </ul>
-        </section>
-        <section id="projects">
-            <h2>Projects</h2>
-            <div class="project">
-                <h3>Project Title 1</h3>
-                <p>Description of the project and what technologies were used.</p>
+        <section id="summary" class="summary-cards">
+            <div class="card">
+                <h2>Total Revenue</h2>
+                <p id="total-revenue">$0</p>
             </div>
-            <div class="project">
-                <h3>Project Title 2</h3>
-                <p>Description of the project and what technologies were used.</p>
+            <div class="card">
+                <h2>Total Orders</h2>
+                <p id="total-orders">0</p>
+            </div>
+            <div class="card">
+                <h2>Average Order Value</h2>
+                <p id="average-order-value">$0</p>
+            </div>
+            <div class="card">
+                <h2>Total Customers</h2>
+                <p id="total-customers">0</p>
             </div>
         </section>
-        <section id="education">
-            <h2>Education</h2>
-            <p>Master's in Data Science, University Name, Year</p>
+        <section id="charts">
+            <div class="chart">
+                <h2>Monthly Sales</h2>
+                <canvas id="monthly-sales-chart"></canvas>
+            </div>
+            <div class="chart">
+                <h2>Product Category Performance</h2>
+                <canvas id="category-performance-chart"></canvas>
+            </div>
         </section>
-        <section id="contact">
-            <h2>Contact</h2>
-            <form>
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name" required>
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
-                <label for="message">Message:</label>
-                <textarea id="message" name="message" required></textarea>
-                <button type="submit">Send</button>
-            </form>
+        <section id="orders">
+            <h2>Recent Orders</h2>
+            <select id="category-filter">
+                <option value="all">All Categories</option>
+                <option value="electronics">Electronics</option>
+                <option value="fashion">Fashion</option>
+                <option value="home">Home</option>
+            </select>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Customer</th>
+                        <th>Category</th>
+                        <th>Amount</th>
+                    </tr>
+                </thead>
+                <tbody id="orders-table-body">
+                    <!-- Sample data will be populated here by JavaScript -->
+                </tbody>
+            </table>
         </section>
     </main>
     <footer>
-        <p>&copy; 2023 Data Science Graduate Portfolio</p>
+        <p>&copy; 2023 Sales Analytics Dashboard</p>
     </footer>
     <script src="script.js"></script>
 </body>
