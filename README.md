@@ -4,14 +4,14 @@ NovaMetrics Dashboard is a static web application that provides a responsive Saa
 
 ## Project Files
 
-- `index.html`: The main HTML file for the dashboard.
+- `index.html`: The main HTML file containing the structure of the dashboard.
 - `styles.css`: The CSS file for styling the dashboard.
-- `script.js`: The JavaScript file for dynamic behavior and interactivity.
+- `script.js`: The JavaScript file for interactive functionality.
 
-## Running Locally
+## How to Run Locally
 
-To run the NovaMetrics Dashboard locally, simply open the `index.html` file in a web browser. No build process or server is required.
+To run the NovaMetrics Dashboard locally, simply open the `index.html` file in a web browser. No build process or server setup is required.
 
-## Deployment
+## Deployment Notes
 
-This static website can be deployed to any static hosting service, such as AWS S3 and CloudFront, GitHub Pages, or Netlify. Simply upload the project files to the hosting service of your choice.
+This static website can be deployed to any static hosting service, such as AWS S3 and CloudFront, GitHub Pages, or Netlify. Ensure that all files are uploaded and accessible in the same directory structure as provided.
