@@ -1,6 +1,6 @@
 # Student Records API
 
-This is a Flask-based REST API for managing student records. It supports operations to create, read, update, and delete student information.
+This is a Flask-based REST API for managing student records. It supports basic CRUD operations and stores data in memory.
 
 ## Features
 - List all students
@@ -17,7 +17,7 @@ This is a Flask-based REST API for managing student records. It supports operati
    cd <repository-directory>
    
 
-2. Create a virtual environment:
+2. Create a virtual environment and activate it:
    bash
    python3 -m venv venv
    source venv/bin/activate
@@ -33,32 +33,26 @@ This is a Flask-based REST API for managing student records. It supports operati
    python app.py
    
 
-5. The API will be available at `http://localhost:5000`.
+5. The API will be available at `http://127.0.0.1:5000/`
 
 ## Deployment
 
-This application is ready to be deployed on Render or any platform that supports Python and Flask.
+This application is ready to be deployed on Render. Ensure you have a `Procfile` and `runtime.txt` for deployment.
 
 ## API Endpoints
 
-- `GET /` - Welcome message
-- `GET /health` - Health check
-- `GET /students` - Retrieve all students
-- `GET /students/<id>` - Retrieve a student by ID
-- `POST /students` - Create a new student
-- `PUT /students/<id>` - Update a student
-- `DELETE /students/<id>` - Delete a student
-
-## Environment Variables
-
-- `FLASK_ENV`: Set to `development` for development mode.
-- `SECRET_KEY`: A secret key for session management.
+- `GET /students`: Retrieve all students.
+- `GET /students/<id>`: Retrieve a student by ID.
+- `POST /students`: Create a new student.
+- `PUT /students/<id>`: Update an existing student.
+- `DELETE /students/<id>`: Delete a student.
 
 ## Error Handling
 
 - Returns `404` for not found resources.
 - Returns `400` for bad requests with missing fields.
 
-## License
+## Environment Variables
 
-This project is licensed under the MIT License.
+- `FLASK_ENV`: Set to `production` for production environment.
+- `SECRET_KEY`: Set a secret key for session management.
