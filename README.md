@@ -17,42 +17,42 @@ This is a Flask-based REST API for managing student records. It supports basic C
    cd <repository-directory>
    
 
-2. Create a virtual environment and activate it:
+2. Create a virtual environment:
    bash
    python3 -m venv venv
    source venv/bin/activate
    
 
-3. Install the dependencies:
+3. Install dependencies:
    bash
    pip install -r requirements.txt
    
 
 4. Run the application:
    bash
-   python app.py
+   flask run
    
 
-5. The API will be available at `http://127.0.0.1:5000/`
+5. The API will be available at `http://127.0.0.1:5000/`.
 
 ## Deployment
 
-This application is ready to be deployed on Render. Ensure you have a `Procfile` and `runtime.txt` for deployment.
+This application is ready for deployment on Render. Ensure you have a `Procfile` and `runtime.txt` for deployment.
 
 ## API Endpoints
 
-- `GET /students`: Retrieve all students.
-- `GET /students/<id>`: Retrieve a student by ID.
-- `POST /students`: Create a new student.
-- `PUT /students/<id>`: Update an existing student.
-- `DELETE /students/<id>`: Delete a student.
-
-## Error Handling
-
-- Returns `404` for not found resources.
-- Returns `400` for bad requests with missing fields.
+- `GET /students`: Returns all students.
+- `GET /students/<id>`: Returns a student by ID.
+- `POST /students`: Creates a new student.
+- `PUT /students/<id>`: Updates a student by ID.
+- `DELETE /students/<id>`: Deletes a student by ID.
 
 ## Environment Variables
 
-- `FLASK_ENV`: Set to `production` for production environment.
-- `SECRET_KEY`: Set a secret key for session management.
+- `FLASK_ENV`: Set to `development` for local development.
+- `SECRET_KEY`: A secret key for session management.
+
+## Notes
+
+- This API uses in-memory storage, so data will be lost when the server is restarted.
+- CORS is enabled for all domains.
