@@ -12,8 +12,9 @@
         <nav>
             <ul>
                 <li><a href="#summary">Summary</a></li>
-                <li><a href="#charts">Charts</a></li>
-                <li><a href="#orders">Recent Orders</a></li>
+                <li><a href="#monthly-sales">Monthly Sales</a></li>
+                <li><a href="#category-performance">Category Performance</a></li>
+                <li><a href="#recent-orders">Recent Orders</a></li>
             </ul>
         </nav>
     </header>
@@ -36,42 +37,37 @@
                 <p id="total-customers">0</p>
             </div>
         </section>
-        <section id="charts">
-            <div class="chart">
-                <h2>Monthly Sales</h2>
-                <canvas id="monthly-sales-chart"></canvas>
-            </div>
-            <div class="chart">
-                <h2>Product Category Performance</h2>
-                <canvas id="category-performance-chart"></canvas>
-            </div>
+        <section id="monthly-sales">
+            <h2>Monthly Sales</h2>
+            <canvas id="monthlySalesChart"></canvas>
         </section>
-        <section id="orders">
-            <h2>Recent Orders</h2>
+        <section id="category-performance">
+            <h2>Product Category Performance</h2>
             <select id="category-filter">
                 <option value="all">All Categories</option>
                 <option value="electronics">Electronics</option>
-                <option value="fashion">Fashion</option>
+                <option value="clothing">Clothing</option>
                 <option value="home">Home</option>
             </select>
+            <canvas id="categoryPerformanceChart"></canvas>
+        </section>
+        <section id="recent-orders">
+            <h2>Recent Orders</h2>
             <table>
                 <thead>
                     <tr>
                         <th>Order ID</th>
                         <th>Customer</th>
-                        <th>Category</th>
+                        <th>Date</th>
                         <th>Amount</th>
                     </tr>
                 </thead>
-                <tbody id="orders-table-body">
-                    <!-- Sample data will be populated here by JavaScript -->
+                <tbody id="recent-orders-table">
+                    <!-- Sample data will be inserted here by JavaScript -->
                 </tbody>
             </table>
         </section>
     </main>
-    <footer>
-        <p>&copy; 2023 Sales Analytics Dashboard</p>
-    </footer>
     <script src="script.js"></script>
 </body>
 </html>
