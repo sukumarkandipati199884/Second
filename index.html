@@ -8,24 +8,25 @@
     <script defer src="script.js"></script>
 </head>
 <body>
+    <div class="theme-toggle">
+        <button id="theme-toggle-btn">Toggle Theme</button>
+    </div>
     <header>
-        <nav class="navbar">
+        <nav class="top-nav">
             <div class="brand">NovaMetrics</div>
-            <button class="theme-toggle" aria-label="Toggle Theme">🌙</button>
-            <button class="nav-toggle" aria-label="Toggle Navigation">☰</button>
         </nav>
     </header>
     <aside class="sidebar">
         <ul>
-            <li>Dashboard</li>
-            <li>Analytics</li>
-            <li>Customers</li>
-            <li>Reports</li>
-            <li>Settings</li>
+            <li><a href="#dashboard" class="nav-link">Dashboard</a></li>
+            <li><a href="#analytics" class="nav-link">Analytics</a></li>
+            <li><a href="#customers" class="nav-link">Customers</a></li>
+            <li><a href="#reports" class="nav-link">Reports</a></li>
+            <li><a href="#settings" class="nav-link">Settings</a></li>
         </ul>
     </aside>
     <main>
-        <section class="metrics">
+        <section id="dashboard" class="metrics">
             <div class="metric-card">
                 <h3>Monthly Revenue</h3>
                 <p id="monthly-revenue">$0</p>
@@ -43,7 +44,7 @@
                 <p id="support-tickets">0</p>
             </div>
         </section>
-        <section class="charts">
+        <section id="analytics" class="charts">
             <div class="chart" id="revenue-chart">
                 <h3>Revenue Chart</h3>
                 <canvas id="revenueCanvas"></canvas>
@@ -53,9 +54,9 @@
                 <canvas id="activityCanvas"></canvas>
             </div>
         </section>
-        <section class="recent-customers">
+        <section id="customers" class="recent-customers">
             <h3>Recent Customers</h3>
-            <input type="text" id="customer-search" placeholder="Search Customers">
+            <input type="text" id="customer-search" placeholder="Search customers...">
             <table>
                 <thead>
                     <tr>
@@ -64,16 +65,49 @@
                         <th>Joined</th>
                     </tr>
                 </thead>
-                <tbody id="customer-table">
-                    <!-- Sample data will be inserted here by JavaScript -->
+                <tbody id="customer-table-body">
+                    <tr>
+                        <td>John Doe</td>
+                        <td>john@example.com</td>
+                        <td>2023-01-15</td>
+                    </tr>
+                    <tr>
+                        <td>Jane Smith</td>
+                        <td>jane@example.com</td>
+                        <td>2023-02-20</td>
+                    </tr>
+                    <tr>
+                        <td>Bob Johnson</td>
+                        <td>bob@example.com</td>
+                        <td>2023-03-05</td>
+                    </tr>
+                    <tr>
+                        <td>Alice Brown</td>
+                        <td>alice@example.com</td>
+                        <td>2023-04-10</td>
+                    </tr>
+                    <tr>
+                        <td>Charlie Davis</td>
+                        <td>charlie@example.com</td>
+                        <td>2023-05-25</td>
+                    </tr>
                 </tbody>
             </table>
         </section>
-        <section class="activity-feed">
+        <section id="reports" class="recent-activity">
             <h3>Recent Activity</h3>
             <ul id="activity-feed">
-                <!-- Sample activity data will be inserted here by JavaScript -->
+                <li>User John Doe signed up.</li>
+                <li>New support ticket created by Jane Smith.</li>
+                <li>Revenue report generated.</li>
+                <li>Bob Johnson upgraded his plan.</li>
             </ul>
+        </section>
+        <section id="settings" class="date-range-selector">
+            <h3>Select Date Range</h3>
+            <input type="date" id="start-date">
+            <input type="date" id="end-date">
+            <button id="update-metrics">Update Metrics</button>
         </section>
     </main>
 </body>
