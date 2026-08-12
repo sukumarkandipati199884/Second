@@ -3,98 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gourmet Haven</title>
+    <title>Portfolio - Data Science Graduate</title>
     <link rel="stylesheet" href="styles.css">
-    <script defer src="script.js"></script>
 </head>
 <body>
     <header>
-        <nav class="navbar">
-            <div class="logo">Gourmet Haven</div>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#menu">Menu</a></li>
+        <nav>
+            <ul>
+                <li><a href="#hero">Home</a></li>
                 <li><a href="#about">About</a></li>
-                <li><a href="#gallery">Gallery</a></li>
-                <li><a href="#reservation">Reservation</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#education">Education</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
-            <div class="burger">
-                <div class="line1"></div>
-                <div class="line2"></div>
-                <div class="line3"></div>
-            </div>
         </nav>
     </header>
-    <section id="home" class="hero">
-        <h1>Welcome to Gourmet Haven</h1>
-        <p>Experience the finest dining with us.</p>
-    </section>
-    <section id="menu" class="menu">
-        <h2>Our Menu</h2>
-        <div class="menu-categories">
-            <button class="filter-btn" data-category="all">All</button>
-            <button class="filter-btn" data-category="starters">Starters</button>
-            <button class="filter-btn" data-category="mains">Mains</button>
-            <button class="filter-btn" data-category="desserts">Desserts</button>
-        </div>
-        <div class="menu-items">
-            <div class="menu-item" data-category="starters">
-                <h3>Bruschetta</h3>
-                <p>Grilled bread with tomato, basil, and olive oil.</p>
-                <span>$8.00</span>
+    <main>
+        <section id="hero">
+            <h1>Welcome to My Portfolio</h1>
+            <p>Data Science Graduate Student</p>
+            <a href="#contact" class="cta">Get in Touch</a>
+        </section>
+        <section id="about">
+            <h2>About Me</h2>
+            <p>I am a passionate data science graduate student with a keen interest in machine learning and data analysis. I enjoy solving complex problems and turning data into actionable insights.</p>
+        </section>
+        <section id="skills">
+            <h2>Skills</h2>
+            <ul>
+                <li>Python</li>
+                <li>R</li>
+                <li>Machine Learning</li>
+                <li>Data Visualization</li>
+                <li>SQL</li>
+            </ul>
+        </section>
+        <section id="projects">
+            <h2>Projects</h2>
+            <div class="project">
+                <h3>Project Title 1</h3>
+                <p>Description of the project and the technologies used.</p>
             </div>
-            <div class="menu-item" data-category="mains">
-                <h3>Grilled Salmon</h3>
-                <p>Fresh salmon with a lemon butter sauce.</p>
-                <span>$18.00</span>
+            <div class="project">
+                <h3>Project Title 2</h3>
+                <p>Description of the project and the technologies used.</p>
             </div>
-            <div class="menu-item" data-category="desserts">
-                <h3>Tiramisu</h3>
-                <p>Classic Italian dessert with coffee and mascarpone.</p>
-                <span>$7.00</span>
-            </div>
-        </div>
-    </section>
-    <section id="about" class="about">
-        <h2>About Us</h2>
-        <p>Gourmet Haven is a family-owned restaurant offering exquisite dining experiences with a focus on quality ingredients and exceptional service.</p>
-    </section>
-    <section id="gallery" class="gallery">
-        <h2>Gallery</h2>
-        <div class="gallery-images">
-            <img src="images/dish1.jpg" alt="Dish 1">
-            <img src="images/dish2.jpg" alt="Dish 2">
-            <img src="images/dish3.jpg" alt="Dish 3">
-        </div>
-    </section>
-    <section id="reservation" class="reservation">
-        <h2>Make a Reservation</h2>
-        <form id="reservation-form">
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required>
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
-            <label for="date">Date:</label>
-            <input type="date" id="date" name="date" required>
-            <label for="time">Time:</label>
-            <input type="time" id="time" name="time" required>
-            <label for="guests">Number of Guests:</label>
-            <input type="number" id="guests" name="guests" min="1" required>
-            <label for="requests">Special Requests:</label>
-            <textarea id="requests" name="requests"></textarea>
-            <button type="submit">Reserve Now</button>
-        </form>
-        <div id="reservation-feedback"></div>
-    </section>
-    <section id="contact" class="contact">
-        <h2>Contact Us</h2>
-        <p>Phone: (123) 456-7890</p>
-        <p>Email: contact@gourmethaven.com</p>
-        <p>Opening Hours: Mon-Sun: 11:00 AM - 10:00 PM</p>
-    </section>
+        </section>
+        <section id="education">
+            <h2>Education</h2>
+            <p>Master's in Data Science, University Name</p>
+            <p>Bachelor's in Computer Science, University Name</p>
+        </section>
+        <section id="contact">
+            <h2>Contact</h2>
+            <form id="contact-form">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" required></textarea>
+                <button type="submit">Send</button>
+            </form>
+        </section>
+    </main>
     <footer>
-        <p>&copy; 2023 Gourmet Haven. All rights reserved.</p>
+        <p>&copy; 2023 Data Science Graduate</p>
     </footer>
+    <script src="script.js"></script>
 </body>
 </html>
