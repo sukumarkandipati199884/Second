@@ -1,47 +1,67 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const themeToggleBtn = document.getElementById('theme-toggle-btn');
+    const themeToggle = document.querySelector('.theme-toggle');
+    const navToggle = document.querySelector('.nav-toggle');
     const body = document.body;
+    const sidebar = document.querySelector('.sidebar');
     const monthlyRevenue = document.getElementById('monthly-revenue');
     const activeUsers = document.getElementById('active-users');
     const conversionRate = document.getElementById('conversion-rate');
     const supportTickets = document.getElementById('support-tickets');
-    const customerSearch = document.getElementById('customer-search');
-    const customerTableBody = document.getElementById('customer-table-body');
+    const customerTable = document.getElementById('customer-table');
     const activityFeed = document.getElementById('activity-feed');
-    const updateMetricsBtn = document.getElementById('update-metrics');
-    const startDateInput = document.getElementById('start-date');
-    const endDateInput = document.getElementById('end-date');
+    const customerSearch = document.getElementById('customer-search');
 
-    let isDarkTheme = false;
-
-    themeToggleBtn.addEventListener('click', function() {
-        isDarkTheme = !isDarkTheme;
-        if (isDarkTheme) {
-            body.classList.add('dark-theme');
-        } else {
-            body.classList.remove('dark-theme');
-        }
-    });
-
-    const sampleMetrics = {
-        monthlyRevenue: 50000,
-        activeUsers: 1200,
-        conversionRate: 5.6,
-        supportTickets: 23
+    const sampleData = {
+        metrics: {
+            revenue: 50000,
+            users: 1200,
+            conversion: 5.4,
+            tickets: 23
+        },
+        customers: [
+            { name: 'John Doe', email: 'john@example.com', joined: '2023-01-15' },
+            { name: 'Jane Smith', email: 'jane@example.com', joined: '2023-02-20' },
+            { name: 'Sam Johnson', email: 'sam@example.com', joined: '2023-03-05' },
+            { name: 'Chris Lee', email: 'chris@example.com', joined: '2023-04-10' },
+            { name: 'Pat Brown', email: 'pat@example.com', joined: '2023-05-25' }
+        ],
+        activities: [
+            'User John Doe signed up.',
+            'Jane Smith upgraded her plan.',
+            'Sam Johnson submitted a support ticket.',
+            'Chris Lee downloaded a report.',
+            'Pat Brown changed account settings.'
+        ]
     };
 
     function updateMetrics() {
-        monthlyRevenue.textContent = `$${sampleMetrics.monthlyRevenue}`;
-        activeUsers.textContent = sampleMetrics.activeUsers;
-        conversionRate.textContent = `${sampleMetrics.conversionRate}%`;
-        supportTickets.textContent = sampleMetrics.supportTickets;
+        monthlyRevenue.textContent = `$${sampleData.metrics.revenue}`;
+        activeUsers.textContent = sampleData.metrics.users;
+        conversionRate.textContent = `${sampleData.metrics.conversion}%`;
+        supportTickets.textContent = sampleData.metrics.tickets;
     }
 
-    updateMetrics();
+    function populateCustomers() {
+        customerTable.innerHTML = '';
+        sampleData.customers.forEach(customer => {
+            const row = document.createElement('tr');
+            row.innerHTML = `<td>${customer.name}</td><td>${customer.email}</td><td>${customer.joined}</td>`;
+            customerTable.appendChild(row);
+        });
+    }
 
-    customerSearch.addEventListener('input', function() {
+    function populateActivities() {
+        activityFeed.innerHTML = '';
+        sampleData.activities.forEach(activity => {
+            const item = document.createElement('li');
+            item.textContent = activity;
+            activityFeed.appendChild(item);
+        });
+    }
+
+    function filterCustomers() {
         const filter = customerSearch.value.toLowerCase();
-        const rows = customerTableBody.getElementsByTagName('tr');
+        const rows = customerTable.getElementsByTagName('tr');
         Array.from(rows).forEach(row => {
             const cells = row.getElementsByTagName('td');
             const name = cells[0].textContent.toLowerCase();
@@ -52,63 +72,29 @@ document.addEventListener('DOMContentLoaded', function() {
                 row.style.display = 'none';
             }
         });
-    });
+    }
 
-    updateMetricsBtn.addEventListener('click', function() {
-        const startDate = new Date(startDateInput.value);
-        const endDate = new Date(endDateInput.value);
-        if (startDate && endDate && startDate <= endDate) {
-            console.log('Metrics updated for date range:', startDate, endDate);
-            // Simulate metrics update
-            updateMetrics();
+    themeToggle.addEventListener('click', () => {
+        body.classList.toggle('dark-theme');
+        if (body.classList.contains('dark-theme')) {
+            themeToggle.textContent = 'Light Theme';
         } else {
-            alert('Please select a valid date range.');
+            themeToggle.textContent = 'Dark Theme';
         }
     });
 
-    const ctxRevenue = document.getElementById('revenueCanvas').getContext('2d');
-    const revenueChart = new Chart(ctxRevenue, {
-        type: 'line',
-        data: {
-            labels: ['January', 'February', 'March', 'April', 'May'],
-            datasets: [{
-                label: 'Revenue',
-                data: [12000, 15000, 18000, 20000, 25000],
-                borderColor: '#4a4e69',
-                fill: false
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false
+    navToggle.addEventListener('click', () => {
+        sidebar.classList.toggle('active');
+        if (sidebar.classList.contains('active')) {
+            navToggle.textContent = '✖';
+        } else {
+            navToggle.textContent = '☰';
         }
     });
 
-    const ctxActivity = document.getElementById('activityCanvas').getContext('2d');
-    const activityChart = new Chart(ctxActivity, {
-        type: 'bar',
-        data: {
-            labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-            datasets: [{
-                label: 'User Activity',
-                data: [200, 300, 250, 400, 350],
-                backgroundColor: '#4a4e69'
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false
-        }
-    });
+    customerSearch.addEventListener('input', filterCustomers);
 
-    document.querySelectorAll('.nav-link').forEach(link => {
-        link.addEventListener('click', function(event) {
-            event.preventDefault();
-            const targetId = this.getAttribute('href').substring(1);
-            const targetSection = document.getElementById(targetId);
-            if (targetSection) {
-                targetSection.scrollIntoView({ behavior: 'smooth' });
-            }
-        });
-    });
+    updateMetrics();
+    populateCustomers();
+    populateActivities();
 });
