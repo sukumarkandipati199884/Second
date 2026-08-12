@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sales Analytics Dashboard</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <header>
@@ -19,7 +18,7 @@
         </nav>
     </header>
     <main>
-        <section id="summary" class="summary">
+        <section id="summary">
             <div class="card">
                 <h2>Total Revenue</h2>
                 <p id="total-revenue">$0</p>
@@ -37,17 +36,20 @@
                 <p id="total-customers">0</p>
             </div>
         </section>
-        <section id="charts" class="charts">
-            <div class="chart-container">
-                <h2>Monthly Sales</h2>
-                <canvas id="monthly-sales-chart"></canvas>
-            </div>
-            <div class="chart-container">
-                <h2>Product Category Performance</h2>
-                <canvas id="category-performance-chart"></canvas>
-            </div>
+        <section id="charts">
+            <h2>Monthly Sales</h2>
+            <canvas id="monthly-sales-chart"></canvas>
+            <h2>Product Category Performance</h2>
+            <canvas id="category-performance-chart"></canvas>
+            <label for="category-filter">Filter by Category:</label>
+            <select id="category-filter">
+                <option value="all">All</option>
+                <option value="electronics">Electronics</option>
+                <option value="clothing">Clothing</option>
+                <option value="home">Home</option>
+            </select>
         </section>
-        <section id="orders" class="orders">
+        <section id="orders">
             <h2>Recent Orders</h2>
             <table>
                 <thead>
@@ -62,15 +64,6 @@
                     <!-- Sample data will be inserted here by JavaScript -->
                 </tbody>
             </table>
-        </section>
-        <section class="filter">
-            <label for="category-filter">Filter by Category:</label>
-            <select id="category-filter">
-                <option value="all">All</option>
-                <option value="electronics">Electronics</option>
-                <option value="fashion">Fashion</option>
-                <option value="home">Home</option>
-            </select>
         </section>
     </main>
     <footer>
