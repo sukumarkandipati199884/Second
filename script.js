@@ -4,33 +4,39 @@ document.addEventListener('DOMContentLoaded', function() {
         totalOrders: 150,
         averageOrderValue: 333.33,
         totalCustomers: 120,
-        recentOrders: [
-            { id: '001', customer: 'John Doe', amount: '$200', date: '2023-10-01' },
-            { id: '002', customer: 'Jane Smith', amount: '$150', date: '2023-10-02' },
-            { id: '003', customer: 'Alice Johnson', amount: '$300', date: '2023-10-03' }
+        orders: [
+            { id: 1, customer: 'John Doe', category: 'electronics', total: 299.99 },
+            { id: 2, customer: 'Jane Smith', category: 'clothing', total: 89.99 },
+            { id: 3, customer: 'Alice Johnson', category: 'home', total: 45.00 },
+            { id: 4, customer: 'Chris Lee', category: 'electronics', total: 199.99 }
         ]
     };
 
-    document.getElementById('total-revenue').textContent = `$${sampleData.totalRevenue}`;
-    document.getElementById('total-orders').textContent = sampleData.totalOrders;
-    document.getElementById('average-order-value').textContent = `$${sampleData.averageOrderValue}`;
-    document.getElementById('total-customers').textContent = sampleData.totalCustomers;
+    function updateSummary() {
+        document.getElementById('total-revenue').textContent = `$${sampleData.totalRevenue}`;
+        document.getElementById('total-orders').textContent = sampleData.totalOrders;
+        document.getElementById('average-order-value').textContent = `$${sampleData.averageOrderValue.toFixed(2)}`;
+        document.getElementById('total-customers').textContent = sampleData.totalCustomers;
+    }
 
-    const recentOrdersTable = document.getElementById('recent-orders');
-    sampleData.recentOrders.forEach(order => {
-        const row = document.createElement('tr');
-        row.innerHTML = `<td>${order.id}</td><td>${order.customer}</td><td>${order.amount}</td><td>${order.date}</td>`;
-        recentOrdersTable.appendChild(row);
+    function renderOrders(category) {
+        const ordersTable = document.getElementById('orders-table');
+        ordersTable.innerHTML = '';
+        const filteredOrders = sampleData.orders.filter(order => category === 'all' || order.category === category);
+        filteredOrders.forEach(order => {
+            const row = document.createElement('tr');
+            row.innerHTML = `<td>${order.id}</td><td>${order.customer}</td><td>${order.category}</td><td>$${order.total.toFixed(2)}</td>`;
+            ordersTable.appendChild(row);
+        });
+    }
+
+    document.getElementById('category-filter').addEventListener('change', function(event) {
+        renderOrders(event.target.value);
     });
 
-    const categoryFilter = document.getElementById('category-filter');
-    categoryFilter.addEventListener('change', function() {
-        const selectedCategory = categoryFilter.value;
-        // Update charts and metrics based on selected category
-        console.log(`Filter applied: ${selectedCategory}`);
-    });
+    updateSummary();
+    renderOrders('all');
 
-    // Initialize charts (using Chart.js or similar library)
-    // Placeholder for chart initialization
-    console.log('Charts initialized');
+    // Placeholder for chart rendering logic
+    // Use a library like Chart.js to render charts in the canvas elements
 });
