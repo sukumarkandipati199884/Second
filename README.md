@@ -1,10 +1,10 @@
 # Student Records API
 
-This is a Flask-based REST API for managing student records. It supports basic CRUD operations and stores data in memory.
+This is a Flask-based REST API for managing student records.
 
 ## Features
-- List all students
-- Retrieve a single student by ID
+- Retrieve all students
+- Retrieve a specific student by ID
 - Create a new student
 - Update an existing student
 - Delete a student
@@ -23,7 +23,7 @@ This is a Flask-based REST API for managing student records. It supports basic C
    source venv/bin/activate
    
 
-3. Install dependencies:
+3. Install the dependencies:
    bash
    pip install -r requirements.txt
    
@@ -33,26 +33,24 @@ This is a Flask-based REST API for managing student records. It supports basic C
    flask run
    
 
-5. The API will be available at `http://127.0.0.1:5000/`.
-
 ## Deployment
 
-This application is ready for deployment on Render. Ensure you have a `Procfile` and `runtime.txt` for deployment.
+This application is ready for deployment on Render. Use the provided `Procfile` and `runtime.txt` for configuration.
 
 ## API Endpoints
 
-- `GET /students`: Returns all students.
-- `GET /students/<id>`: Returns a student by ID.
-- `POST /students`: Creates a new student.
-- `PUT /students/<id>`: Updates a student by ID.
-- `DELETE /students/<id>`: Deletes a student by ID.
+- `GET /`: Root route
+- `GET /health`: Health check route
+- `GET /students`: Retrieve all students
+- `GET /students/<id>`: Retrieve a student by ID
+- `POST /students`: Create a new student
+- `PUT /students/<id>`: Update a student
+- `DELETE /students/<id>`: Delete a student
 
-## Environment Variables
+## Error Handling
 
-- `FLASK_ENV`: Set to `development` for local development.
-- `SECRET_KEY`: A secret key for session management.
+The API returns appropriate HTTP status codes and error messages for invalid requests, such as missing fields or non-existent student IDs.
 
-## Notes
+## CORS Support
 
-- This API uses in-memory storage, so data will be lost when the server is restarted.
-- CORS is enabled for all domains.
+CORS is enabled for all routes using `flask-cors`.
