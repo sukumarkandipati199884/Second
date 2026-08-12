@@ -12,7 +12,7 @@
         <nav class="navbar">
             <div class="brand">NovaMetrics</div>
             <button class="theme-toggle">Toggle Theme</button>
-            <button class="nav-toggle">☰</button>
+            <button class="nav-toggle">Toggle Navigation</button>
         </nav>
     </header>
     <aside class="sidebar">
@@ -24,35 +24,37 @@
             <li>Settings</li>
         </ul>
     </aside>
-    <main class="main">
-        <section class="hero">
-            <h1>Welcome to NovaMetrics</h1>
-            <p>Your comprehensive SaaS analytics dashboard.</p>
-        </section>
+    <main>
         <section class="metrics">
-            <div class="card">
-                <h2>Monthly Revenue</h2>
+            <div class="metric-card">
+                <h3>Monthly Revenue</h3>
                 <p id="monthly-revenue">$0</p>
             </div>
-            <div class="card">
-                <h2>Active Users</h2>
+            <div class="metric-card">
+                <h3>Active Users</h3>
                 <p id="active-users">0</p>
             </div>
-            <div class="card">
-                <h2>Conversion Rate</h2>
+            <div class="metric-card">
+                <h3>Conversion Rate</h3>
                 <p id="conversion-rate">0%</p>
             </div>
-            <div class="card">
-                <h2>Support Tickets</h2>
+            <div class="metric-card">
+                <h3>Support Tickets</h3>
                 <p id="support-tickets">0</p>
             </div>
         </section>
         <section class="charts">
-            <div id="revenue-chart" class="chart"></div>
-            <div id="user-activity-chart" class="chart"></div>
+            <div class="chart" id="revenue-chart">
+                <h3>Revenue Chart</h3>
+                <canvas id="revenueCanvas"></canvas>
+            </div>
+            <div class="chart" id="user-activity-chart">
+                <h3>User Activity</h3>
+                <canvas id="activityCanvas"></canvas>
+            </div>
         </section>
         <section class="recent-customers">
-            <h2>Recent Customers</h2>
+            <h3>Recent Customers</h3>
             <input type="text" id="customer-search" placeholder="Search customers...">
             <table>
                 <thead>
@@ -63,14 +65,14 @@
                     </tr>
                 </thead>
                 <tbody id="customer-table">
-                    <!-- Sample data will be inserted here by JavaScript -->
+                    <!-- Sample data will be inserted here -->
                 </tbody>
             </table>
         </section>
         <section class="activity-feed">
-            <h2>Recent Activity</h2>
+            <h3>Recent Activity</h3>
             <ul id="activity-feed">
-                <!-- Sample data will be inserted here by JavaScript -->
+                <!-- Sample activity data will be inserted here -->
             </ul>
         </section>
     </main>
