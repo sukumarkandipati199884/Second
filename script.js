@@ -1,101 +1,114 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const themeToggle = document.querySelector('.theme-toggle');
-    const navToggle = document.querySelector('.nav-toggle');
+    const themeToggleBtn = document.getElementById('theme-toggle-btn');
     const body = document.body;
-    const sidebar = document.querySelector('.sidebar');
-    const revenueElement = document.getElementById('monthly-revenue');
-    const usersElement = document.getElementById('active-users');
-    const conversionElement = document.getElementById('conversion-rate');
-    const ticketsElement = document.getElementById('support-tickets');
-    const customerTable = document.getElementById('customer-table');
-    const activityFeed = document.getElementById('activity-feed');
+    const monthlyRevenue = document.getElementById('monthly-revenue');
+    const activeUsers = document.getElementById('active-users');
+    const conversionRate = document.getElementById('conversion-rate');
+    const supportTickets = document.getElementById('support-tickets');
     const customerSearch = document.getElementById('customer-search');
+    const customerTableBody = document.getElementById('customer-table-body');
+    const activityFeed = document.getElementById('activity-feed');
+    const updateMetricsBtn = document.getElementById('update-metrics');
+    const startDateInput = document.getElementById('start-date');
+    const endDateInput = document.getElementById('end-date');
+
+    let isDarkTheme = false;
+
+    themeToggleBtn.addEventListener('click', function() {
+        isDarkTheme = !isDarkTheme;
+        if (isDarkTheme) {
+            body.classList.add('dark-theme');
+        } else {
+            body.classList.remove('dark-theme');
+        }
+    });
 
     const sampleMetrics = {
-        revenue: 12000,
-        users: 1500,
-        conversion: 3.5,
-        tickets: 45
+        monthlyRevenue: 50000,
+        activeUsers: 1200,
+        conversionRate: 5.6,
+        supportTickets: 23
     };
 
-    const sampleCustomers = [
-        { name: 'Alice Johnson', email: 'alice@example.com', joined: '2023-01-15' },
-        { name: 'Bob Smith', email: 'bob@example.com', joined: '2023-02-20' },
-        { name: 'Charlie Brown', email: 'charlie@example.com', joined: '2023-03-10' },
-        { name: 'David Wilson', email: 'david@example.com', joined: '2023-04-05' },
-        { name: 'Eva Green', email: 'eva@example.com', joined: '2023-05-25' }
-    ];
-
-    const sampleActivities = [
-        'Alice Johnson signed up.',
-        'Bob Smith upgraded his plan.',
-        'Charlie Brown submitted a support ticket.',
-        'David Wilson logged in.',
-        'Eva Green canceled her subscription.'
-    ];
-
     function updateMetrics() {
-        revenueElement.textContent = `$${sampleMetrics.revenue}`;
-        usersElement.textContent = sampleMetrics.users;
-        conversionElement.textContent = `${sampleMetrics.conversion}%`;
-        ticketsElement.textContent = sampleMetrics.tickets;
+        monthlyRevenue.textContent = `$${sampleMetrics.monthlyRevenue}`;
+        activeUsers.textContent = sampleMetrics.activeUsers;
+        conversionRate.textContent = `${sampleMetrics.conversionRate}%`;
+        supportTickets.textContent = sampleMetrics.supportTickets;
     }
-
-    function populateCustomers() {
-        customerTable.innerHTML = sampleCustomers.map(customer => `
-            <tr>
-                <td>${customer.name}</td>
-                <td>${customer.email}</td>
-                <td>${customer.joined}</td>
-            </tr>
-        `).join('');
-    }
-
-    function populateActivities() {
-        activityFeed.innerHTML = sampleActivities.map(activity => `<li>${activity}</li>`).join('');
-    }
-
-    function filterCustomers() {
-        const query = customerSearch.value.toLowerCase();
-        const filteredCustomers = sampleCustomers.filter(customer =>
-            customer.name.toLowerCase().includes(query) ||
-            customer.email.toLowerCase().includes(query)
-        );
-        customerTable.innerHTML = filteredCustomers.map(customer => `
-            <tr>
-                <td>${customer.name}</td>
-                <td>${customer.email}</td>
-                <td>${customer.joined}</td>
-            </tr>
-        `).join('');
-    }
-
-    themeToggle.addEventListener('click', () => {
-        body.classList.toggle('dark-theme');
-        themeToggle.textContent = body.classList.contains('dark-theme') ? '☀️' : '🌙';
-    });
-
-    navToggle.addEventListener('click', () => {
-        sidebar.classList.toggle('visible');
-        navToggle.setAttribute('aria-expanded', sidebar.classList.contains('visible'));
-    });
-
-    customerSearch.addEventListener('input', filterCustomers);
 
     updateMetrics();
-    populateCustomers();
-    populateActivities();
 
-    // Implement chart rendering logic here using Canvas API or similar
-    const revenueCanvas = document.getElementById('revenueCanvas');
-    const activityCanvas = document.getElementById('activityCanvas');
+    customerSearch.addEventListener('input', function() {
+        const filter = customerSearch.value.toLowerCase();
+        const rows = customerTableBody.getElementsByTagName('tr');
+        Array.from(rows).forEach(row => {
+            const cells = row.getElementsByTagName('td');
+            const name = cells[0].textContent.toLowerCase();
+            const email = cells[1].textContent.toLowerCase();
+            if (name.includes(filter) || email.includes(filter)) {
+                row.style.display = '';
+            } else {
+                row.style.display = 'none';
+            }
+        });
+    });
 
-    // Example chart rendering logic
-    const ctxRevenue = revenueCanvas.getContext('2d');
-    ctxRevenue.fillStyle = 'green';
-    ctxRevenue.fillRect(10, 10, 150, 100);
+    updateMetricsBtn.addEventListener('click', function() {
+        const startDate = new Date(startDateInput.value);
+        const endDate = new Date(endDateInput.value);
+        if (startDate && endDate && startDate <= endDate) {
+            console.log('Metrics updated for date range:', startDate, endDate);
+            // Simulate metrics update
+            updateMetrics();
+        } else {
+            alert('Please select a valid date range.');
+        }
+    });
 
-    const ctxActivity = activityCanvas.getContext('2d');
-    ctxActivity.fillStyle = 'blue';
-    ctxActivity.fillRect(10, 10, 150, 100);
+    const ctxRevenue = document.getElementById('revenueCanvas').getContext('2d');
+    const revenueChart = new Chart(ctxRevenue, {
+        type: 'line',
+        data: {
+            labels: ['January', 'February', 'March', 'April', 'May'],
+            datasets: [{
+                label: 'Revenue',
+                data: [12000, 15000, 18000, 20000, 25000],
+                borderColor: '#4a4e69',
+                fill: false
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false
+        }
+    });
+
+    const ctxActivity = document.getElementById('activityCanvas').getContext('2d');
+    const activityChart = new Chart(ctxActivity, {
+        type: 'bar',
+        data: {
+            labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+            datasets: [{
+                label: 'User Activity',
+                data: [200, 300, 250, 400, 350],
+                backgroundColor: '#4a4e69'
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false
+        }
+    });
+
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', function(event) {
+            event.preventDefault();
+            const targetId = this.getAttribute('href').substring(1);
+            const targetSection = document.getElementById(targetId);
+            if (targetSection) {
+                targetSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    });
 });
