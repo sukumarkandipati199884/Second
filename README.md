@@ -1,14 +1,18 @@
 # NovaMetrics Dashboard
 
-NovaMetrics Dashboard is a static web application that provides a responsive SaaS analytics dashboard for a fictional company called NovaMetrics.
+NovaMetrics Dashboard is a static web application that provides a responsive analytics dashboard for a fictional company called NovaMetrics. It includes various sections such as metrics, charts, recent customers, and activity feeds.
 
 ## Project Files
+
 - `index.html`: The main HTML file for the dashboard.
 - `styles.css`: The CSS file for styling the dashboard.
-- `script.js`: The JavaScript file for interactive functionality.
+- `script.js`: The JavaScript file for dynamic behavior and data handling.
 
-## Running Locally
-To run the dashboard locally, simply open the `index.html` file in a web browser. No build process or server is required.
+## How to Run Locally
 
-## Deployment
-This static website can be deployed to any static hosting service, such as AWS S3 and CloudFront, GitHub Pages, or Netlify. Simply upload the project files to the hosting service of your choice.
+1. Clone the repository or download the project files.
+2. Open `index.html` directly in a web browser.
+
+## Deployment Notes
+
+This project is a static website and can be hosted on any static hosting service such as AWS S3, CloudFront, GitHub Pages, or Netlify. Simply upload the project files to your chosen hosting service.
