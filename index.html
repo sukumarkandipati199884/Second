@@ -8,54 +8,51 @@
     <script defer src="script.js"></script>
 </head>
 <body>
-    <div class="theme-toggle">
-        <button id="theme-toggle-btn">Toggle Theme</button>
-    </div>
     <header>
-        <nav class="top-nav">
+        <nav class="navbar">
             <div class="brand">NovaMetrics</div>
+            <button class="theme-toggle">Toggle Theme</button>
+            <button class="nav-toggle">☰</button>
         </nav>
     </header>
     <aside class="sidebar">
         <ul>
-            <li><a href="#dashboard" class="nav-link">Dashboard</a></li>
-            <li><a href="#analytics" class="nav-link">Analytics</a></li>
-            <li><a href="#customers" class="nav-link">Customers</a></li>
-            <li><a href="#reports" class="nav-link">Reports</a></li>
-            <li><a href="#settings" class="nav-link">Settings</a></li>
+            <li>Dashboard</li>
+            <li>Analytics</li>
+            <li>Customers</li>
+            <li>Reports</li>
+            <li>Settings</li>
         </ul>
     </aside>
-    <main>
-        <section id="dashboard" class="metrics">
-            <div class="metric-card">
-                <h3>Monthly Revenue</h3>
+    <main class="main">
+        <section class="hero">
+            <h1>Welcome to NovaMetrics</h1>
+            <p>Your comprehensive SaaS analytics dashboard.</p>
+        </section>
+        <section class="metrics">
+            <div class="card">
+                <h2>Monthly Revenue</h2>
                 <p id="monthly-revenue">$0</p>
             </div>
-            <div class="metric-card">
-                <h3>Active Users</h3>
+            <div class="card">
+                <h2>Active Users</h2>
                 <p id="active-users">0</p>
             </div>
-            <div class="metric-card">
-                <h3>Conversion Rate</h3>
+            <div class="card">
+                <h2>Conversion Rate</h2>
                 <p id="conversion-rate">0%</p>
             </div>
-            <div class="metric-card">
-                <h3>Support Tickets</h3>
+            <div class="card">
+                <h2>Support Tickets</h2>
                 <p id="support-tickets">0</p>
             </div>
         </section>
-        <section id="analytics" class="charts">
-            <div class="chart" id="revenue-chart">
-                <h3>Revenue Chart</h3>
-                <canvas id="revenueCanvas"></canvas>
-            </div>
-            <div class="chart" id="user-activity-chart">
-                <h3>User Activity</h3>
-                <canvas id="activityCanvas"></canvas>
-            </div>
+        <section class="charts">
+            <div id="revenue-chart" class="chart"></div>
+            <div id="user-activity-chart" class="chart"></div>
         </section>
-        <section id="customers" class="recent-customers">
-            <h3>Recent Customers</h3>
+        <section class="recent-customers">
+            <h2>Recent Customers</h2>
             <input type="text" id="customer-search" placeholder="Search customers...">
             <table>
                 <thead>
@@ -65,49 +62,16 @@
                         <th>Joined</th>
                     </tr>
                 </thead>
-                <tbody id="customer-table-body">
-                    <tr>
-                        <td>John Doe</td>
-                        <td>john@example.com</td>
-                        <td>2023-01-15</td>
-                    </tr>
-                    <tr>
-                        <td>Jane Smith</td>
-                        <td>jane@example.com</td>
-                        <td>2023-02-20</td>
-                    </tr>
-                    <tr>
-                        <td>Bob Johnson</td>
-                        <td>bob@example.com</td>
-                        <td>2023-03-05</td>
-                    </tr>
-                    <tr>
-                        <td>Alice Brown</td>
-                        <td>alice@example.com</td>
-                        <td>2023-04-10</td>
-                    </tr>
-                    <tr>
-                        <td>Charlie Davis</td>
-                        <td>charlie@example.com</td>
-                        <td>2023-05-25</td>
-                    </tr>
+                <tbody id="customer-table">
+                    <!-- Sample data will be inserted here by JavaScript -->
                 </tbody>
             </table>
         </section>
-        <section id="reports" class="recent-activity">
-            <h3>Recent Activity</h3>
+        <section class="activity-feed">
+            <h2>Recent Activity</h2>
             <ul id="activity-feed">
-                <li>User John Doe signed up.</li>
-                <li>New support ticket created by Jane Smith.</li>
-                <li>Revenue report generated.</li>
-                <li>Bob Johnson upgraded his plan.</li>
+                <!-- Sample data will be inserted here by JavaScript -->
             </ul>
-        </section>
-        <section id="settings" class="date-range-selector">
-            <h3>Select Date Range</h3>
-            <input type="date" id="start-date">
-            <input type="date" id="end-date">
-            <button id="update-metrics">Update Metrics</button>
         </section>
     </main>
 </body>
