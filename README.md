@@ -1,25 +1,20 @@
 # Sales Analytics Dashboard
 
-This is a responsive, interactive sales analytics dashboard for a small e-commerce business. It displays key metrics, charts, and recent orders with a filter option.
+This is a static website project for a responsive interactive sales analytics dashboard for a small e-commerce business.
 
 ## Features
-- Responsive design for desktop, tablet, and mobile
-- Summary cards for total revenue, total orders, average order value, and total customers
+- Responsive layout for desktop, tablet, and mobile devices
+- Summary cards displaying key metrics
 - Monthly sales and product category performance charts
 - Recent orders table with sample data
-- Dropdown filter to filter orders by product category
+- Dropdown filter for product category
 
 ## Setup
 No setup is required. Simply open `index.html` in a web browser to view the dashboard.
 
 ## Usage
-- Use the navigation links to jump to different sections of the dashboard.
-- View summary metrics in the summary section.
-- Use the dropdown filter to filter recent orders by product category.
+- The dashboard displays sample data and is interactive.
+- Use the category filter to simulate filtering the data by product category.
 
 ## Note
-- The charts are placeholders and require a library like Chart.js for rendering.
-- This is a static site and does not require a backend or database.
-
-## License
-This project is licensed under the MIT License.
+This is a static demo and does not include real-time data or backend integration.
