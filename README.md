@@ -1,56 +1,15 @@
-# Student Records API
+# Alex Carter - Portfolio
 
-This is a Flask-based REST API for managing student records.
+## Description
+This is a responsive personal portfolio website for a software engineer named Alex Carter. It includes a navigation bar, hero section, About section, Skills section, Projects section with three sample projects, and a Contact section. The website features smooth scrolling and simple client-side interactions using JavaScript.
 
-## Features
-- Retrieve all students
-- Retrieve a specific student by ID
-- Create a new student
-- Update an existing student
-- Delete a student
+## Project Files
+- `index.html`: The main HTML file containing the structure of the website.
+- `styles.css`: The CSS file for styling the website.
+- `script.js`: The JavaScript file for adding interactivity and smooth scrolling.
 
-## Setup
+## Running Locally
+To view the website locally, simply open the `index.html` file in a web browser. No build steps or server setup is required.
 
-1. Clone the repository:
-   bash
-   git clone <repository-url>
-   cd <repository-directory>
-   
-
-2. Create a virtual environment:
-   bash
-   python3 -m venv venv
-   source venv/bin/activate
-   
-
-3. Install the dependencies:
-   bash
-   pip install -r requirements.txt
-   
-
-4. Run the application:
-   bash
-   flask run
-   
-
-## Deployment
-
-This application is ready for deployment on Render. Use the provided `Procfile` and `runtime.txt` for configuration.
-
-## API Endpoints
-
-- `GET /`: Root route
-- `GET /health`: Health check route
-- `GET /students`: Retrieve all students
-- `GET /students/<id>`: Retrieve a student by ID
-- `POST /students`: Create a new student
-- `PUT /students/<id>`: Update a student
-- `DELETE /students/<id>`: Delete a student
-
-## Error Handling
-
-The API returns appropriate HTTP status codes and error messages for invalid requests, such as missing fields or non-existent student IDs.
-
-## CORS Support
-
-CORS is enabled for all routes using `flask-cors`.
+## Deployment Notes
+This static website is suitable for deployment to static hosting services such as AWS S3 and CloudFront. Ensure all files are uploaded and paths are correctly configured for static hosting.
