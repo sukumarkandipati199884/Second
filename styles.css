@@ -1,97 +1,108 @@
 body {
     font-family: Arial, sans-serif;
-    line-height: 1.6;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
     overflow-x: hidden;
 }
+
 header {
-    background-color: #333;
-    color: #fff;
-    padding: 10px 0;
+    background-color: #4CAF50;
+    color: white;
+    padding: 1rem;
+    text-align: center;
 }
+
 nav ul {
-    list-style: none;
-    display: flex;
-    justify-content: center;
+    list-style-type: none;
     padding: 0;
 }
+
 nav ul li {
-    margin: 0 15px;
+    display: inline;
+    margin-right: 1rem;
 }
+
 nav ul li a {
-    color: #fff;
+    color: white;
     text-decoration: none;
 }
-#hero {
-    background-color: #f4f4f4;
-    text-align: center;
-    padding: 50px 0;
-}
-.cta {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 10px 20px;
-    background-color: #333;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 5px;
-}
-section {
-    padding: 20px;
-    max-width: 800px;
+
+main {
+    max-width: 1200px;
     margin: 0 auto;
+    padding: 1rem;
 }
-#skills ul {
+
+.summary-cards {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-around;
+    margin-bottom: 2rem;
 }
-#skills ul li {
-    margin: 10px;
-    padding: 10px;
-    background-color: #e2e2e2;
-    border-radius: 5px;
+
+.card {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    margin: 0.5rem;
+    flex: 1 1 200px;
+    text-align: center;
 }
-.project {
-    margin-bottom: 20px;
+
+.chart {
+    margin-bottom: 2rem;
 }
-form {
-    display: flex;
-    flex-direction: column;
+
+canvas {
+    width: 100%;
+    height: 300px;
 }
-form label {
-    margin-top: 10px;
+
+#orders table {
+    width: 100%;
+    border-collapse: collapse;
 }
-form input, form textarea {
-    padding: 10px;
-    margin-top: 5px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+
+#orders th, #orders td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
 }
-form button {
-    margin-top: 10px;
-    padding: 10px;
-    background-color: #333;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+
+#orders th {
+    background-color: #f2f2f2;
 }
+
 footer {
     background-color: #333;
-    color: #fff;
+    color: white;
     text-align: center;
-    padding: 10px 0;
+    padding: 1rem;
     position: fixed;
     width: 100%;
     bottom: 0;
 }
+
 @media (max-width: 768px) {
-    nav ul {
+    .summary-cards {
         flex-direction: column;
+        align-items: center;
     }
-    #skills ul {
-        flex-direction: column;
+
+    nav ul li {
+        display: block;
+        margin: 0.5rem 0;
+    }
+}
+
+@media (max-width: 480px) {
+    header, footer {
+        padding: 0.5rem;
+    }
+
+    .card {
+        flex: 1 1 100%;
     }
 }
