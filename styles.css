@@ -9,31 +9,28 @@ body {
     color: #333;
 }
 
-.theme-toggle {
-    position: fixed;
-    top: 10px;
-    right: 10px;
-}
-
-header {
-    background-color: #4a4e69;
-    color: #fff;
-    padding: 10px 20px;
-}
-
-.top-nav .brand {
-    font-size: 1.5em;
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: #6200ea;
+    color: white;
 }
 
 .sidebar {
-    background-color: #22223b;
-    color: #fff;
     width: 200px;
-    padding: 10px;
+    background-color: #3700b3;
+    color: white;
     position: fixed;
-    top: 50px;
+    top: 0;
     bottom: 0;
-    overflow-y: auto;
+    padding-top: 60px;
+    transition: transform 0.3s ease;
+}
+
+.sidebar.active {
+    transform: translateX(0);
 }
 
 .sidebar ul {
@@ -41,84 +38,109 @@ header {
     padding: 0;
 }
 
-.sidebar ul li a {
-    color: #fff;
-    text-decoration: none;
-    display: block;
-    padding: 10px;
-    transition: background-color 0.3s ease;
+.sidebar li {
+    padding: 15px;
+    cursor: pointer;
 }
 
-.sidebar ul li a:hover {
-    background-color: #4a4e69;
-}
-
-main {
-    margin-left: 220px;
+.main {
+    margin-left: 200px;
     padding: 20px;
     flex: 1;
 }
 
-.metrics {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
+.hero {
+    text-align: center;
+    padding: 50px 0;
+    background-color: #bb86fc;
+    color: white;
 }
 
-.metric-card {
-    background-color: #fff;
+.metrics {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+}
+
+.card {
+    background-color: white;
+    padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    margin: 10px;
-    flex: 1 1 calc(25% - 20px);
-    min-width: 200px;
+    width: 22%;
+    text-align: center;
 }
 
 .charts {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: space-around;
+    margin: 20px 0;
 }
 
 .chart {
-    background-color: #fff;
+    width: 45%;
+    height: 300px;
+    background-color: white;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    margin: 10px;
-    flex: 1 1 calc(50% - 20px);
-    min-width: 300px;
 }
 
-.recent-customers, .recent-activity, .date-range-selector {
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    margin: 10px 0;
+.recent-customers, .activity-feed {
+    margin: 20px 0;
 }
 
-input[type="text"], input[type="date"] {
+input[type="text"] {
+    width: 100%;
     padding: 10px;
-    margin: 10px 0;
-    width: calc(100% - 22px);
+    margin-bottom: 10px;
+    border-radius: 4px;
     border: 1px solid #ccc;
-    border-radius: 4px;
 }
 
-button {
-    padding: 10px 20px;
-    background-color: #4a4e69;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #6200ea;
+    color: white;
+}
+
+.activity-feed ul {
+    list-style: none;
+    padding: 0;
+}
+
+.activity-feed li {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.theme-toggle {
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 1rem;
 }
 
-button:hover {
-    background-color: #22223b;
+.nav-toggle {
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    display: none;
 }
 
 @media (max-width: 768px) {
@@ -126,14 +148,50 @@ button:hover {
         width: 100%;
         height: auto;
         position: relative;
+        transform: translateX(-100%);
     }
-    main {
+
+    .sidebar.active {
+        transform: translateX(0);
+    }
+
+    .main {
         margin-left: 0;
     }
+
     .metrics, .charts {
         flex-direction: column;
+        align-items: center;
     }
-    .metric-card, .chart {
-        flex: 1 1 100%;
+
+    .card, .chart {
+        width: 90%;
+        margin-bottom: 20px;
     }
+
+    .nav-toggle {
+        display: block;
+    }
+}
+
+.dark-theme {
+    background-color: #333;
+    color: #f4f4f9;
+}
+
+.dark-theme .navbar {
+    background-color: #333;
+}
+
+.dark-theme .sidebar {
+    background-color: #444;
+}
+
+.dark-theme .card, .dark-theme .chart {
+    background-color: #555;
+    color: #f4f4f9;
+}
+
+.dark-theme th {
+    background-color: #444;
 }
