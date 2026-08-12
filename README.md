@@ -1,13 +1,12 @@
 # Portfolio Website
 
-This is a professional personal portfolio website for a data science graduate student. The website includes sections such as hero, about, skills, projects, education, and contact.
+This is a professional personal portfolio website for a data science graduate student. The website includes sections for a hero introduction, about, skills, projects, education, and contact.
 
 ## Features
-- Responsive layout
-- Semantic HTML
-- Modern CSS
-- Interactive JavaScript
-- Accessibility basics
+- Responsive design
+- Modern CSS and semantic HTML
+- Interactive JavaScript for form submission
+- Accessible and mobile-friendly layout
 
 ## Setup
 
@@ -23,14 +22,14 @@ This is a professional personal portfolio website for a data science graduate st
 
 3. Open `index.html` in your web browser to view the website.
 
+## Deployment
+
+This is a static website and can be deployed on any static hosting service such as GitHub Pages, Netlify, or Vercel.
+
 ## Usage
 
 - Navigate through the sections using the navigation bar.
 - The contact form is a demo and does not store or transmit data.
-
-## Deployment
-
-This project is ready to be deployed as a static website. You can host it on platforms like GitHub Pages, Netlify, or Vercel.
 
 ## License
 
