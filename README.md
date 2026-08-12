@@ -1,27 +1,37 @@
-# Gourmet Haven Website
+# Portfolio Website
 
-This is a static website for a fictional restaurant called Gourmet Haven. It includes various sections such as Home, Menu, About, Gallery, Reservation, and Contact.
+This is a professional portfolio website for a data science graduate student. It includes sections for a hero introduction, about, skills, projects, education, and contact.
 
 ## Features
-- Responsive navigation bar with a mobile-friendly burger menu.
-- Hero section with a welcoming message.
-- Menu section with category filtering using JavaScript.
-- About section describing the restaurant.
-- Gallery section with images.
-- Reservation form with client-side validation.
-- Contact information and opening hours.
+- Responsive design
+- Semantic HTML
+- Modern CSS
+- Interactive JavaScript
+- Accessibility basics
 
 ## Setup
-1. Clone the repository.
-2. Open `index.html` in a web browser.
 
-## Deployment
-This project can be deployed on any static hosting service such as AWS S3, CloudFront, GitHub Pages, etc.
+1. Clone the repository:
+   bash
+   git clone <repository-url>
+   
+
+2. Navigate to the project directory:
+   bash
+   cd portfolio-website
+   
+
+3. Open `index.html` in your web browser to view the website.
 
 ## Usage
-- Navigate through the sections using the navigation bar.
-- Use the menu category buttons to filter dishes.
-- Fill out the reservation form to simulate a booking (note: this is a demo form and does not store or transmit data).
+
+- Navigate through the sections using the navigation menu.
+- The contact form is a demo and does not store or transmit data.
+
+## Deployment
+
+This project is ready for deployment as a static website. Simply host the files on any static file hosting service.
 
 ## License
+
 This project is licensed under the MIT License.
