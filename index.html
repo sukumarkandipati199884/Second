@@ -11,39 +11,47 @@
     <header>
         <nav class="navbar">
             <div class="brand">NovaMetrics</div>
-            <button class="theme-toggle">Toggle Theme</button>
-            <button class="nav-toggle">Toggle Navigation</button>
+            <button class="theme-toggle" aria-label="Toggle Theme">🌙</button>
+            <button class="nav-toggle" aria-label="Toggle Navigation">☰</button>
         </nav>
     </header>
     <aside class="sidebar">
         <ul>
-            <li>Dashboard</li>
-            <li>Analytics</li>
-            <li>Customers</li>
-            <li>Reports</li>
-            <li>Settings</li>
+            <li><a href="#dashboard">Dashboard</a></li>
+            <li><a href="#analytics">Analytics</a></li>
+            <li><a href="#customers">Customers</a></li>
+            <li><a href="#reports">Reports</a></li>
+            <li><a href="#settings">Settings</a></li>
         </ul>
     </aside>
     <main>
+        <section id="dashboard" class="hero">
+            <h1>Welcome to NovaMetrics</h1>
+            <p>Your comprehensive analytics dashboard.</p>
+        </section>
         <section class="metrics">
             <div class="metric-card">
-                <h3>Monthly Revenue</h3>
+                <h2>Monthly Revenue</h2>
                 <p id="monthly-revenue">$0</p>
             </div>
             <div class="metric-card">
-                <h3>Active Users</h3>
+                <h2>Active Users</h2>
                 <p id="active-users">0</p>
             </div>
             <div class="metric-card">
-                <h3>Conversion Rate</h3>
+                <h2>Conversion Rate</h2>
                 <p id="conversion-rate">0%</p>
             </div>
             <div class="metric-card">
-                <h3>Support Tickets</h3>
+                <h2>Support Tickets</h2>
                 <p id="support-tickets">0</p>
             </div>
+            <div class="metric-card">
+                <h2>Total Projects</h2>
+                <p id="total-projects">0</p>
+            </div>
         </section>
-        <section class="charts">
+        <section id="analytics" class="charts">
             <div class="chart" id="revenue-chart">
                 <h3>Revenue Chart</h3>
                 <canvas id="revenueCanvas"></canvas>
@@ -53,7 +61,7 @@
                 <canvas id="activityCanvas"></canvas>
             </div>
         </section>
-        <section class="recent-customers">
+        <section id="customers" class="recent-customers">
             <h3>Recent Customers</h3>
             <input type="text" id="customer-search" placeholder="Search customers...">
             <table>
@@ -61,19 +69,23 @@
                     <tr>
                         <th>Name</th>
                         <th>Email</th>
-                        <th>Joined</th>
+                        <th>Joined Date</th>
                     </tr>
                 </thead>
                 <tbody id="customer-table">
-                    <!-- Sample data will be inserted here -->
+                    <!-- Sample data will be inserted here by JavaScript -->
                 </tbody>
             </table>
         </section>
-        <section class="activity-feed">
+        <section id="reports" class="activity-feed">
             <h3>Recent Activity</h3>
             <ul id="activity-feed">
-                <!-- Sample activity data will be inserted here -->
+                <!-- Sample data will be inserted here by JavaScript -->
             </ul>
+        </section>
+        <section id="settings">
+            <h3>Settings</h3>
+            <p>Settings content goes here.</p>
         </section>
     </main>
 </body>
