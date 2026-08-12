@@ -8,7 +8,7 @@ CORS(app)
 # Configure logging
 logging.basicConfig(level=logging.INFO)
 
-# In-memory storage for student records
+# Sample in-memory data
 students = [
     {'id': 1, 'name': 'John Doe', 'email': 'john.doe@example.com', 'course': 'Computer Science', 'enrollment_year': 2020},
     {'id': 2, 'name': 'Jane Smith', 'email': 'jane.smith@example.com', 'course': 'Mathematics', 'enrollment_year': 2019}
@@ -18,11 +18,11 @@ students = [
 def find_student(student_id):
     return next((student for student in students if student['id'] == student_id), None)
 
-@app.route('/', methods=['GET'])
+@app.route('/')
 def root():
     return jsonify({'message': 'Welcome to the Student Records API'}), 200
 
-@app.route('/health', methods=['GET'])
+@app.route('/health')
 def health():
     return jsonify({'status': 'healthy'}), 200
 
@@ -34,14 +34,14 @@ def get_students():
 def get_student(student_id):
     student = find_student(student_id)
     if student is None:
-        abort(404, description="Student not found")
+        abort(404, description='Student not found')
     return jsonify(student), 200
 
 @app.route('/students', methods=['POST'])
 def create_student():
     if not request.json or not all(key in request.json for key in ['name', 'email', 'course', 'enrollment_year']):
-        abort(400, description="Missing required fields")
-    new_id = max(student['id'] for student in students) + 1 if students else 1
+        abort(400, description='Missing required fields')
+    new_id = max(student['id'] for student in students) + 1
     new_student = {
         'id': new_id,
         'name': request.json['name'],
@@ -56,9 +56,9 @@ def create_student():
 def update_student(student_id):
     student = find_student(student_id)
     if student is None:
-        abort(404, description="Student not found")
+        abort(404, description='Student not found')
     if not request.json:
-        abort(400, description="Missing required fields")
+        abort(400, description='Request must be JSON')
     student.update({
         'name': request.json.get('name', student['name']),
         'email': request.json.get('email', student['email']),
@@ -71,7 +71,7 @@ def update_student(student_id):
 def delete_student(student_id):
     student = find_student(student_id)
     if student is None:
-        abort(404, description="Student not found")
+        abort(404, description='Student not found')
     students.remove(student)
     return jsonify({'result': 'Student deleted'}), 200
 
@@ -84,4 +84,4 @@ def bad_request(error):
     return jsonify({'error': str(error)}), 400
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+    app.run(debug=True)
