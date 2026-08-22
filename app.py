@@ -11,7 +11,7 @@ logging.basicConfig(level=logging.INFO)
 @app.route('/')
 def home():
     app.logger.info('Home endpoint was accessed')
-    return 'AutoDeploy.AI GitHub Render Test', 200
+    return 'AutoDeploy.AI GitHub Render Test'
 
 @app.route('/health')
 def health():
@@ -20,12 +20,12 @@ def health():
 
 @app.errorhandler(404)
 def not_found(error):
-    app.logger.error(f'Not found: {error}')
+    app.logger.error('404 error: %s', error)
     return jsonify(error='Not found'), 404
 
 @app.errorhandler(500)
 def internal_error(error):
-    app.logger.error(f'Internal server error: {error}')
+    app.logger.error('500 error: %s', error)
     return jsonify(error='Internal server error'), 500
 
 if __name__ == '__main__':
