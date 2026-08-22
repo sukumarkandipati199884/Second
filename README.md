@@ -1,12 +1,11 @@
-# Task Management Web Application
+# Flask Task Management Application
 
-This is a professional Flask-based task management web application with a responsive design.
+This is a professional task management web application built with Flask. It features a responsive homepage, a task dashboard, and a health check endpoint.
 
 ## Features
-- Responsive homepage with navigation bar, hero section, task dashboard, and footer.
-- Task dashboard with sample task cards and status badges.
-- Statistics section with sample statistics cards.
-- Health check endpoint at `/health`.
+- Responsive homepage with navigation bar and hero section
+- Task dashboard with sample task cards, status badges, and statistics
+- Health check endpoint at `/health`
 
 ## Setup
 
@@ -32,21 +31,13 @@ This is a professional Flask-based task management web application with a respon
    flask run
    
 
-5. Access the application at `http://localhost:5000`.
+5. Access the application at `http://localhost:5000`
 
 ## Deployment
 
-This application is ready for deployment on Render. Ensure you have a Render account and follow their deployment instructions.
+This application is ready for deployment on Render. Ensure you have a `Procfile` and `runtime.txt` for the deployment configuration.
 
 ## Endpoints
+
 - `GET /`: Returns the homepage.
 - `GET /health`: Returns a JSON response indicating the health status of the application.
-
-## Environment Variables
-
-- `FLASK_ENV`: Set to `production` for production environment.
-- `SECRET_KEY`: Set a secret key for session management.
-
-## License
-
-This project is licensed under the MIT License.
