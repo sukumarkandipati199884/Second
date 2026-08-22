@@ -1,44 +1,49 @@
-# Flask Web Application
+# AutoDeploy Render Verification Test
 
-## Overview
-This is a simple Flask web application with a root route and a health check endpoint. It is designed to be deployed on Render.
+This is a simple Flask web application with a home page and a health check endpoint.
 
 ## Features
-- Root route (`/`) serving an HTML page
-- Health check endpoint (`/health`) returning JSON
+- Home page displaying a verification message
+- Health check endpoint
+- JSON responses
 - CORS support
-- Error handling for 404 and 500 errors
+- Logging
 
-## Setup Instructions
-1. Clone the repository.
-2. Create a virtual environment:
+## Setup
+
+1. Clone the repository:
+   bash
+   git clone <repository-url>
+   cd <repository-directory>
+   
+
+2. Create a virtual environment and activate it:
    bash
    python3 -m venv venv
+   source venv/bin/activate
    
-3. Activate the virtual environment:
-   - On macOS/Linux:
-     bash
-     source venv/bin/activate
-     
-   - On Windows:
-     bash
-     .\venv\Scripts\activate
-     
-4. Install the dependencies:
+
+3. Install the dependencies:
    bash
    pip install -r requirements.txt
    
-5. Run the application:
+
+4. Run the application:
    bash
    python app.py
    
 
-## Deployment
-- This application is ready to be deployed on Render. Ensure you have a Render account and follow their deployment instructions.
+5. The application will be available at `http://localhost:5000`
 
 ## Endpoints
-- `GET /`: Renders the main HTML page.
-- `GET /health`: Returns a JSON response indicating the health status of the application.
+
+- `GET /`: Returns a JSON message "AutoDeploy Render Verification Test"
+- `GET /health`: Returns a JSON status "healthy"
+
+## Deployment
+
+This application is ready to be deployed on Render. Ensure you have a `Procfile` and `runtime.txt` for deployment configuration.
 
 ## Environment Variables
-- See `.env.example` for environment variable configuration.
+
+Use the `.env.example` file to set up your environment variables.
