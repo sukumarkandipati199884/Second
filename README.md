@@ -1,18 +1,58 @@
-# NovaMetrics Dashboard
+# Student Management System API
 
-NovaMetrics Dashboard is a static web application that provides a responsive analytics dashboard for a fictional company called NovaMetrics. It includes various sections such as metrics, charts, recent customers, and activity feeds.
+This is a Flask-based REST API for managing students. It provides CRUD operations for student data and includes user authentication.
 
-## Project Files
+## Features
+- CRUD operations for students
+- User authentication
+- JSON responses
+- CORS support
+- PostgreSQL database
 
-- `index.html`: The main HTML file for the dashboard.
-- `styles.css`: The CSS file for styling the dashboard.
-- `script.js`: The JavaScript file for dynamic behavior and data handling.
+## Setup
 
-## How to Run Locally
+1. Clone the repository:
+   bash
+   git clone <repository-url>
+   cd <repository-directory>
+   
 
-1. Clone the repository or download the project files.
-2. Open `index.html` directly in a web browser.
+2. Create a virtual environment and activate it:
+   bash
+   python3 -m venv venv
+   source venv/bin/activate
+   
 
-## Deployment Notes
+3. Install the dependencies:
+   bash
+   pip install -r requirements.txt
+   
 
-This project is a static website and can be hosted on any static hosting service such as AWS S3, CloudFront, GitHub Pages, or Netlify. Simply upload the project files to your chosen hosting service.
+4. Set up the environment variables:
+   - Copy `.env.example` to `.env` and fill in the necessary details.
+
+5. Initialize the database:
+   bash
+   flask db init
+   flask db migrate
+   flask db upgrade
+   
+
+6. Run the application:
+   bash
+   flask run
+   
+
+## Endpoints
+
+- `GET /`: Welcome message
+- `GET /health`: Health check
+- `POST /login`: User login
+- `GET /students`: Get all students (requires authentication)
+- `POST /students`: Add a new student (requires authentication)
+- `PUT /students/<id>`: Update a student (requires authentication)
+- `DELETE /students/<id>`: Delete a student (requires authentication)
+
+## Deployment
+
+This application is ready to be deployed on Render. Ensure that the environment variables are set correctly in the Render dashboard.
