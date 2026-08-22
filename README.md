@@ -1,43 +1,49 @@
-# Flask Task Management Application
+# AutoDeploy.AI Flask Render Test
 
-This is a professional task management web application built with Flask. It features a responsive homepage, a task dashboard, and a health check endpoint.
+This is a Flask web application with a responsive homepage and a health check endpoint.
 
 ## Features
-- Responsive homepage with navigation bar and hero section
-- Task dashboard with sample task cards, status badges, and statistics
+- Responsive homepage displaying 'AutoDeploy.AI Flask Render Test'
 - Health check endpoint at `/health`
+- CORS support
 
 ## Setup
 
 1. Clone the repository:
-   bash
+   
    git clone <repository-url>
    cd <repository-directory>
    
 
 2. Create a virtual environment and activate it:
-   bash
+   
    python3 -m venv venv
    source venv/bin/activate
    
 
 3. Install the dependencies:
-   bash
+   
    pip install -r requirements.txt
    
 
 4. Run the application:
-   bash
-   flask run
+   
+   python app.py
    
 
-5. Access the application at `http://localhost:5000`
+5. Visit `http://localhost:5000` in your browser.
 
 ## Deployment
 
-This application is ready for deployment on Render. Ensure you have a `Procfile` and `runtime.txt` for the deployment configuration.
+This application is ready to be deployed on Render. Ensure you have the following files:
+- `Procfile`
+- `runtime.txt`
 
 ## Endpoints
 
-- `GET /`: Returns the homepage.
-- `GET /health`: Returns a JSON response indicating the health status of the application.
+- `GET /`: Renders the homepage.
+- `GET /health`: Returns a JSON response indicating the health status.
+
+## License
+
+This project is licensed under the MIT License.
