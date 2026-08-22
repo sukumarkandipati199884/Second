@@ -1,13 +1,12 @@
-# AutoDeploy.AI GitHub Render Test
+# Task Management Web Application
 
-This is a simple Flask web application designed to be deployed on Render. It includes a homepage and a health check endpoint.
+This is a professional Flask-based task management web application with a responsive design.
 
 ## Features
-- Homepage displaying a welcome message
-- Health check endpoint
-- CORS support
-- JSON error handling
-- Logging
+- Responsive homepage with navigation bar, hero section, task dashboard, and footer.
+- Task dashboard with sample task cards and status badges.
+- Statistics section with sample statistics cards.
+- Health check endpoint at `/health`.
 
 ## Setup
 
@@ -30,20 +29,24 @@ This is a simple Flask web application designed to be deployed on Render. It inc
 
 4. Run the application:
    bash
-   python app.py
+   flask run
    
 
-5. Access the application in your browser at `http://localhost:5000`
+5. Access the application at `http://localhost:5000`.
 
 ## Deployment
 
-This application is ready to be deployed on Render. Ensure you have a Render account and follow their deployment instructions, using the provided `Procfile` and `runtime.txt`.
+This application is ready for deployment on Render. Ensure you have a Render account and follow their deployment instructions.
 
 ## Endpoints
-
-- `GET /`: Returns the homepage message.
-- `GET /health`: Returns a JSON response indicating the API is healthy.
+- `GET /`: Returns the homepage.
+- `GET /health`: Returns a JSON response indicating the health status of the application.
 
 ## Environment Variables
 
-Use the `.env.example` file to set up your environment variables.
+- `FLASK_ENV`: Set to `production` for production environment.
+- `SECRET_KEY`: Set a secret key for session management.
+
+## License
+
+This project is licensed under the MIT License.
