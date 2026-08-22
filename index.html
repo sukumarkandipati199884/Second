@@ -3,90 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NovaMetrics Dashboard</title>
-    <link rel="stylesheet" href="styles.css">
-    <script defer src="script.js"></script>
+    <title>Task Management</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <script src="/static/js/script.js" defer></script>
 </head>
 <body>
-    <header>
-        <nav class="navbar">
-            <div class="brand">NovaMetrics</div>
-            <button class="theme-toggle" aria-label="Toggle Theme">🌙</button>
-            <button class="nav-toggle" aria-label="Toggle Navigation">☰</button>
-        </nav>
-    </header>
-    <aside class="sidebar">
-        <ul>
-            <li><a href="#dashboard">Dashboard</a></li>
-            <li><a href="#analytics">Analytics</a></li>
-            <li><a href="#customers">Customers</a></li>
-            <li><a href="#reports">Reports</a></li>
-            <li><a href="#settings">Settings</a></li>
-        </ul>
-    </aside>
-    <main>
-        <section id="dashboard" class="hero">
-            <h1>Welcome to NovaMetrics</h1>
-            <p>Your comprehensive analytics dashboard.</p>
-        </section>
-        <section class="metrics">
-            <div class="metric-card">
-                <h2>Monthly Revenue</h2>
-                <p id="monthly-revenue">$0</p>
-            </div>
-            <div class="metric-card">
-                <h2>Active Users</h2>
-                <p id="active-users">0</p>
-            </div>
-            <div class="metric-card">
-                <h2>Conversion Rate</h2>
-                <p id="conversion-rate">0%</p>
-            </div>
-            <div class="metric-card">
-                <h2>Support Tickets</h2>
-                <p id="support-tickets">0</p>
-            </div>
-            <div class="metric-card">
-                <h2>Total Projects</h2>
-                <p id="total-projects">0</p>
-            </div>
-        </section>
-        <section id="analytics" class="charts">
-            <div class="chart" id="revenue-chart">
-                <h3>Revenue Chart</h3>
-                <canvas id="revenueCanvas"></canvas>
-            </div>
-            <div class="chart" id="user-activity-chart">
-                <h3>User Activity</h3>
-                <canvas id="activityCanvas"></canvas>
-            </div>
-        </section>
-        <section id="customers" class="recent-customers">
-            <h3>Recent Customers</h3>
-            <input type="text" id="customer-search" placeholder="Search customers...">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Joined Date</th>
-                    </tr>
-                </thead>
-                <tbody id="customer-table">
-                    <!-- Sample data will be inserted here by JavaScript -->
-                </tbody>
-            </table>
-        </section>
-        <section id="reports" class="activity-feed">
-            <h3>Recent Activity</h3>
-            <ul id="activity-feed">
-                <!-- Sample data will be inserted here by JavaScript -->
+    <nav>
+        <div class="container">
+            <a href="#" class="logo" id="logo">TaskManager</a>
+            <ul class="nav-links">
+                <li><a href="#home" id="home-link">Home</a></li>
+                <li><a href="#dashboard" id="dashboard-link">Dashboard</a></li>
+                <li><a href="#about" id="about-link">About</a></li>
+                <li><a href="#contact" id="contact-link">Contact</a></li>
             </ul>
+        </div>
+    </nav>
+    <header class="hero" id="home">
+        <div class="container">
+            <h1>Welcome to TaskManager</h1>
+            <p>Manage your tasks efficiently and effectively.</p>
+        </div>
+    </header>
+    <main>
+        <section class="dashboard" id="dashboard">
+            <div class="container">
+                <h2>Your Tasks</h2>
+                <div class="task-card">
+                    <h3>Task 1</h3>
+                    <p>Status: <span class="badge">In Progress</span></p>
+                </div>
+                <div class="task-card">
+                    <h3>Task 2</h3>
+                    <p>Status: <span class="badge">Completed</span></p>
+                </div>
+                <div class="task-card">
+                    <h3>Task 3</h3>
+                    <p>Status: <span class="badge">Pending</span></p>
+                </div>
+            </div>
         </section>
-        <section id="settings">
-            <h3>Settings</h3>
-            <p>Settings content goes here.</p>
+        <section class="statistics" id="statistics">
+            <div class="container">
+                <h2>Statistics</h2>
+                <div class="stats-card">
+                    <h3>Total Tasks</h3>
+                    <p id="total-tasks">10</p>
+                </div>
+                <div class="stats-card">
+                    <h3>Completed Tasks</h3>
+                    <p id="completed-tasks">5</p>
+                </div>
+                <div class="stats-card">
+                    <h3>Pending Tasks</h3>
+                    <p id="pending-tasks">5</p>
+                </div>
+            </div>
+        </section>
+        <section id="about">
+            <div class="container">
+                <h2>About Us</h2>
+                <p>Learn more about TaskManager and our mission to help you manage tasks efficiently.</p>
+            </div>
+        </section>
+        <section id="contact">
+            <div class="container">
+                <h2>Contact Us</h2>
+                <p>Get in touch with us for more information or support.</p>
+            </div>
         </section>
     </main>
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 TaskManager. All rights reserved.</p>
+        </div>
+    </footer>
 </body>
 </html>
