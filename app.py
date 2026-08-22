@@ -1,83 +1,85 @@
-from flask import Flask, jsonify, request, abort
+from flask import Flask, jsonify, request
 from flask_cors import CORS
-import logging
+from flask_sqlalchemy import SQLAlchemy
+from flask_bcrypt import Bcrypt
+from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
+import os
 
 app = Flask(__name__)
 CORS(app)
 
-# Sample in-memory data
-students = [
-    {'id': 1, 'name': 'John Doe', 'email': 'john.doe@example.com', 'course': 'Computer Science', 'enrollment_year': 2020},
-    {'id': 2, 'name': 'Jane Smith', 'email': 'jane.smith@example.com', 'course': 'Mathematics', 'enrollment_year': 2019}
-]
+# Configuration
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL', 'postgresql://user:password@localhost:5432/student_db')
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['JWT_SECRET_KEY'] = os.getenv('JWT_SECRET_KEY', 'super-secret-key')
 
-# Configure logging
-logging.basicConfig(level=logging.INFO)
+# Extensions
+db = SQLAlchemy(app)
+bcrypt = Bcrypt(app)
+jwt = JWTManager(app)
 
+# Models
+class Student(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
+    email = db.Column(db.String(100), unique=True, nullable=False)
+
+# Routes
 @app.route('/', methods=['GET'])
-def root():
-    return jsonify({'message': 'Welcome to the Student Records API'}), 200
+def index():
+    return jsonify({'message': 'Welcome to the Student Management System API'}), 200
 
 @app.route('/health', methods=['GET'])
 def health():
     return jsonify({'status': 'healthy'}), 200
 
 @app.route('/students', methods=['GET'])
+@jwt_required()
 def get_students():
-    return jsonify(students), 200
-
-@app.route('/students/<int:student_id>', methods=['GET'])
-def get_student(student_id):
-    student = next((s for s in students if s['id'] == student_id), None)
-    if student is None:
-        abort(404, description='Student not found')
-    return jsonify(student), 200
+    students = Student.query.all()
+    return jsonify([{'id': student.id, 'name': student.name, 'email': student.email} for student in students]), 200
 
 @app.route('/students', methods=['POST'])
-def create_student():
-    if not request.json or not all(k in request.json for k in ('name', 'email', 'course', 'enrollment_year')):
-        abort(400, description='Missing required fields')
-    new_id = max(s['id'] for s in students) + 1 if students else 1
-    student = {
-        'id': new_id,
-        'name': request.json['name'],
-        'email': request.json['email'],
-        'course': request.json['course'],
-        'enrollment_year': request.json['enrollment_year']
-    }
-    students.append(student)
-    return jsonify(student), 201
+@jwt_required()
+def add_student():
+    data = request.get_json()
+    if not data or not 'name' in data or not 'email' in data:
+        return jsonify({'error': 'Invalid input'}), 400
+    new_student = Student(name=data['name'], email=data['email'])
+    db.session.add(new_student)
+    db.session.commit()
+    return jsonify({'message': 'Student added successfully'}), 201
 
-@app.route('/students/<int:student_id>', methods=['PUT'])
-def update_student(student_id):
-    student = next((s for s in students if s['id'] == student_id), None)
-    if student is None:
-        abort(404, description='Student not found')
-    if not request.json:
-        abort(400, description='Missing request body')
-    student.update({
-        'name': request.json.get('name', student['name']),
-        'email': request.json.get('email', student['email']),
-        'course': request.json.get('course', student['course']),
-        'enrollment_year': request.json.get('enrollment_year', student['enrollment_year'])
-    })
-    return jsonify(student), 200
+@app.route('/students/<int:id>', methods=['PUT'])
+@jwt_required()
+def update_student(id):
+    data = request.get_json()
+    student = Student.query.get_or_404(id)
+    if 'name' in data:
+        student.name = data['name']
+    if 'email' in data:
+        student.email = data['email']
+    db.session.commit()
+    return jsonify({'message': 'Student updated successfully'}), 200
 
-@app.route('/students/<int:student_id>', methods=['DELETE'])
-def delete_student(student_id):
-    student = next((s for s in students if s['id'] == student_id), None)
-    if student is None:
-        abort(404, description='Student not found')
-    students.remove(student)
-    return jsonify({'result': 'Student deleted'}), 200
+@app.route('/students/<int:id>', methods=['DELETE'])
+@jwt_required()
+def delete_student(id):
+    student = Student.query.get_or_404(id)
+    db.session.delete(student)
+    db.session.commit()
+    return jsonify({'message': 'Student deleted successfully'}), 200
 
-@app.errorhandler(404)
-def not_found(error):
-    return jsonify({'error': str(error)}), 404
-
-@app.errorhandler(400)
-def bad_request(error):
-    return jsonify({'error': str(error)}), 400
+@app.route('/login', methods=['POST'])
+def login():
+    data = request.get_json()
+    if not data or not 'username' in data or not 'password' in data:
+        return jsonify({'error': 'Invalid input'}), 400
+    # This is a demo login, replace with real user authentication
+    if data['username'] == 'admin' and data['password'] == 'password':
+        access_token = create_access_token(identity={'username': data['username']})
+        return jsonify(access_token=access_token), 200
+    return jsonify({'error': 'Invalid credentials'}), 401
 
 if __name__ == '__main__':
     app.run(debug=True)
