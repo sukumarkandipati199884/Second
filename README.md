@@ -1,49 +1,44 @@
-# AutoDeploy.AI Flask Render Test
+# Flask Web Application
 
-This is a Flask web application with a responsive homepage and a health check endpoint.
+## Overview
+This is a simple Flask web application with a root route and a health check endpoint. It is designed to be deployed on Render.
 
 ## Features
-- Responsive homepage displaying 'AutoDeploy.AI Flask Render Test'
-- Health check endpoint at `/health`
+- Root route (`/`) serving an HTML page
+- Health check endpoint (`/health`) returning JSON
 - CORS support
+- Error handling for 404 and 500 errors
 
-## Setup
-
-1. Clone the repository:
-   
-   git clone <repository-url>
-   cd <repository-directory>
-   
-
-2. Create a virtual environment and activate it:
-   
+## Setup Instructions
+1. Clone the repository.
+2. Create a virtual environment:
+   bash
    python3 -m venv venv
-   source venv/bin/activate
    
-
-3. Install the dependencies:
-   
+3. Activate the virtual environment:
+   - On macOS/Linux:
+     bash
+     source venv/bin/activate
+     
+   - On Windows:
+     bash
+     .\venv\Scripts\activate
+     
+4. Install the dependencies:
+   bash
    pip install -r requirements.txt
    
-
-4. Run the application:
-   
+5. Run the application:
+   bash
    python app.py
    
 
-5. Visit `http://localhost:5000` in your browser.
-
 ## Deployment
-
-This application is ready to be deployed on Render. Ensure you have the following files:
-- `Procfile`
-- `runtime.txt`
+- This application is ready to be deployed on Render. Ensure you have a Render account and follow their deployment instructions.
 
 ## Endpoints
+- `GET /`: Renders the main HTML page.
+- `GET /health`: Returns a JSON response indicating the health status of the application.
 
-- `GET /`: Renders the homepage.
-- `GET /health`: Returns a JSON response indicating the health status.
-
-## License
-
-This project is licensed under the MIT License.
+## Environment Variables
+- See `.env.example` for environment variable configuration.
