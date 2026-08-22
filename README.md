@@ -1,9 +1,9 @@
-# AutoDeploy.AI Flask API
+# AutoDeploy.AI GitHub Render Test
 
-This is a simple Flask web application with a homepage and a health check endpoint, designed for deployment on Render.
+This is a simple Flask web application designed to be deployed on Render. It includes a homepage and a health check endpoint.
 
 ## Features
-- Home page displaying a welcome message
+- Homepage displaying a welcome message
 - Health check endpoint
 - CORS support
 - JSON error handling
@@ -11,41 +11,33 @@ This is a simple Flask web application with a homepage and a health check endpoi
 
 ## Setup
 
-1. **Clone the repository:**
+1. Clone the repository:
    bash
    git clone <repository-url>
    cd <repository-directory>
    
 
-2. **Create a virtual environment:**
+2. Create a virtual environment and activate it:
    bash
    python3 -m venv venv
    source venv/bin/activate
    
 
-3. **Install dependencies:**
+3. Install the dependencies:
    bash
    pip install -r requirements.txt
    
 
-4. **Run the application locally:**
+4. Run the application:
    bash
-   flask run
+   python app.py
    
 
-   The application will be available at `http://127.0.0.1:5000/`.
+5. Access the application in your browser at `http://localhost:5000`
 
 ## Deployment
 
-This application is ready to be deployed on Render. Ensure you have a Render account and follow these steps:
-
-1. **Create a new web service** on Render.
-2. **Connect your repository** to Render.
-3. **Set the build and start commands**:
-   - Build command: `pip install -r requirements.txt`
-   - Start command: `gunicorn app:app`
-
-4. **Deploy the application**.
+This application is ready to be deployed on Render. Ensure you have a Render account and follow their deployment instructions, using the provided `Procfile` and `runtime.txt`.
 
 ## Endpoints
 
@@ -54,14 +46,4 @@ This application is ready to be deployed on Render. Ensure you have a Render acc
 
 ## Environment Variables
 
-- `FLASK_ENV`: Set to `development` for local development.
-- `SECRET_KEY`: A secret key for session management.
-
-## Logging
-
-Logging is configured to output to the console with `INFO` level by default.
-
-## Error Handling
-
-- `404 Not Found`: Returns a JSON error message.
-- `500 Internal Server Error`: Returns a JSON error message.
+Use the `.env.example` file to set up your environment variables.
