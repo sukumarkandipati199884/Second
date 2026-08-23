@@ -1,44 +1,40 @@
-# AutoDeploy Render Correlation Test
+# Flask REST API
 
-This is a Flask web application with a styled home page displaying "AutoDeploy Render Correlation Test". It includes a `/health` endpoint returning JSON with status `healthy`.
+This is a simple Flask web application with a homepage and a health check endpoint.
+
+## Features
+- Homepage displaying 'AutoDeploy Render Verification Test'.
+- `/health` endpoint returning JSON status 'ok'.
+- CORS support enabled.
+- Proper error handling for 404 and 500 errors.
+- Logging for requests and errors.
 
 ## Setup
 
 1. Clone the repository.
 2. Create a virtual environment and activate it:
-   
+   bash
    python3 -m venv venv
    source venv/bin/activate
    
 3. Install the dependencies:
-   
+   bash
    pip install -r requirements.txt
    
-
-## Running Locally
-
-1. Ensure your virtual environment is activated.
-2. Run the application:
-   
+4. Run the application:
+   bash
    python app.py
    
-3. Visit `http://127.0.0.1:5000` in your browser to see the home page.
-4. Visit `http://127.0.0.1:5000/health` to check the health status.
 
 ## Deployment
 
-This application is ready to be deployed on Render. Ensure you have a `Procfile` and `runtime.txt` for deployment.
+This application is ready to be deployed on Render. Use the provided `Procfile` and `runtime.txt` for deployment configuration.
 
-## Endpoints
+## Usage
 
-- `GET /`: Displays the home page.
-- `GET /health`: Returns a JSON response with the health status.
+- Access the homepage at `http://localhost:5000/`.
+- Check the health status at `http://localhost:5000/health`.
 
-## Error Handling
+## Environment Variables
 
-- 404 errors return a JSON response with an error message.
-- 500 errors return a JSON response with an error message.
-
-## CORS Support
-
-CORS is enabled for all routes using `Flask-Cors`.
+Create a `.env` file based on `.env.example` to configure environment variables.
