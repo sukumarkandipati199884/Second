@@ -1,12 +1,13 @@
-# Flask Web Application
+# Flask API
 
 This is a simple Flask web application with a home page and a health check endpoint.
 
 ## Features
 - Home endpoint (`/`): Returns a welcome message.
 - Health endpoint (`/health`): Returns the health status of the application.
-- CORS support enabled.
-- JSON responses with proper error handling.
+- CORS support.
+- JSON responses.
+- Error handling for 404 and 500 errors.
 
 ## Setup
 
@@ -16,13 +17,13 @@ This is a simple Flask web application with a home page and a health check endpo
    cd <repository-directory>
    
 
-2. Create a virtual environment and activate it:
+2. Create a virtual environment:
    bash
    python3 -m venv venv
    source venv/bin/activate
    
 
-3. Install the dependencies:
+3. Install dependencies:
    bash
    pip install -r requirements.txt
    
@@ -32,22 +33,12 @@ This is a simple Flask web application with a home page and a health check endpo
    python app.py
    
 
-5. The application will be available at `http://127.0.0.1:5000/`.
+5. The application will be available at `http://localhost:5000`.
 
 ## Deployment
 
-This application is ready to be deployed on Render using the provided `Procfile` and `runtime.txt`.
-
-## Endpoints
-
-- **GET /**: Returns a welcome message.
-- **GET /health**: Returns the health status of the application.
+This application is ready to be deployed on Render. Use the `Procfile` and `runtime.txt` for deployment configuration.
 
 ## Environment Variables
 
-- `FLASK_ENV`: Set to `development` for development mode.
-- `SECRET_KEY`: Set your secret key for session management.
-
-## Logging
-
-The application logs access to the endpoints and errors using Python's built-in logging module.
+Copy `.env.example` to `.env` and configure your environment variables as needed.
