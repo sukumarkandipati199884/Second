@@ -10,22 +10,22 @@ logging.basicConfig(level=logging.INFO)
 
 @app.route('/')
 def home():
-    app.logger.info('Home route accessed')
-    return 'AutoDeploy Render Verification Test'
+    app.logger.info('Home endpoint was reached')
+    return jsonify(message='Welcome to the Flask API!'), 200
 
 @app.route('/health')
-def health_check():
-    app.logger.info('Health check route accessed')
-    return jsonify(status='ok'), 200
+def health():
+    app.logger.info('Health endpoint was reached')
+    return jsonify(status='healthy'), 200
 
 @app.errorhandler(404)
 def not_found(error):
-    app.logger.error('404 error: %s', error)
+    app.logger.error('404 error occurred')
     return jsonify(error='Not found'), 404
 
 @app.errorhandler(500)
 def internal_error(error):
-    app.logger.error('500 error: %s', error)
+    app.logger.error('500 error occurred')
     return jsonify(error='Internal server error'), 500
 
 if __name__ == '__main__':
