@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, render_template
+from flask import Flask, jsonify
 from flask_cors import CORS
 import logging
 
@@ -10,19 +10,23 @@ logging.basicConfig(level=logging.INFO)
 
 @app.route('/')
 def home():
-    return render_template('index.html')
+    app.logger.info('Home route accessed')
+    return 'AutoDeploy Render Verification Test'
 
 @app.route('/health')
 def health_check():
-    return jsonify({'status': 'healthy'}), 200
+    app.logger.info('Health check route accessed')
+    return jsonify(status='ok'), 200
 
 @app.errorhandler(404)
 def not_found(error):
-    return jsonify({'error': 'Not found'}), 404
+    app.logger.error('404 error: %s', error)
+    return jsonify(error='Not found'), 404
 
 @app.errorhandler(500)
 def internal_error(error):
-    return jsonify({'error': 'Internal server error'}), 500
+    app.logger.error('500 error: %s', error)
+    return jsonify(error='Internal server error'), 500
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=5000)
