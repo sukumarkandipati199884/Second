@@ -1,11 +1,12 @@
-# Deployment Status API
+# Flask Web Application
 
-This is a Flask-based REST API to check the status of a deployment after a GitHub push.
+This is a simple Flask web application with a home page and a health check endpoint.
 
 ## Features
-- Root route (`/`): Welcome message
-- Health check route (`/health`): Check if the API is running
-- Deployment status route (`/deployment/status`): Check if a deployment was successful or failed
+- Home endpoint (`/`): Returns a welcome message.
+- Health endpoint (`/health`): Returns the health status of the application.
+- CORS support enabled.
+- JSON responses with proper error handling.
 
 ## Setup
 
@@ -28,26 +29,25 @@ This is a Flask-based REST API to check the status of a deployment after a GitHu
 
 4. Run the application:
    bash
-   flask run
+   python app.py
    
+
+5. The application will be available at `http://127.0.0.1:5000/`.
 
 ## Deployment
 
-This application is ready to be deployed on Render. Ensure you have a `Procfile` and `runtime.txt` for deployment.
+This application is ready to be deployed on Render using the provided `Procfile` and `runtime.txt`.
 
-## Usage
+## Endpoints
 
 - **GET /**: Returns a welcome message.
-- **GET /health**: Returns the health status of the API.
-- **POST /deployment/status**: Check the status of a deployment.
-  - Request body should include a JSON object with `deployment_id`.
-  - Example:
-    json
-    {
-      "deployment_id": "12345"
-    }
-    
+- **GET /health**: Returns the health status of the application.
 
 ## Environment Variables
 
-Copy `.env.example` to `.env` and configure your environment variables.
+- `FLASK_ENV`: Set to `development` for development mode.
+- `SECRET_KEY`: Set your secret key for session management.
+
+## Logging
+
+The application logs access to the endpoints and errors using Python's built-in logging module.
